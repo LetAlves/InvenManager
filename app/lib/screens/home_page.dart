@@ -74,7 +74,7 @@ class Homepage extends StatelessWidget {
             ],
           ),
         ),
-        endDrawer: LateralMenu(),
-        bottomNavigationBar: BottomNavBar());
+        endDrawer: const LateralMenu(),
+        bottomNavigationBar: const BottomNavBar());
   }
 }

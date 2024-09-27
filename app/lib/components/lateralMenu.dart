@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invenmanager/screens/profilepage.dart';
+import 'package:invenmanager/screens/profile_page.dart';
 
 class LateralMenu extends StatelessWidget {
   const LateralMenu({Key? key}) : super(key: key);
