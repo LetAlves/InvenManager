@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:invenmanager/screens/homepage.dart';
 
 class Profilepage extends StatefulWidget {
-  const Profilepage({Key? key}) : super(key: key);
+  const Profilepage({super.key});
 
   @override
   State<Profilepage> createState() => _ProfilepageState();

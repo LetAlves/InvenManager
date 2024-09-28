@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:invenmanager/screens/profilepage.dart';
 
 class Homepage extends StatelessWidget {
-  const Homepage({Key? key}) : super(key: key);
+  const Homepage({super.key});
 
   @override
   Widget build(BuildContext context) {

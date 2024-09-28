@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:invenmanager/screens/Addnewproduct.dart';
+import 'package:invenmanager/screens/login.dart';
 
 void main() {
   runApp(const Invenmanager());
 }
 
 class Invenmanager extends StatelessWidget {
-  const Invenmanager({Key? key}) : super(key: key);
+  const Invenmanager({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class Invenmanager extends StatelessWidget {
       title: 'InvenManager',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: const Addnewproduct(),
+      home: const login(),
     );
   }
 }

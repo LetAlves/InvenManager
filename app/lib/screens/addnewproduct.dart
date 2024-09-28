@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Addnewproduct extends StatelessWidget {
-  const Addnewproduct({Key? key}) : super(key: key);
+  const Addnewproduct({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,8 @@ class Addnewproduct extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),  
-        child: Column( 
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const Padding(
@@ -53,7 +53,7 @@ class Addnewproduct extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20), 
+            const SizedBox(height: 20),
             TextFormField(
               decoration: const InputDecoration(
                 labelText: 'Valor unitário:',
@@ -68,7 +68,7 @@ class Addnewproduct extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20), 
+            const SizedBox(height: 20),
             TextFormField(
               decoration: const InputDecoration(
                 labelText: 'Codigo:',
@@ -83,7 +83,7 @@ class Addnewproduct extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20), 
+            const SizedBox(height: 20),
             TextFormField(
               decoration: const InputDecoration(
                 labelText: 'Quantidade:',
@@ -98,7 +98,7 @@ class Addnewproduct extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20), 
+            const SizedBox(height: 20),
             TextFormField(
               decoration: const InputDecoration(
                 labelText: 'Quantidade minima:',
@@ -115,24 +115,24 @@ class Addnewproduct extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             ElevatedButton.icon(
-            onPressed: (){}, 
-            label: const Text(
-              'Adicionar ao estoque',
-              style: TextStyle(color: Color(0xFF1E1E1E)),
-            ),
-            style: ElevatedButton.styleFrom(
-               textStyle: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-            ),
-            backgroundColor: const Color(0xFFF7DD43),
-                    minimumSize: const Size(335, 52),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-            ))
+                onPressed: () {},
+                label: const Text(
+                  'Adicionar ao estoque',
+                  style: TextStyle(color: Color(0xFF1E1E1E)),
+                ),
+                style: ElevatedButton.styleFrom(
+                  textStyle: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  backgroundColor: const Color(0xFFF7DD43),
+                  minimumSize: const Size(335, 52),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ))
           ],
         ),
       ),
