@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Addnewproduct extends StatelessWidget {
+class Addnewproduct extends StatefulWidget {
   const Addnewproduct({Key? key}) : super(key: key);
+
+  @override 
+  _AddnewproductState createState() => _AddnewproductState();
+}
+
+class _AddnewproductState extends State<Addnewproduct> {
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -23,117 +30,160 @@ class Addnewproduct extends StatelessWidget {
           tooltip: 'voltar',
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),  
-        child: Column( 
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.only(top: 20.0),
-              child: Text(
-                'Informações do produto',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Form(
+          key: _formKey, 
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.only(top: 20.0),
+                child: Text(
+                  'Informações do produto',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Nome:',
-                labelStyle: TextStyle(color: Color(0xFFC4C4CC)),
-                filled: true,
-                fillColor: Color(0xFF2C2C2C),
-                hintText: 'Produto',
-                hintStyle: TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                  borderSide: BorderSide.none,
+              const SizedBox(height: 20),
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Nome:',
+                  labelStyle: TextStyle(color: Color(0xFFC4C4CC)),
+                  filled: true,
+                  fillColor: Color(0xFF2C2C2C),
+                  hintText: 'Produto',
+                  hintStyle: TextStyle(color: Colors.grey),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    borderSide: BorderSide.none,
+                  ),
                 ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira o nome do produto';
+                  }
+                  return null;
+                },
               ),
-            ),
-            const SizedBox(height: 20), 
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Valor unitário:',
-                labelStyle: TextStyle(color: Color(0xFFC4C4CC)),
-                filled: true,
-                fillColor: Color(0xFF2C2C2C),
-                hintText: 'R\$ 100,00',
-                hintStyle: TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                  borderSide: BorderSide.none,
+              const SizedBox(height: 20),
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Valor unitário:',
+                  labelStyle: TextStyle(color: Color(0xFFC4C4CC)),
+                  filled: true,
+                  fillColor: Color(0xFF2C2C2C),
+                  hintText: 'R\$ 100,00',
+                  hintStyle: TextStyle(color: Colors.grey),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    borderSide: BorderSide.none,
+                  ),
                 ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira o valor unitário';
+                  }
+                  final parsedValue = double.tryParse(value);
+                    if (parsedValue == null) {
+                  return 'Por favor, insira um número válido';
+                }
+                  return null;
+                },
               ),
-            ),
-            const SizedBox(height: 20), 
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Codigo:',
-                labelStyle: TextStyle(color: Color(0xFFC4C4CC)),
-                filled: true,
-                fillColor: Color(0xFF2C2C2C),
-                hintText: '0000001',
-                hintStyle: TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                  borderSide: BorderSide.none,
+              const SizedBox(height: 20),
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Codigo:',
+                  labelStyle: TextStyle(color: Color(0xFFC4C4CC)),
+                  filled: true,
+                  fillColor: Color(0xFF2C2C2C),
+                  hintText: '0000001',
+                  hintStyle: TextStyle(color: Colors.grey),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    borderSide: BorderSide.none,
+                  ),
                 ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira o código do produto';
+                  }
+                  return null;
+                },
               ),
-            ),
-            const SizedBox(height: 20), 
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Quantidade:',
-                labelStyle: TextStyle(color: Color(0xFFC4C4CC)),
-                filled: true,
-                fillColor: Color(0xFF2C2C2C),
-                hintText: 'Ex. 10',
-                hintStyle: TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                  borderSide: BorderSide.none,
+              const SizedBox(height: 20),
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Quantidade:',
+                  labelStyle: TextStyle(color: Color(0xFFC4C4CC)),
+                  filled: true,
+                  fillColor: Color(0xFF2C2C2C),
+                  hintText: 'Ex. 10',
+                  hintStyle: TextStyle(color: Colors.grey),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    borderSide: BorderSide.none,
+                  ),
                 ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira a quantidade do produto';
+                  }
+                  return null;
+                },
               ),
-            ),
-            const SizedBox(height: 20), 
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Quantidade minima:',
-                labelStyle: TextStyle(color: Color(0xFFC4C4CC)),
-                filled: true,
-                fillColor: Color(0xFF2C2C2C),
-                hintText: 'Ex. 10',
-                hintStyle: TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                  borderSide: BorderSide.none,
+              const SizedBox(height: 20),
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Quantidade minima:',
+                  labelStyle: TextStyle(color: Color(0xFFC4C4CC)),
+                  filled: true,
+                  fillColor: Color(0xFF2C2C2C),
+                  hintText: 'Ex. 10',
+                  hintStyle: TextStyle(color: Colors.grey),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    borderSide: BorderSide.none,
+                  ),
                 ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira a quantidade mínima';
+                  }
+                  return null;
+                },
               ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton.icon(
-            onPressed: (){}, 
-            label: const Text(
-              'Adicionar ao estoque',
-              style: TextStyle(color: Color(0xFF1E1E1E)),
-            ),
-            style: ElevatedButton.styleFrom(
-               textStyle: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-            ),
-            backgroundColor: const Color(0xFFF7DD43),
-                    minimumSize: const Size(335, 52),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-            ))
-          ],
+              const SizedBox(height: 20),
+              ElevatedButton.icon(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Produto adicionado ao estoque')),
+                    );
+                  }
+                },
+                label: const Text(
+                  'Adicionar ao estoque',
+                  style: TextStyle(color: Color(0xFF1E1E1E)),
+                ),
+                style: ElevatedButton.styleFrom(
+                  textStyle: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  backgroundColor: const Color(0xFFF7DD43),
+                  minimumSize: const Size(335, 52),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomAppBar(

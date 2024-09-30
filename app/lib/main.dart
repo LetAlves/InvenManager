@@ -6,7 +6,7 @@ void main() {
 }
 
 class Invenmanager extends StatelessWidget {
-  const Invenmanager({Key? key}) : super(key: key);
+  const Invenmanager({super.key});
 
   @override
   Widget build(BuildContext context) {
