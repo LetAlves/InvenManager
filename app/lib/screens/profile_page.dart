@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:invenmanager/screens/homepage.dart';
 
 class Profilepage extends StatefulWidget {
   const Profilepage({Key? key}) : super(key: key);
@@ -16,12 +15,6 @@ class _ProfilepageState extends State<Profilepage> {
         title: const Text('Perfil'),
         centerTitle: true,
         backgroundColor: const Color(0xFF1E1E1E),
-        leading: IconButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const Homepage()));
-            },
-            icon: const Icon(Icons.arrow_back)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -43,7 +36,7 @@ class _ProfilepageState extends State<Profilepage> {
                   labelStyle: TextStyle(color: Color(0xFFC4C4CC)),
                   filled: true,
                   fillColor: Color(0xFF2C2C2C),
-                  hintText: 'John Due',
+                  hintText: 'John Doe',
                   hintStyle: TextStyle(color: Colors.grey),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -72,7 +65,7 @@ class _ProfilepageState extends State<Profilepage> {
                   labelStyle: TextStyle(color: Color(0xFFC4C4CC)),
                   filled: true,
                   fillColor: Color(0xFF2C2C2C),
-                  hintText: 'john.due@email.com',
+                  hintText: 'john.doe@email.com',
                   hintStyle: TextStyle(color: Colors.grey),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
