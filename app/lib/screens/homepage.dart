@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invenmanager/screens/profilepage.dart';
+import 'package:invenmanager/screens/profile_page.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
