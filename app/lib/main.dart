@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/screens/login.dart';
+import 'package:invenmanager/screens/search.dart';
+import 'package:invenmanager/screens/productinformation.dart';
+import 'package:invenmanager/screens/stockhistory.dart';
 
 void main() {
   runApp(const Invenmanager());
@@ -14,7 +17,7 @@ class Invenmanager extends StatelessWidget {
       title: 'InvenManager',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: const login(),
+      home: const ProductInformation(),
     );
   }
 }

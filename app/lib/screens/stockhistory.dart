@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/screens/profile_page.dart';
 
-class ProductInformation extends StatelessWidget {
-  const ProductInformation({Key? key}) : super(key: key);
+class Stockhistory extends StatelessWidget {
+  const Stockhistory({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -138,89 +138,74 @@ class ProductInformation extends StatelessWidget {
                       ),
                     ), // Bordas arredondadas (opcional)
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      // Título
-                      Text(
-                        'Atualizar Estoque',
-                        style: TextStyle(
-                          color: Color(0xFFFFFFFF),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-
-                      // Row para texto e formulário lado a lado
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment
-                            .center, // Centraliza na horizontal
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            'Nova Quantidade:',
-                            style: TextStyle(color: Color(0xFFC4C4CC)),
-                          ),
-                          const SizedBox(
-                              width: 8), // Espaço entre o texto e o formulário
-                          // Formulário para nova quantidade
-                          SizedBox(
-                            width: 70, // Largura do formulário
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                filled: true,
-                                fillColor:
-                                    Color(0xFF2C2C2C), // Cor de fundo do campo
-                                hintText: '50',
-                                hintStyle: TextStyle(color: Colors.grey),
-                                border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(8.0)),
-                                  borderSide: BorderSide.none,
-                                ),
-                              ),
-                              style: TextStyle(color: Colors.white),
-                              keyboardType: TextInputType
-                                  .number, // Define o teclado numérico
-                              textAlign: TextAlign
-                                  .center, // Centraliza o hintText e o texto digitado
+                            'Estoque Atualizado',
+                            style: TextStyle(
+                              color: Color(0xFFFFFFFF),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
+                          const SizedBox(height: 16),
+                          Text(
+                            '20 de Novembro de 2023 às 12:00',
+                            style: TextStyle(color: Color(0xFFC4C4CC)),
+                          ),
+                          const SizedBox(height: 60),
+
+                          // Botao de Confirmar estoque
                         ],
-                      ),
-                      const SizedBox(height: 20),
-                      // Botão de Confirmar Estoque
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          // Ação do botão
-                        },
-                        label: const Text(
-                          'CONFIRMAR ESTOQUE',
-                          style: TextStyle(color: Color(0xFFFFFFFF)),
-                        ),
-                        icon: const Icon(
-                          Icons.check,
-                          color: Color(0xFFFFFFFF),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          textStyle: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          backgroundColor: const Color(0xFF047C3F),
-                          minimumSize: const Size(335, 52),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
                       ),
                     ],
                   ),
                 ),
               ),
               const SizedBox(height: 30),
+              Center(
+                child: Container(
+                  padding: const EdgeInsets.all(20.0), // Espaçamento interno
+                  decoration: BoxDecoration(
+                    color: Color(0xFF202024), // Fundo rosa
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border(
+                      bottom: BorderSide(
+                        color: Color(0xFFF7DD43),
+                        width: 2.0,
+                      ),
+                    ), // Bordas arredondadas (opcional)
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Estoque Atualizado',
+                            style: TextStyle(
+                              color: Color(0xFFFFFFFF),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            '20 de Novembro de 2023 às 12:00',
+                            style: TextStyle(color: Color(0xFFC4C4CC)),
+                          ),
+                          const SizedBox(height: 60),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
