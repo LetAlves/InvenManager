@@ -17,7 +17,7 @@ class Invenmanager extends StatelessWidget {
       title: 'InvenManager',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: const ProductInformation(),
+      home: const Stockhistory(),
     );
   }
 }

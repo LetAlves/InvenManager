@@ -129,7 +129,7 @@ class Stockhistory extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(20.0), // Espaçamento interno
                   decoration: BoxDecoration(
-                    color: Color(0xFF202024), // Fundo rosa
+                    color: Color(0xFF202024), // Fundo
                     borderRadius: BorderRadius.circular(10),
                     border: Border(
                       bottom: BorderSide(
@@ -138,30 +138,93 @@ class Stockhistory extends StatelessWidget {
                       ),
                     ), // Bordas arredondadas (opcional)
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Estoque Atualizado',
+                        style: TextStyle(
+                          color: Color(0xFFFFFFFF),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        '20 de Novembro de 2023 às 12:00',
+                        style: TextStyle(color: Color(0xFFC4C4CC)),
+                      ),
+                      const SizedBox(height: 16),
+
+                      // Row para texto e formulário lado a lado
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment
+                            .center, // Centraliza na horizontal
                         children: [
                           Text(
-                            'Estoque Atualizado',
-                            style: TextStyle(
-                              color: Color(0xFFFFFFFF),
-                              fontSize: 15,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          Text(
-                            '20 de Novembro de 2023 às 12:00',
+                            'De:',
                             style: TextStyle(color: Color(0xFFC4C4CC)),
                           ),
-                          const SizedBox(height: 60),
+                          const SizedBox(
+                              width: 20), // Espaço entre o texto e o formulário
 
-                          // Botao de Confirmar estoque
+                          // Formulário para nova quantidade
+                          SizedBox(
+                            width: 70, // Largura do formulário
+                            child: TextFormField(
+                              decoration: const InputDecoration(
+                                filled: true,
+                                fillColor:
+                                    Color(0xFF2C2C2C), // Cor de fundo do campo
+                                hintText: '50',
+                                hintStyle: TextStyle(color: Colors.grey),
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8.0)),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                              style: TextStyle(color: Colors.white),
+                              keyboardType: TextInputType
+                                  .number, // Define o teclado numérico
+                              textAlign: TextAlign
+                                  .center, // Centraliza o hintText e o texto digitado
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          Text(
+                            'Para:',
+                            style: TextStyle(color: Color(0xFFC4C4CC)),
+                          ),
+                          const SizedBox(
+                              width: 20), // Espaço entre o texto e o formulário
+
+                          // Formulário para nova quantidade
+                          SizedBox(
+                            width: 70, // Largura do formulário
+                            child: TextFormField(
+                              decoration: const InputDecoration(
+                                filled: true,
+                                fillColor:
+                                    Color(0xFF2C2C2C), // Cor de fundo do campo
+                                hintText: '80',
+                                hintStyle: TextStyle(color: Colors.grey),
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8.0)),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                              style: TextStyle(color: Colors.white),
+                              keyboardType: TextInputType
+                                  .number, // Define o teclado numérico
+                              textAlign: TextAlign
+                                  .center, // Centraliza o hintText e o texto digitado
+                            ),
+                          ),
                         ],
                       ),
+                      const SizedBox(height: 16),
                     ],
                   ),
                 ),
@@ -171,7 +234,7 @@ class Stockhistory extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(20.0), // Espaçamento interno
                   decoration: BoxDecoration(
-                    color: Color(0xFF202024), // Fundo rosa
+                    color: Color(0xFF202024), // Fundo
                     borderRadius: BorderRadius.circular(10),
                     border: Border(
                       bottom: BorderSide(
@@ -180,28 +243,93 @@ class Stockhistory extends StatelessWidget {
                       ),
                     ), // Bordas arredondadas (opcional)
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Estoque Atualizado',
+                        style: TextStyle(
+                          color: Color(0xFFFFFFFF),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        '20 de Novembro de 2023 às 12:00',
+                        style: TextStyle(color: Color(0xFFC4C4CC)),
+                      ),
+                      const SizedBox(height: 16),
+
+                      // Row para texto e formulário lado a lado
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment
+                            .center, // Centraliza na horizontal
                         children: [
                           Text(
-                            'Estoque Atualizado',
-                            style: TextStyle(
-                              color: Color(0xFFFFFFFF),
-                              fontSize: 15,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          Text(
-                            '20 de Novembro de 2023 às 12:00',
+                            'De:',
                             style: TextStyle(color: Color(0xFFC4C4CC)),
                           ),
-                          const SizedBox(height: 60),
+                          const SizedBox(
+                              width: 20), // Espaço entre o texto e o formulário
+
+                          // Formulário para nova quantidade
+                          SizedBox(
+                            width: 70, // Largura do formulário
+                            child: TextFormField(
+                              decoration: const InputDecoration(
+                                filled: true,
+                                fillColor:
+                                    Color(0xFF2C2C2C), // Cor de fundo do campo
+                                hintText: '50',
+                                hintStyle: TextStyle(color: Colors.grey),
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8.0)),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                              style: TextStyle(color: Colors.white),
+                              keyboardType: TextInputType
+                                  .number, // Define o teclado numérico
+                              textAlign: TextAlign
+                                  .center, // Centraliza o hintText e o texto digitado
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          Text(
+                            'Para:',
+                            style: TextStyle(color: Color(0xFFC4C4CC)),
+                          ),
+                          const SizedBox(
+                              width: 20), // Espaço entre o texto e o formulário
+
+                          // Formulário para nova quantidade
+                          SizedBox(
+                            width: 70, // Largura do formulário
+                            child: TextFormField(
+                              decoration: const InputDecoration(
+                                filled: true,
+                                fillColor:
+                                    Color(0xFF2C2C2C), // Cor de fundo do campo
+                                hintText: '80',
+                                hintStyle: TextStyle(color: Colors.grey),
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8.0)),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                              style: TextStyle(color: Colors.white),
+                              keyboardType: TextInputType
+                                  .number, // Define o teclado numérico
+                              textAlign: TextAlign
+                                  .center, // Centraliza o hintText e o texto digitado
+                            ),
+                          ),
                         ],
                       ),
+                      const SizedBox(height: 16),
                     ],
                   ),
                 ),
