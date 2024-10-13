@@ -1,27 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:invenmanager/components/bottomNavBar.dart';
+import 'package:invenmanager/global/invenmanager_colors.dart';
 
-class Search extends StatelessWidget {
-  const Search({Key? key}) : super(key: key);
+class SearchPage extends StatefulWidget {
+  const SearchPage({Key? key}) : super(key: key);
 
+  @override
+  State<SearchPage> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Busca'),
         centerTitle: true,
-        backgroundColor: const Color(0xFF1E1E1E),
+        backgroundColor: Color(InvenmanagerColors.gray_800),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.more_vert),
             tooltip: 'Configurações',
-            onPressed: () {},
+            onPressed: () {
+              Scaffold.of(context).openEndDrawer();
+            },
           )
         ],
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios),
-          tooltip: 'voltar',
-        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -40,13 +44,14 @@ class Search extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextFormField(
-              decoration: const InputDecoration(
-                labelStyle: TextStyle(color: Color(0xFFC4C4CC)),
+              decoration: InputDecoration(
+                labelStyle:
+                    TextStyle(color: Color(InvenmanagerColors.gray_200)),
                 filled: true,
-                fillColor: Color(0xFF2C2C2C),
+                fillColor: Color(InvenmanagerColors.gray_700),
                 hintText: 'Digite o nome ou o código do produto',
-                hintStyle: TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
+                hintStyle: TextStyle(color: Color(InvenmanagerColors.gray_250)),
+                border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
                   borderSide: BorderSide.none,
                 ),
@@ -55,20 +60,20 @@ class Search extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton.icon(
                 onPressed: () {},
-                label: const Text(
+                label: Text(
                   'BUSCAR PRODUTO',
-                  style: TextStyle(color: Color(0xFF1E1E1E)),
+                  style: TextStyle(color: Color(InvenmanagerColors.gray_800)),
                 ),
-                icon: const Icon(
+                icon: Icon(
                   Icons.search,
-                  color: Color(0xFF1E1E1E),
+                  color: Color(InvenmanagerColors.gray_800),
                 ),
                 style: ElevatedButton.styleFrom(
                   textStyle: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
-                  backgroundColor: const Color(0xFFF7DD43),
+                  backgroundColor: Color(InvenmanagerColors.yellow),
                   minimumSize: const Size(335, 52),
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -79,39 +84,7 @@ class Search extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: const Color(0xFF1E1E1E),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextButton.icon(
-                onPressed: () {},
-                label: const Text(
-                  'Novo Produto',
-                  style: TextStyle(color: Color(0xFF8D8D99)),
-                ),
-                icon: const Icon(
-                  Icons.add_circle_outline,
-                  color: Color(0xFF8D8D99),
-                ),
-              ),
-              TextButton.icon(
-                onPressed: () {},
-                label: const Text(
-                  'Meu inventário',
-                  style: TextStyle(color: Color(0xFFF7DD43)),
-                ),
-                icon: const Icon(
-                  Icons.inventory,
-                  color: Color(0xFFF7DD43),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }

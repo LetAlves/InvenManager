@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:invenmanager/global/invenmanager_colors.dart';
+import 'package:invenmanager/screens/create_product_page.dart';
+import 'package:invenmanager/screens/home_page.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -6,32 +9,43 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      color: const Color(0xFF1E1E1E),
+      color: Color(InvenmanagerColors.gray_800),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextButton.icon(
-              onPressed: () {},
-              label: const Text(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const CreateProductPage()),
+                );
+              },
+              label: Text(
                 'Novo Produto',
-                style: TextStyle(color: Color(0xFF8D8D99)),
+                style: TextStyle(color: Color(InvenmanagerColors.gray_300)),
               ),
-              icon: const Icon(
+              icon: Icon(
                 Icons.add_circle_outline,
-                color: Color(0xFF8D8D99),
+                color: Color(InvenmanagerColors.gray_300),
               ),
             ),
             TextButton.icon(
-              onPressed: () {},
-              label: const Text(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Homepage()),
+                );
+              },
+              label: Text(
                 'Meu inventário',
-                style: TextStyle(color: Color(0xFFF7DD43)),
+                style: TextStyle(color: Color(InvenmanagerColors.yellow)),
               ),
-              icon: const Icon(
+              icon: Icon(
                 Icons.inventory,
-                color: Color(0xFFF7DD43),
+                color: Color(InvenmanagerColors.yellow),
               ),
             ),
           ],

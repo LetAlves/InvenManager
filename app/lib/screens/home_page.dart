@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/components/bottomNavBar.dart';
 import 'package:invenmanager/components/lateralMenu.dart';
+import 'package:invenmanager/global/invenmanager_colors.dart';
+import 'package:invenmanager/screens/create_product_page.dart';
+import 'package:invenmanager/screens/search_page.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -11,17 +14,17 @@ class Homepage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Meu inventário'),
           centerTitle: true,
-          backgroundColor: const Color(0xFF1E1E1E),
+          backgroundColor: Color(InvenmanagerColors.gray_800),
           actions: <Widget>[
             Builder(
-                builder: (context) => IconButton(
-                      icon: const Icon(Icons.more_vert),
-                      tooltip: 'Configurações',
-                      onPressed: () {
-                        //Abre o menu lateral
-                        Scaffold.of(context).openEndDrawer();
-                      },
-                    ))
+              builder: (context) => IconButton(
+                icon: const Icon(Icons.more_vert),
+                tooltip: 'Configurações',
+                onPressed: () {
+                  Scaffold.of(context).openEndDrawer();
+                },
+              ),
+            )
           ],
         ),
         body: Padding(
@@ -29,21 +32,28 @@ class Homepage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               ElevatedButton.icon(
-                  onPressed: () {},
-                  label: const Text(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SearchPage(),
+                      ),
+                    );
+                  },
+                  label: Text(
                     'Buscar',
-                    style: TextStyle(color: Color(0xFF1E1E1E)),
+                    style: TextStyle(color: Color(InvenmanagerColors.gray_800)),
                   ),
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.search,
-                    color: Color(0xFF1E1E1E),
+                    color: Color(InvenmanagerColors.gray_800),
                   ),
                   style: ElevatedButton.styleFrom(
                     textStyle: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),
-                    backgroundColor: const Color(0xFFF7DD43),
+                    backgroundColor: Color(InvenmanagerColors.yellow),
                     minimumSize: const Size(335, 52),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),
@@ -55,7 +65,7 @@ class Homepage extends StatelessWidget {
               Container(
                 width: 335,
                 height: 1,
-                color: const Color(0xFF323238),
+                color: Color(InvenmanagerColors.gray_600),
               ),
               const SizedBox(height: 16),
               Wrap(
@@ -63,10 +73,15 @@ class Homepage extends StatelessWidget {
                   const Text(
                       'Você ainda não tem nenhum produto cadastrado, que tal '),
                   TextButton(
-                    onPressed: () {},
-                    child: const Text(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const CreateProductPage()));
+                    },
+                    child: Text(
                       'adicionar algum ao estoque?',
-                      style: TextStyle(color: Color(0xFFF7DD43)),
+                      style: TextStyle(color: Color(InvenmanagerColors.yellow)),
                     ),
                   )
                 ],

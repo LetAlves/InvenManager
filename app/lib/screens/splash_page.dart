@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:invenmanager/screens/login.dart';
+import 'package:invenmanager/global/invenmanager_colors.dart';
+import 'package:invenmanager/screens/login_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -32,14 +33,14 @@ class _SplashPageState extends State<SplashPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1E1E),
+      backgroundColor: Color(InvenmanagerColors.gray_800),
       body: SizedBox(
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'lib/assets/logo.png',
+              'lib/assets/logo-light.png',
               fit: BoxFit.cover,
             ),
           ],

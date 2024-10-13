@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:invenmanager/global/invenmanager_colors.dart';
+import 'package:invenmanager/screens/inventory_history_page.dart';
 import 'package:invenmanager/screens/profile_page.dart';
 
 class LateralMenu extends StatelessWidget {
@@ -7,7 +9,7 @@ class LateralMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: Color(InvenmanagerColors.black),
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
@@ -20,10 +22,10 @@ class LateralMenu extends StatelessWidget {
                   radius: 30,
                   backgroundImage: AssetImage('lib/assets/profile_image.jpg'),
                 ),
-                const Text(
+                Text(
                   'John Doe',
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Color(InvenmanagerColors.white),
                       fontSize: 18,
                       fontWeight: FontWeight.bold),
                 ),
@@ -34,52 +36,56 @@ class LateralMenu extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) => const Profilepage()));
                   },
-                  child: const Text(
+                  child: Text(
                     'Ver perfil',
-                    style: TextStyle(color: Color(0xFFF7DD43)),
+                    style: TextStyle(color: Color(InvenmanagerColors.yellow)),
                   ),
                 ),
               ],
             ),
           ),
-          // const Divider(
-          //   color: Color(0xFFF7DD43),
-          //   thickness: 1,
-          // ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ListTile(
-                title: const Text(
+                title: Text(
                   '85 Produtos cadastrados',
-                  style: TextStyle(color: Color(0xFFC4C4CC)),
+                  style: TextStyle(color: Color(InvenmanagerColors.gray_200)),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const InventoryHistoryPage()));
+                },
               ),
               ListTile(
-                title: const Text(
+                title: Text(
                   '9 produtos em falta',
-                  style: TextStyle(color: Color(0xFFC4C4CC)),
+                  style: TextStyle(color: Color(InvenmanagerColors.gray_200)),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const InventoryHistoryPage()));
+                },
               ),
             ],
           ),
-
           const SizedBox(height: 20),
-          const Divider(
-            color: Color(0xFFF7DD43),
+          Divider(
+            color: Color(InvenmanagerColors.yellow),
             thickness: 1,
           ),
           ListTile(
-            leading: const Icon(Icons.exit_to_app, color: Color(0xFFF7DD43)),
-            title: const Text(
+            leading: Icon(Icons.exit_to_app,
+                color: Color(InvenmanagerColors.yellow)),
+            title: Text(
               'Sair',
-              style: TextStyle(color: Color(0xFFF7DD43)),
+              style: TextStyle(color: Color(InvenmanagerColors.yellow)),
             ),
-            onTap: () {
-              // Ação ao clicar em "Sair"
-            },
+            onTap: () {},
           ),
         ],
       ),

@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:invenmanager/screens/profile_page.dart';
+import 'package:invenmanager/components/bottomNavBar.dart';
+import 'package:invenmanager/components/lateralMenu.dart';
+import 'package:invenmanager/global/invenmanager_colors.dart';
+import 'package:invenmanager/screens/product_information_page.dart';
 
-class Stockhistory extends StatelessWidget {
-  const Stockhistory({Key? key}) : super(key: key);
+class InventoryHistoryPage extends StatefulWidget {
+  const InventoryHistoryPage({Key? key}) : super(key: key);
 
+  @override
+  State<InventoryHistoryPage> createState() => _InventoryHistoryPageState();
+}
+
+class _InventoryHistoryPageState extends State<InventoryHistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Informações do Produto'),
         centerTitle: true,
-        backgroundColor: const Color(0xFF1E1E1E),
+        backgroundColor: Color(InvenmanagerColors.gray_800),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.file_upload_outlined),
@@ -18,24 +26,17 @@ class Stockhistory extends StatelessWidget {
             onPressed: () {},
           ),
         ],
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios),
-          tooltip: 'voltar',
-        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 20.0),
         child: Center(
-          // Centraliza todos os elementos
           child: Column(
-            mainAxisAlignment:
-                MainAxisAlignment.start, // Centraliza verticalmente
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              const Text(
+              Text(
                 'Produto 1',
                 style: TextStyle(
-                  color: Color(0xFFFFFFFF),
+                  color: Color(InvenmanagerColors.white),
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -43,23 +44,25 @@ class Stockhistory extends StatelessWidget {
               const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const [
+                children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Quantidade em estoque: 50',
-                        style: TextStyle(color: Color(0xFFC4C4CC)),
+                        style: TextStyle(
+                            color: Color(InvenmanagerColors.gray_200)),
                       ),
                       Text(
                         'Estoque mínimo: 10',
-                        style: TextStyle(color: Color(0xFFC4C4CC)),
+                        style: TextStyle(
+                            color: Color(InvenmanagerColors.gray_200)),
                       ),
                     ],
                   ),
                   Text(
                     'Código: 0000010',
-                    style: TextStyle(color: Color(0xFFC4C4CC)),
+                    style: TextStyle(color: Color(InvenmanagerColors.gray_200)),
                   ),
                 ],
               ),
@@ -80,7 +83,7 @@ class Stockhistory extends StatelessWidget {
                         fontSize: 13,
                         fontWeight: FontWeight.bold,
                       ),
-                      backgroundColor: const Color(0xFF202024),
+                      backgroundColor: Color(InvenmanagerColors.gray_750),
                       minimumSize: const Size(100, 48),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30, vertical: 10),
@@ -88,14 +91,20 @@ class Stockhistory extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const ProductInformationPage()));
+                    },
                     icon: Icon(
                       Icons.history,
-                      color: Color(0xFFFFFFFF),
+                      color: Color(InvenmanagerColors.white),
                     ), // Ícone opcional
-                    label: const Text(
+                    label: Text(
                       'Histórico de Ações',
-                      style: TextStyle(color: Color(0xFFFFFFFF)),
+                      style: TextStyle(color: Color(InvenmanagerColors.white)),
                     ),
                   ),
                   ElevatedButton.icon(
@@ -104,7 +113,7 @@ class Stockhistory extends StatelessWidget {
                         fontSize: 13,
                         fontWeight: FontWeight.bold,
                       ),
-                      backgroundColor: const Color(0xFF202024),
+                      backgroundColor: Color(InvenmanagerColors.gray_750),
                       minimumSize: const Size(50, 48),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 50, vertical: 10),
@@ -115,11 +124,11 @@ class Stockhistory extends StatelessWidget {
                     onPressed: () {},
                     icon: Icon(
                       Icons.pending_actions,
-                      color: Color(0xFFFFFFFF),
+                      color: Color(InvenmanagerColors.white),
                     ), // Ícone opcional
                     label: Text(
                       'Ações',
-                      style: TextStyle(color: Color(0xFFFFFFFF)),
+                      style: TextStyle(color: Color(InvenmanagerColors.white)),
                     ),
                   ),
                 ],
@@ -129,11 +138,11 @@ class Stockhistory extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(20.0), // Espaçamento interno
                   decoration: BoxDecoration(
-                    color: Color(0xFF202024), // Fundo
+                    color: Color(InvenmanagerColors.gray_750), // Fundo
                     borderRadius: BorderRadius.circular(10),
                     border: Border(
                       bottom: BorderSide(
-                        color: Color(0xFFF7DD43),
+                        color: Color(InvenmanagerColors.yellow),
                         width: 2.0,
                       ),
                     ), // Bordas arredondadas (opcional)
@@ -144,7 +153,7 @@ class Stockhistory extends StatelessWidget {
                       Text(
                         'Estoque Atualizado',
                         style: TextStyle(
-                          color: Color(0xFFFFFFFF),
+                          color: Color(InvenmanagerColors.white),
                           fontSize: 15,
                           fontWeight: FontWeight.w800,
                         ),
@@ -152,7 +161,8 @@ class Stockhistory extends StatelessWidget {
                       const SizedBox(height: 16),
                       Text(
                         '20 de Novembro de 2023 às 12:00',
-                        style: TextStyle(color: Color(0xFFC4C4CC)),
+                        style: TextStyle(
+                            color: Color(InvenmanagerColors.gray_200)),
                       ),
                       const SizedBox(height: 16),
 
@@ -163,7 +173,8 @@ class Stockhistory extends StatelessWidget {
                         children: [
                           Text(
                             'De:',
-                            style: TextStyle(color: Color(0xFFC4C4CC)),
+                            style: TextStyle(
+                                color: Color(InvenmanagerColors.gray_200)),
                           ),
                           const SizedBox(
                               width: 20), // Espaço entre o texto e o formulário
@@ -172,19 +183,21 @@ class Stockhistory extends StatelessWidget {
                           SizedBox(
                             width: 70, // Largura do formulário
                             child: TextFormField(
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 filled: true,
-                                fillColor:
-                                    Color(0xFF2C2C2C), // Cor de fundo do campo
+                                fillColor: Color(InvenmanagerColors
+                                    .gray_700), // Cor de fundo do campo
                                 hintText: '50',
-                                hintStyle: TextStyle(color: Colors.grey),
-                                border: OutlineInputBorder(
+                                hintStyle: TextStyle(
+                                    color: Color(InvenmanagerColors.gray_250)),
+                                border: const OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(8.0)),
                                   borderSide: BorderSide.none,
                                 ),
                               ),
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                  color: Color(InvenmanagerColors.white)),
                               keyboardType: TextInputType
                                   .number, // Define o teclado numérico
                               textAlign: TextAlign
@@ -194,7 +207,8 @@ class Stockhistory extends StatelessWidget {
                           const SizedBox(width: 20),
                           Text(
                             'Para:',
-                            style: TextStyle(color: Color(0xFFC4C4CC)),
+                            style: TextStyle(
+                                color: Color(InvenmanagerColors.gray_200)),
                           ),
                           const SizedBox(
                               width: 20), // Espaço entre o texto e o formulário
@@ -203,19 +217,21 @@ class Stockhistory extends StatelessWidget {
                           SizedBox(
                             width: 70, // Largura do formulário
                             child: TextFormField(
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 filled: true,
-                                fillColor:
-                                    Color(0xFF2C2C2C), // Cor de fundo do campo
+                                fillColor: Color(InvenmanagerColors
+                                    .gray_700), // Cor de fundo do campo
                                 hintText: '80',
-                                hintStyle: TextStyle(color: Colors.grey),
-                                border: OutlineInputBorder(
+                                hintStyle: TextStyle(
+                                    color: Color(InvenmanagerColors.gray_250)),
+                                border: const OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(8.0)),
                                   borderSide: BorderSide.none,
                                 ),
                               ),
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                  color: Color(InvenmanagerColors.white)),
                               keyboardType: TextInputType
                                   .number, // Define o teclado numérico
                               textAlign: TextAlign
@@ -234,14 +250,14 @@ class Stockhistory extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(20.0), // Espaçamento interno
                   decoration: BoxDecoration(
-                    color: Color(0xFF202024), // Fundo
+                    color: Color(InvenmanagerColors.gray_750), // Fundo
                     borderRadius: BorderRadius.circular(10),
                     border: Border(
                       bottom: BorderSide(
-                        color: Color(0xFFF7DD43),
+                        color: Color(InvenmanagerColors.yellow),
                         width: 2.0,
                       ),
-                    ), // Bordas arredondadas (opcional)
+                    ),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -249,7 +265,7 @@ class Stockhistory extends StatelessWidget {
                       Text(
                         'Estoque Atualizado',
                         style: TextStyle(
-                          color: Color(0xFFFFFFFF),
+                          color: Color(InvenmanagerColors.white),
                           fontSize: 15,
                           fontWeight: FontWeight.w800,
                         ),
@@ -257,7 +273,8 @@ class Stockhistory extends StatelessWidget {
                       const SizedBox(height: 16),
                       Text(
                         '20 de Novembro de 2023 às 12:00',
-                        style: TextStyle(color: Color(0xFFC4C4CC)),
+                        style: TextStyle(
+                            color: Color(InvenmanagerColors.gray_200)),
                       ),
                       const SizedBox(height: 16),
 
@@ -268,28 +285,27 @@ class Stockhistory extends StatelessWidget {
                         children: [
                           Text(
                             'De:',
-                            style: TextStyle(color: Color(0xFFC4C4CC)),
+                            style: TextStyle(
+                                color: Color(InvenmanagerColors.gray_200)),
                           ),
-                          const SizedBox(
-                              width: 20), // Espaço entre o texto e o formulário
-
-                          // Formulário para nova quantidade
+                          const SizedBox(width: 20),
                           SizedBox(
-                            width: 70, // Largura do formulário
+                            width: 70,
                             child: TextFormField(
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 filled: true,
-                                fillColor:
-                                    Color(0xFF2C2C2C), // Cor de fundo do campo
+                                fillColor: Color(InvenmanagerColors.gray_700),
                                 hintText: '50',
-                                hintStyle: TextStyle(color: Colors.grey),
-                                border: OutlineInputBorder(
+                                hintStyle: TextStyle(
+                                    color: Color(InvenmanagerColors.gray_250)),
+                                border: const OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(8.0)),
                                   borderSide: BorderSide.none,
                                 ),
                               ),
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                  color: Color(InvenmanagerColors.white)),
                               keyboardType: TextInputType
                                   .number, // Define o teclado numérico
                               textAlign: TextAlign
@@ -299,7 +315,8 @@ class Stockhistory extends StatelessWidget {
                           const SizedBox(width: 20),
                           Text(
                             'Para:',
-                            style: TextStyle(color: Color(0xFFC4C4CC)),
+                            style: TextStyle(
+                                color: Color(InvenmanagerColors.gray_200)),
                           ),
                           const SizedBox(
                               width: 20), // Espaço entre o texto e o formulário
@@ -308,19 +325,21 @@ class Stockhistory extends StatelessWidget {
                           SizedBox(
                             width: 70, // Largura do formulário
                             child: TextFormField(
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 filled: true,
-                                fillColor:
-                                    Color(0xFF2C2C2C), // Cor de fundo do campo
+                                fillColor: Color(InvenmanagerColors
+                                    .gray_700), // Cor de fundo do campo
                                 hintText: '80',
-                                hintStyle: TextStyle(color: Colors.grey),
-                                border: OutlineInputBorder(
+                                hintStyle: TextStyle(
+                                    color: Color(InvenmanagerColors.gray_250)),
+                                border: const OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(8.0)),
                                   borderSide: BorderSide.none,
                                 ),
                               ),
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                  color: Color(InvenmanagerColors.white)),
                               keyboardType: TextInputType
                                   .number, // Define o teclado numérico
                               textAlign: TextAlign
@@ -338,114 +357,8 @@ class Stockhistory extends StatelessWidget {
           ),
         ),
       ),
-      endDrawer: Drawer(
-        backgroundColor: const Color(0xFF121212),
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: const BoxDecoration(color: Colors.transparent),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  const CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage('lib/assets/profile_image.jpg'),
-                  ),
-                  const Text(
-                    'John Due',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Profilepage()),
-                      );
-                    },
-                    child: const Text(
-                      'Ver perfil',
-                      style: TextStyle(color: Color(0xFFF7DD43)),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                ListTile(
-                  title: const Text(
-                    '85 Produtos cadastrados',
-                    style: TextStyle(color: Color(0xFFC4C4CC)),
-                  ),
-                  onTap: () {},
-                ),
-                ListTile(
-                  title: const Text(
-                    '9 produtos em falta',
-                    style: TextStyle(color: Color(0xFFC4C4CC)),
-                  ),
-                  onTap: () {},
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            const Divider(
-              color: Color(0xFFF7DD43),
-              thickness: 1,
-            ),
-            ListTile(
-              leading: const Icon(Icons.exit_to_app, color: Color(0xFFF7DD43)),
-              title: const Text(
-                'Sair',
-                style: TextStyle(color: Color(0xFFF7DD43)),
-              ),
-              onTap: () {
-                // Ação ao clicar em "Sair"
-              },
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: const Color(0xFF1E1E1E),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextButton.icon(
-                onPressed: () {},
-                label: const Text(
-                  'Novo Produto',
-                  style: TextStyle(color: Color(0xFF8D8D99)),
-                ),
-                icon: const Icon(
-                  Icons.add_circle_outline,
-                  color: Color(0xFF8D8D99),
-                ),
-              ),
-              TextButton.icon(
-                onPressed: () {},
-                label: const Text(
-                  'Meu inventário',
-                  style: TextStyle(color: Color(0xFFF7DD43)),
-                ),
-                icon: const Icon(
-                  Icons.inventory,
-                  color: Color(0xFFF7DD43),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      endDrawer: const LateralMenu(),
+      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }
