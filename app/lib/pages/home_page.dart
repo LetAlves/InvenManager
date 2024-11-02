@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/layout/bottomNavBar.dart';
 import 'package:invenmanager/layout/lateralMenu.dart';
-import 'package:invenmanager/global/invenmanager_colors.dart';
+import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/pages/create_product_page.dart';
 import 'package:invenmanager/pages/search_page.dart';
 
@@ -14,7 +14,7 @@ class Homepage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Meu inventário'),
           centerTitle: true,
-          backgroundColor: Color(InvenmanagerColors.gray_800),
+          backgroundColor: AppColor.gray_800,
           actions: <Widget>[
             Builder(
               builder: (context) => IconButton(
@@ -40,20 +40,20 @@ class Homepage extends StatelessWidget {
                       ),
                     );
                   },
-                  label: Text(
+                  label: const Text(
                     'Buscar',
-                    style: TextStyle(color: Color(InvenmanagerColors.gray_800)),
+                    style: TextStyle(color: AppColor.gray_800),
                   ),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.search,
-                    color: Color(InvenmanagerColors.gray_800),
+                    color: AppColor.gray_800,
                   ),
                   style: ElevatedButton.styleFrom(
                     textStyle: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),
-                    backgroundColor: Color(InvenmanagerColors.yellow),
+                    backgroundColor: AppColor.yellow,
                     minimumSize: const Size(335, 52),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),
@@ -65,7 +65,7 @@ class Homepage extends StatelessWidget {
               Container(
                 width: 335,
                 height: 1,
-                color: Color(InvenmanagerColors.gray_600),
+                color: AppColor.gray_600,
               ),
               const SizedBox(height: 16),
               Wrap(
@@ -79,9 +79,9 @@ class Homepage extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => const CreateProductPage()));
                     },
-                    child: Text(
+                    child: const Text(
                       'adicionar algum ao estoque?',
-                      style: TextStyle(color: Color(InvenmanagerColors.yellow)),
+                      style: TextStyle(color: AppColor.yellow),
                     ),
                   )
                 ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/layout/bottomNavBar.dart';
 import 'package:invenmanager/layout/lateralMenu.dart';
-import 'package:invenmanager/global/invenmanager_colors.dart';
+import 'package:invenmanager/global/app_color.dart';
 
 class ProductInformationPage extends StatefulWidget {
   const ProductInformationPage({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class _ProductInformationPageState extends State<ProductInformationPage> {
       appBar: AppBar(
         title: const Text('Informações do Produto'),
         centerTitle: true,
-        backgroundColor: Color(InvenmanagerColors.gray_800),
+        backgroundColor: AppColor.gray_800,
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.file_upload_outlined),
@@ -29,20 +29,19 @@ class _ProductInformationPageState extends State<ProductInformationPage> {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 20.0),
         child: Center(
-          // Centraliza todos os elementos
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Text(
+              const Text(
                 'Produto 1',
                 style: TextStyle(
-                  color: Color(InvenmanagerColors.white),
+                  color: AppColor.white,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 16),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Column(
@@ -50,19 +49,17 @@ class _ProductInformationPageState extends State<ProductInformationPage> {
                     children: [
                       Text(
                         'Quantidade em estoque: 50',
-                        style: TextStyle(
-                            color: Color(InvenmanagerColors.gray_200)),
+                        style: TextStyle(color: AppColor.gray_200),
                       ),
                       Text(
                         'Estoque mínimo: 10',
-                        style: TextStyle(
-                            color: Color(InvenmanagerColors.gray_200)),
+                        style: TextStyle(color: AppColor.gray_200),
                       ),
                     ],
                   ),
                   Text(
                     'Código: 0000010',
-                    style: TextStyle(color: Color(InvenmanagerColors.gray_200)),
+                    style: TextStyle(color: AppColor.gray_200),
                   ),
                 ],
               ),
@@ -70,12 +67,11 @@ class _ProductInformationPageState extends State<ProductInformationPage> {
               Container(
                 width: 380,
                 height: 1,
-                color: Color(InvenmanagerColors.gray_600),
+                color: AppColor.gray_600,
               ),
               const SizedBox(height: 16),
               Row(
-                mainAxisAlignment: MainAxisAlignment
-                    .spaceAround, // Distribui espaço entre os botões
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
@@ -83,7 +79,7 @@ class _ProductInformationPageState extends State<ProductInformationPage> {
                         fontSize: 13,
                         fontWeight: FontWeight.bold,
                       ),
-                      backgroundColor: Color(InvenmanagerColors.gray_750),
+                      backgroundColor: AppColor.gray_750,
                       minimumSize: const Size(100, 48),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30, vertical: 10),
@@ -92,13 +88,13 @@ class _ProductInformationPageState extends State<ProductInformationPage> {
                       ),
                     ),
                     onPressed: () {},
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.history,
-                      color: Color(InvenmanagerColors.white),
+                      color: AppColor.white,
                     ),
-                    label: Text(
+                    label: const Text(
                       'Histórico de Ações',
-                      style: TextStyle(color: Color(InvenmanagerColors.white)),
+                      style: TextStyle(color: AppColor.white),
                     ),
                   ),
                   ElevatedButton.icon(
@@ -107,7 +103,7 @@ class _ProductInformationPageState extends State<ProductInformationPage> {
                         fontSize: 13,
                         fontWeight: FontWeight.bold,
                       ),
-                      backgroundColor: Color(InvenmanagerColors.gray_750),
+                      backgroundColor: AppColor.gray_750,
                       minimumSize: const Size(50, 48),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 50, vertical: 10),
@@ -116,13 +112,13 @@ class _ProductInformationPageState extends State<ProductInformationPage> {
                       ),
                     ),
                     onPressed: () {},
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.pending_actions,
-                      color: Color(InvenmanagerColors.white),
-                    ), // Ícone opcional
-                    label: Text(
+                      color: AppColor.white,
+                    ),
+                    label: const Text(
                       'Ações',
-                      style: TextStyle(color: Color(InvenmanagerColors.white)),
+                      style: TextStyle(color: AppColor.white),
                     ),
                   ),
                 ],
@@ -132,11 +128,11 @@ class _ProductInformationPageState extends State<ProductInformationPage> {
                 child: Container(
                   padding: const EdgeInsets.all(20.0),
                   decoration: BoxDecoration(
-                    color: Color(InvenmanagerColors.gray_750),
+                    color: AppColor.gray_750,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border(
+                    border: const Border(
                       bottom: BorderSide(
-                        color: Color(InvenmanagerColors.yellow),
+                        color: AppColor.yellow,
                         width: 2.0,
                       ),
                     ),
@@ -144,11 +140,10 @@ class _ProductInformationPageState extends State<ProductInformationPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // Título
-                      Text(
+                      const Text(
                         'Atualizar Estoque',
                         style: TextStyle(
-                          color: Color(InvenmanagerColors.white),
+                          color: AppColor.white,
                           fontSize: 15,
                           fontWeight: FontWeight.w800,
                         ),
@@ -157,34 +152,28 @@ class _ProductInformationPageState extends State<ProductInformationPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'Nova Quantidade:',
-                            style: TextStyle(
-                                color: Color(InvenmanagerColors.gray_200)),
+                            style: TextStyle(color: AppColor.gray_200),
                           ),
                           const SizedBox(width: 8),
-                          // Formulário para nova quantidade
                           SizedBox(
-                            width: 70, // Largura do formulário
+                            width: 70,
                             child: TextFormField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 filled: true,
-                                fillColor: Color(InvenmanagerColors.gray_700),
+                                fillColor: AppColor.gray_700,
                                 hintText: '50',
-                                hintStyle: TextStyle(
-                                    color: Color(InvenmanagerColors.gray_250)),
-                                border: const OutlineInputBorder(
+                                hintStyle: TextStyle(color: AppColor.gray_250),
+                                border: OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(8.0)),
                                   borderSide: BorderSide.none,
                                 ),
                               ),
-                              style: TextStyle(
-                                  color: Color(InvenmanagerColors.white)),
-                              keyboardType: TextInputType
-                                  .number, // Define o teclado numérico
-                              textAlign: TextAlign
-                                  .center, // Centraliza o hintText e o texto digitado
+                              style: const TextStyle(color: AppColor.white),
+                              keyboardType: TextInputType.number,
+                              textAlign: TextAlign.center,
                             ),
                           ),
                         ],
@@ -192,21 +181,20 @@ class _ProductInformationPageState extends State<ProductInformationPage> {
                       const SizedBox(height: 20),
                       ElevatedButton.icon(
                         onPressed: () {},
-                        label: Text(
-                          'CONFIRMAR ESTOQUE',
-                          style:
-                              TextStyle(color: Color(InvenmanagerColors.white)),
-                        ),
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.check,
-                          color: Color(InvenmanagerColors.white),
+                          color: AppColor.white,
+                        ),
+                        label: const Text(
+                          'CONFIRMAR ESTOQUE',
+                          style: TextStyle(color: AppColor.white),
                         ),
                         style: ElevatedButton.styleFrom(
                           textStyle: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                           ),
-                          backgroundColor: Color(InvenmanagerColors.green),
+                          backgroundColor: AppColor.green,
                           minimumSize: const Size(335, 52),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 10),

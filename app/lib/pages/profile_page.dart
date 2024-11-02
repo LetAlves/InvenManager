@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invenmanager/global/invenmanager_colors.dart';
+import 'package:invenmanager/global/app_color.dart';
 
 class Profilepage extends StatefulWidget {
   const Profilepage({super.key});
@@ -15,7 +15,7 @@ class _ProfilepageState extends State<Profilepage> {
       appBar: AppBar(
         title: const Text('Perfil'),
         centerTitle: true,
-        backgroundColor: const Color(0xFF1E1E1E),
+        backgroundColor: AppColor.gray_800,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -33,111 +33,104 @@ class _ProfilepageState extends State<Profilepage> {
                 ),
                 const SizedBox(height: 32),
                 TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Nome',
-                    labelStyle:
-                        TextStyle(color: Color(InvenmanagerColors.gray_200)),
+                    labelStyle: TextStyle(color: AppColor.gray_200),
                     filled: true,
-                    fillColor: Color(InvenmanagerColors.gray_700),
+                    fillColor: AppColor.gray_700,
                     hintText: 'John Doe',
-                    hintStyle:
-                        TextStyle(color: Color(InvenmanagerColors.gray_250)),
-                    border: const OutlineInputBorder(
+                    hintStyle: TextStyle(color: AppColor.gray_250),
+                    border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide.none,
                     ),
                     focusedBorder: OutlineInputBorder(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(8.0)),
-                        borderSide: BorderSide(
-                            color: Color(InvenmanagerColors.gray_250))),
-                    enabledBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                      borderSide: BorderSide(color: AppColor.gray_250),
+                    ),
+                    enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide.none,
                     ),
                   ),
-                  style: TextStyle(color: Color(InvenmanagerColors.white)),
-                  cursorColor: Color(InvenmanagerColors.yellow),
+                  style: const TextStyle(color: AppColor.white),
+                  cursorColor: AppColor.yellow,
                 ),
                 const SizedBox(height: 24),
                 TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'E-mail',
-                    labelStyle:
-                        TextStyle(color: Color(InvenmanagerColors.gray_200)),
+                    labelStyle: TextStyle(color: AppColor.gray_200),
                     filled: true,
-                    fillColor: Color(InvenmanagerColors.gray_700),
+                    fillColor: AppColor.gray_700,
                     hintText: 'john.doe@email.com',
-                    hintStyle:
-                        TextStyle(color: Color(InvenmanagerColors.gray_250)),
-                    border: const OutlineInputBorder(
+                    hintStyle: TextStyle(color: AppColor.gray_250),
+                    border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide.none,
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8.0)),
-                      borderSide:
-                          BorderSide(color: Color(InvenmanagerColors.gray_250)),
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                      borderSide: BorderSide(color: AppColor.gray_250),
                     ),
-                    enabledBorder: const OutlineInputBorder(
+                    enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide.none,
                     ),
                   ),
-                  style: TextStyle(color: Color(InvenmanagerColors.white)),
-                  cursorColor: Color(InvenmanagerColors.yellow),
+                  style: const TextStyle(color: AppColor.white),
+                  cursorColor: AppColor.yellow,
                 ),
                 const SizedBox(height: 24),
                 TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Contato',
-                    labelStyle:
-                        TextStyle(color: Color(InvenmanagerColors.gray_200)),
+                    labelStyle: TextStyle(color: AppColor.gray_200),
                     filled: true,
-                    fillColor: Color(InvenmanagerColors.gray_700),
+                    fillColor: AppColor.gray_700,
                     hintText: '(11) 4002-8922',
-                    hintStyle:
-                        TextStyle(color: Color(InvenmanagerColors.gray_250)),
-                    border: const OutlineInputBorder(
+                    hintStyle: TextStyle(color: AppColor.gray_250),
+                    border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide.none,
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8.0)),
-                      borderSide:
-                          BorderSide(color: Color(InvenmanagerColors.gray_250)),
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                      borderSide: BorderSide(color: AppColor.gray_250),
                     ),
-                    enabledBorder: const OutlineInputBorder(
+                    enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide.none,
                     ),
                   ),
-                  style: TextStyle(color: Color(InvenmanagerColors.white)),
-                  cursorColor: Color(InvenmanagerColors.yellow),
+                  style: const TextStyle(color: AppColor.white),
+                  cursorColor: AppColor.yellow,
                 ),
                 const SizedBox(height: 64),
                 ElevatedButton.icon(
-                    onPressed: () {},
-                    label: Text(
-                      'Editar',
-                      style:
-                          TextStyle(color: Color(InvenmanagerColors.gray_800)),
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.edit,
+                    color: AppColor.gray_800,
+                  ),
+                  label: const Text(
+                    'Editar',
+                    style: TextStyle(color: AppColor.gray_800),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    textStyle: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
-                    style: ElevatedButton.styleFrom(
-                      textStyle: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      backgroundColor: Color(InvenmanagerColors.yellow),
-                      minimumSize: const Size(335, 52),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 10),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                    )),
+                    backgroundColor: AppColor.yellow,
+                    minimumSize: const Size(335, 52),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

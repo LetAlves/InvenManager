@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/layout/bottomNavBar.dart';
 import 'package:invenmanager/layout/lateralMenu.dart';
-import 'package:invenmanager/global/invenmanager_colors.dart';
+import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/pages/product_information_page.dart';
 
 class CreateProductPage extends StatefulWidget {
@@ -20,7 +20,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
       appBar: AppBar(
         title: const Text('Adicionar novo produto'),
         centerTitle: true,
-        backgroundColor: Color(InvenmanagerColors.gray_800),
+        backgroundColor: AppColor.gray_800,
         actions: <Widget>[
           Builder(
             builder: (context) => IconButton(
@@ -51,48 +51,9 @@ class _CreateProductPageState extends State<CreateProductPage> {
                 ),
               ),
               const SizedBox(height: 20),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Nome do Produto',
-                  labelStyle:
-                      TextStyle(color: Color(InvenmanagerColors.gray_200)),
-                  filled: true,
-                  fillColor: Color(InvenmanagerColors.gray_700),
-                  hintText: 'Produto 1',
-                  hintStyle:
-                      TextStyle(color: Color(InvenmanagerColors.gray_250)),
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                    borderSide: BorderSide.none,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-                    borderSide:
-                        BorderSide(color: Color(InvenmanagerColors.gray_250)),
-                  ),
-                  enabledBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                    borderSide: BorderSide.none,
-                  ),
-                  errorStyle: TextStyle(
-                    color: Color(InvenmanagerColors.red),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(InvenmanagerColors.red),
-                    ),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(InvenmanagerColors.red),
-                      width: 2.0,
-                    ),
-                  ),
-                ),
-                style: TextStyle(
-                  color: Color(InvenmanagerColors.white),
-                ),
-                cursorColor: Color(InvenmanagerColors.yellow),
+              _buildTextField(
+                label: 'Nome do Produto',
+                hint: 'Produto 1',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira o nome do produto';
@@ -101,48 +62,9 @@ class _CreateProductPageState extends State<CreateProductPage> {
                 },
               ),
               const SizedBox(height: 20),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Valor Unitário',
-                  labelStyle:
-                      TextStyle(color: Color(InvenmanagerColors.gray_200)),
-                  filled: true,
-                  fillColor: Color(InvenmanagerColors.gray_700),
-                  hintText: 'R\$ 100,00',
-                  hintStyle:
-                      TextStyle(color: Color(InvenmanagerColors.gray_250)),
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                    borderSide: BorderSide.none,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-                    borderSide:
-                        BorderSide(color: Color(InvenmanagerColors.gray_250)),
-                  ),
-                  enabledBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                    borderSide: BorderSide.none,
-                  ),
-                  errorStyle: TextStyle(
-                    color: Color(InvenmanagerColors.red),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(InvenmanagerColors.red),
-                    ),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(InvenmanagerColors.red),
-                      width: 2.0,
-                    ),
-                  ),
-                ),
-                style: TextStyle(
-                  color: Color(InvenmanagerColors.white),
-                ),
-                cursorColor: Color(InvenmanagerColors.yellow),
+              _buildTextField(
+                label: 'Valor Unitário',
+                hint: 'R\$ 100,00',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira o valor unitário';
@@ -155,48 +77,9 @@ class _CreateProductPageState extends State<CreateProductPage> {
                 },
               ),
               const SizedBox(height: 20),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Código',
-                  labelStyle:
-                      TextStyle(color: Color(InvenmanagerColors.gray_200)),
-                  filled: true,
-                  fillColor: Color(InvenmanagerColors.gray_700),
-                  hintText: '0000001',
-                  hintStyle:
-                      TextStyle(color: Color(InvenmanagerColors.gray_250)),
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                    borderSide: BorderSide.none,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-                    borderSide:
-                        BorderSide(color: Color(InvenmanagerColors.gray_250)),
-                  ),
-                  enabledBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                    borderSide: BorderSide.none,
-                  ),
-                  errorStyle: TextStyle(
-                    color: Color(InvenmanagerColors.red),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(InvenmanagerColors.red),
-                    ),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(InvenmanagerColors.red),
-                      width: 2.0,
-                    ),
-                  ),
-                ),
-                style: TextStyle(
-                  color: Color(InvenmanagerColors.white),
-                ),
-                cursorColor: Color(InvenmanagerColors.yellow),
+              _buildTextField(
+                label: 'Código',
+                hint: '0000001',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira o código do produto';
@@ -205,48 +88,9 @@ class _CreateProductPageState extends State<CreateProductPage> {
                 },
               ),
               const SizedBox(height: 20),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Quantidade',
-                  labelStyle:
-                      TextStyle(color: Color(InvenmanagerColors.gray_200)),
-                  filled: true,
-                  fillColor: Color(InvenmanagerColors.gray_700),
-                  hintText: 'Ex. 10',
-                  hintStyle:
-                      TextStyle(color: Color(InvenmanagerColors.gray_250)),
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                    borderSide: BorderSide.none,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-                    borderSide:
-                        BorderSide(color: Color(InvenmanagerColors.gray_250)),
-                  ),
-                  enabledBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                    borderSide: BorderSide.none,
-                  ),
-                  errorStyle: TextStyle(
-                    color: Color(InvenmanagerColors.red),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(InvenmanagerColors.red),
-                    ),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(InvenmanagerColors.red),
-                      width: 2.0,
-                    ),
-                  ),
-                ),
-                style: TextStyle(
-                  color: Color(InvenmanagerColors.white),
-                ),
-                cursorColor: Color(InvenmanagerColors.yellow),
+              _buildTextField(
+                label: 'Quantidade',
+                hint: 'Ex. 10',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira a quantidade do produto';
@@ -255,48 +99,9 @@ class _CreateProductPageState extends State<CreateProductPage> {
                 },
               ),
               const SizedBox(height: 20),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Quantidade mínima',
-                  labelStyle:
-                      TextStyle(color: Color(InvenmanagerColors.gray_200)),
-                  filled: true,
-                  fillColor: Color(InvenmanagerColors.gray_700),
-                  hintText: 'Ex. 10',
-                  hintStyle:
-                      TextStyle(color: Color(InvenmanagerColors.gray_250)),
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                    borderSide: BorderSide.none,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-                    borderSide:
-                        BorderSide(color: Color(InvenmanagerColors.gray_250)),
-                  ),
-                  enabledBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                    borderSide: BorderSide.none,
-                  ),
-                  errorStyle: TextStyle(
-                    color: Color(InvenmanagerColors.red),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(InvenmanagerColors.red),
-                    ),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(InvenmanagerColors.red),
-                      width: 2.0,
-                    ),
-                  ),
-                ),
-                style: TextStyle(
-                  color: Color(InvenmanagerColors.white),
-                ),
-                cursorColor: Color(InvenmanagerColors.yellow),
+              _buildTextField(
+                label: 'Quantidade mínima',
+                hint: 'Ex. 10',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira a quantidade mínima';
@@ -310,17 +115,14 @@ class _CreateProductPageState extends State<CreateProductPage> {
                   if (_formKey.currentState!.validate()) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text(
+                        content: const Text(
                           'Produto Adicionado!',
-                          style: TextStyle(
-                              color: Color(InvenmanagerColors.gray_200)),
+                          style: TextStyle(color: AppColor.gray_200),
                         ),
-                        backgroundColor: Color(InvenmanagerColors.gray_750),
+                        backgroundColor: AppColor.gray_750,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4),
-                          side: BorderSide(
-                            color: Color(InvenmanagerColors.yellow),
-                          ),
+                          side: const BorderSide(color: AppColor.yellow),
                         ),
                         duration: const Duration(seconds: 3),
                       ),
@@ -333,16 +135,17 @@ class _CreateProductPageState extends State<CreateProductPage> {
                     );
                   }
                 },
-                label: Text(
+                icon: const Icon(Icons.add, color: AppColor.gray_800),
+                label: const Text(
                   'Adicionar ao estoque',
-                  style: TextStyle(color: Color(InvenmanagerColors.gray_800)),
+                  style: TextStyle(color: AppColor.gray_800),
                 ),
                 style: ElevatedButton.styleFrom(
                   textStyle: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
-                  backgroundColor: Color(InvenmanagerColors.yellow),
+                  backgroundColor: AppColor.yellow,
                   minimumSize: const Size(335, 52),
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -357,6 +160,48 @@ class _CreateProductPageState extends State<CreateProductPage> {
       ),
       endDrawer: const LateralMenu(),
       bottomNavigationBar: const BottomNavBar(),
+    );
+  }
+
+  Widget _buildTextField({
+    required String label,
+    required String hint,
+    required FormFieldValidator<String> validator,
+  }) {
+    return TextFormField(
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: const TextStyle(color: AppColor.gray_200),
+        filled: true,
+        fillColor: AppColor.gray_700,
+        hintText: hint,
+        hintStyle: const TextStyle(color: AppColor.gray_250),
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: const BorderSide(color: AppColor.gray_250),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          borderSide: BorderSide.none,
+        ),
+        errorStyle: const TextStyle(color: AppColor.red),
+        errorBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColor.red),
+        ),
+        focusedErrorBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColor.red,
+            width: 2.0,
+          ),
+        ),
+      ),
+      style: const TextStyle(color: AppColor.white),
+      cursorColor: AppColor.yellow,
+      validator: validator,
     );
   }
 }

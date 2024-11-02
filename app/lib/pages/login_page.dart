@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invenmanager/global/invenmanager_colors.dart';
+import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/pages/home_page.dart';
 import 'package:invenmanager/pages/create_account_page.dart';
 import 'package:invenmanager/pages/recover_password_page.dart';
@@ -17,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(InvenmanagerColors.gray_900),
+      backgroundColor: AppColor.gray_900,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -31,47 +31,38 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 52),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Usuário',
-                  labelStyle:
-                      TextStyle(color: Color(InvenmanagerColors.gray_200)),
+                  labelStyle: TextStyle(color: AppColor.gray_200),
                   filled: true,
-                  fillColor: Color(InvenmanagerColors.gray_700),
+                  fillColor: AppColor.gray_700,
                   hintText: 'john.doe',
-                  hintStyle:
-                      TextStyle(color: Color(InvenmanagerColors.gray_250)),
-                  border: const OutlineInputBorder(
+                  hintStyle: TextStyle(color: AppColor.gray_250),
+                  border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     borderSide: BorderSide.none,
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-                    borderSide:
-                        BorderSide(color: Color(InvenmanagerColors.gray_250)),
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    borderSide: BorderSide(color: AppColor.gray_250),
                   ),
-                  enabledBorder: const OutlineInputBorder(
+                  enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     borderSide: BorderSide.none,
                   ),
-                  errorStyle: TextStyle(
-                    color: Color(InvenmanagerColors.red),
-                  ),
+                  errorStyle: TextStyle(color: AppColor.red),
                   errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(InvenmanagerColors.red),
-                    ),
+                    borderSide: BorderSide(color: AppColor.red),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color(InvenmanagerColors.red),
+                      color: AppColor.red,
                       width: 2.0,
                     ),
                   ),
                 ),
-                style: TextStyle(
-                  color: Color(InvenmanagerColors.white),
-                ),
-                cursorColor: Color(InvenmanagerColors.yellow),
+                style: const TextStyle(color: AppColor.white),
+                cursorColor: AppColor.yellow,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor informe o seu usuário';
@@ -83,47 +74,38 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 16),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Senha',
-                  labelStyle:
-                      TextStyle(color: Color(InvenmanagerColors.gray_200)),
+                  labelStyle: TextStyle(color: AppColor.gray_200),
                   filled: true,
-                  fillColor: Color(InvenmanagerColors.gray_700),
+                  fillColor: AppColor.gray_700,
                   hintText: '********',
-                  hintStyle:
-                      TextStyle(color: Color(InvenmanagerColors.gray_250)),
-                  border: const OutlineInputBorder(
+                  hintStyle: TextStyle(color: AppColor.gray_250),
+                  border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     borderSide: BorderSide.none,
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-                    borderSide:
-                        BorderSide(color: Color(InvenmanagerColors.gray_250)),
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    borderSide: BorderSide(color: AppColor.gray_250),
                   ),
-                  enabledBorder: const OutlineInputBorder(
+                  enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     borderSide: BorderSide.none,
                   ),
-                  errorStyle: TextStyle(
-                    color: Color(InvenmanagerColors.red),
-                  ),
+                  errorStyle: TextStyle(color: AppColor.red),
                   errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(InvenmanagerColors.red),
-                    ),
+                    borderSide: BorderSide(color: AppColor.red),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color(InvenmanagerColors.red),
+                      color: AppColor.red,
                       width: 2.0,
                     ),
                   ),
                 ),
-                style: TextStyle(
-                  color: Color(InvenmanagerColors.white),
-                ),
-                cursorColor: Color(InvenmanagerColors.yellow),
+                style: const TextStyle(color: AppColor.white),
+                cursorColor: AppColor.yellow,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor informe a sua senha';
@@ -142,9 +124,9 @@ class _LoginPageState extends State<LoginPage> {
                         builder: (context) => const RecoverPassword()),
                   );
                 },
-                child: Text(
+                child: const Text(
                   'Esqueci a minha senha',
-                  style: TextStyle(color: Color(InvenmanagerColors.gray_200)),
+                  style: TextStyle(color: AppColor.gray_200),
                 ),
               ),
               const SizedBox(height: 52),
@@ -157,16 +139,17 @@ class _LoginPageState extends State<LoginPage> {
                     );
                   }
                 },
-                label: Text(
+                icon: const Icon(Icons.login),
+                label: const Text(
                   'Entrar',
-                  style: TextStyle(color: Color(InvenmanagerColors.gray_800)),
+                  style: TextStyle(color: AppColor.gray_800),
                 ),
                 style: ElevatedButton.styleFrom(
                   textStyle: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
-                  backgroundColor: Color(InvenmanagerColors.yellow),
+                  backgroundColor: AppColor.yellow,
                   minimumSize: const Size(350, 52),
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -177,24 +160,18 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 18),
               ElevatedButton.icon(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Homepage()),
-                    );
-                  }
-                },
-                label: Text(
+                onPressed: () {},
+                icon: const Icon(Icons.login, color: Colors.white),
+                label: const Text(
                   'Entrar com o Google',
-                  style: TextStyle(color: Color(InvenmanagerColors.white)),
+                  style: TextStyle(color: AppColor.white),
                 ),
                 style: ElevatedButton.styleFrom(
                   textStyle: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
-                  backgroundColor: Color(InvenmanagerColors.red_500),
+                  backgroundColor: AppColor.red_500,
                   minimumSize: const Size(350, 52),
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -212,9 +189,9 @@ class _LoginPageState extends State<LoginPage> {
                         builder: (context) => const CreateAccountPage()),
                   );
                 },
-                child: Text(
+                child: const Text(
                   'Criar uma nova conta',
-                  style: TextStyle(color: Color(InvenmanagerColors.gray_200)),
+                  style: TextStyle(color: AppColor.gray_200),
                 ),
               ),
             ],

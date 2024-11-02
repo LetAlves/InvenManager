@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invenmanager/global/invenmanager_colors.dart';
+import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/pages/login_page.dart';
 
 class RecoverPassword extends StatefulWidget {
@@ -19,7 +19,7 @@ class _RecoverPasswordState extends State<RecoverPassword> {
       appBar: AppBar(
         title: const Text('Recuperação de senha'),
         centerTitle: true,
-        backgroundColor: Color(InvenmanagerColors.gray_800),
+        backgroundColor: AppColor.gray_800,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -33,18 +33,20 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                   child: Column(
                     children: [
                       const SizedBox(height: 24),
-                      Text('Por favor, informe o seu usuário para continuar:',
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Color(InvenmanagerColors.gray_200))),
+                      const Text(
+                        'Por favor, informe o seu usuário para continuar:',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: AppColor.gray_200,
+                        ),
+                      ),
                       const SizedBox(height: 24),
                       TextFormField(
                         decoration: InputDecoration(
                           labelText: 'Usuário',
-                          labelStyle: TextStyle(
-                              color: Color(InvenmanagerColors.gray_200)),
+                          labelStyle: const TextStyle(color: AppColor.gray_200),
                           filled: true,
-                          fillColor: Color(InvenmanagerColors.gray_700),
+                          fillColor: AppColor.gray_700,
                           hintText: 'john.doe',
                           hintStyle: const TextStyle(color: Colors.grey),
                           border: const OutlineInputBorder(
@@ -60,28 +62,21 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                           enabledBorder: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(8.0)),
-                            borderSide:
-                                BorderSide.none, // Sem borda quando não focado
+                            borderSide: BorderSide.none,
                           ),
-                          errorStyle: TextStyle(
-                            color: Color(InvenmanagerColors.red),
-                          ),
+                          errorStyle: const TextStyle(color: AppColor.red),
                           errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(InvenmanagerColors.red),
-                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                            borderSide: const BorderSide(color: AppColor.red),
                           ),
                           focusedErrorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(InvenmanagerColors.red),
-                              width: 2.0,
-                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                            borderSide: const BorderSide(
+                                color: AppColor.red, width: 2.0),
                           ),
                         ),
-                        style: const TextStyle(
-                          color: Colors.white,
-                        ),
-                        cursorColor: Color(InvenmanagerColors.yellow),
+                        style: const TextStyle(color: Colors.white),
+                        cursorColor: AppColor.yellow,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Por favor informe o seu usuário';
@@ -93,31 +88,33 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                       ),
                       const SizedBox(height: 24),
                       ElevatedButton.icon(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              setState(() {
-                                isVisible = !isVisible;
-                              });
-                            }
-                          },
-                          label: Text(
-                            'Continuar',
-                            style: TextStyle(
-                                color: Color(InvenmanagerColors.gray_800)),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            setState(() {
+                              isVisible = !isVisible;
+                            });
+                          }
+                        },
+                        icon: const Icon(Icons.arrow_forward,
+                            color: AppColor.gray_800),
+                        label: const Text(
+                          'Continuar',
+                          style: TextStyle(color: AppColor.gray_800),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          textStyle: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
                           ),
-                          style: ElevatedButton.styleFrom(
-                            textStyle: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            backgroundColor: Color(InvenmanagerColors.yellow),
-                            minimumSize: const Size(300, 52),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          )),
+                          backgroundColor: AppColor.yellow,
+                          minimumSize: const Size(300, 52),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -126,117 +123,89 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                   child: Column(
                     children: [
                       const SizedBox(height: 24),
-                      Text(
-                          'Qual meio devemos utilizar para resetar a sua senha?',
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Color(InvenmanagerColors.gray_200))),
-                      const SizedBox(
-                        height: 24.0,
+                      const Text(
+                        'Qual meio devemos utilizar para resetar a sua senha?',
+                        style:
+                            TextStyle(fontSize: 16, color: AppColor.gray_200),
                       ),
+                      const SizedBox(height: 24),
                       ElevatedButton.icon(
-                          onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Caso esse usuário exista na plataforma um email será enviado com a nova senha :)',
-                                  style: TextStyle(
-                                      color:
-                                          Color(InvenmanagerColors.gray_200)),
-                                ),
-                                backgroundColor:
-                                    Color(InvenmanagerColors.gray_750),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4),
-                                  side: BorderSide(
-                                    color: Color(InvenmanagerColors.yellow),
-                                  ),
-                                ),
-                                duration: const Duration(seconds: 3),
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: const Text(
+                                'Caso esse usuário exista na plataforma um email será enviado com a nova senha :)',
+                                style: TextStyle(color: AppColor.gray_200),
                               ),
-                            );
+                              backgroundColor: AppColor.gray_750,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4),
+                                side: const BorderSide(color: AppColor.yellow),
+                              ),
+                              duration: const Duration(seconds: 3),
+                            ),
+                          );
 
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LoginPage()),
-                            );
-                          },
-                          label: Text(
-                            'E-mail',
-                            style: TextStyle(
-                                color: Color(InvenmanagerColors.gray_200)),
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginPage()),
+                          );
+                        },
+                        icon: const Icon(Icons.email_outlined,
+                            color: AppColor.gray_300),
+                        label: const Text('E-mail',
+                            style: TextStyle(color: AppColor.gray_200)),
+                        style: ElevatedButton.styleFrom(
+                          textStyle: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                          minimumSize: const Size(300, 52),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
                           ),
-                          icon: Icon(
-                            Icons.email_outlined,
-                            color: Color(InvenmanagerColors.gray_300),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                              textStyle: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              minimumSize: const Size(300, 52),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              side: BorderSide(
-                                  color: Color(InvenmanagerColors.gray_300)))),
-                      const SizedBox(
-                        height: 24,
+                          side: const BorderSide(color: AppColor.gray_300),
+                        ),
                       ),
+                      const SizedBox(height: 24),
                       ElevatedButton.icon(
-                          onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Caso esse usuário exista na plataforma um SMS será enviado com a nova senha :)',
-                                  style: TextStyle(
-                                      color:
-                                          Color(InvenmanagerColors.gray_200)),
-                                ),
-                                backgroundColor:
-                                    Color(InvenmanagerColors.gray_750),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4),
-                                  side: BorderSide(
-                                    color: Color(InvenmanagerColors.yellow),
-                                  ),
-                                ),
-                                duration: const Duration(seconds: 3),
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: const Text(
+                                'Caso esse usuário exista na plataforma um SMS será enviado com a nova senha :)',
+                                style: TextStyle(color: AppColor.gray_200),
                               ),
-                            );
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const LoginPage(),
-                              ),
-                            );
-                          },
-                          label: Text(
-                            'SMS',
-                            style: TextStyle(
-                                color: Color(InvenmanagerColors.gray_200)),
-                          ),
-                          icon: Icon(
-                            Icons.phone,
-                            color: Color(InvenmanagerColors.gray_300),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                              textStyle: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              minimumSize: const Size(300, 52),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
+                              backgroundColor: AppColor.gray_750,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5),
+                                borderRadius: BorderRadius.circular(4),
+                                side: const BorderSide(color: AppColor.yellow),
                               ),
-                              side: BorderSide(
-                                  color: Color(InvenmanagerColors.gray_300)))),
+                              duration: const Duration(seconds: 3),
+                            ),
+                          );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginPage()),
+                          );
+                        },
+                        icon: const Icon(Icons.phone, color: AppColor.gray_300),
+                        label: const Text('SMS',
+                            style: TextStyle(color: AppColor.gray_200)),
+                        style: ElevatedButton.styleFrom(
+                          textStyle: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                          minimumSize: const Size(300, 52),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          side: const BorderSide(color: AppColor.gray_300),
+                        ),
+                      ),
                     ],
                   ),
                 ),

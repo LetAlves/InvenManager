@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/layout/bottomNavBar.dart';
-import 'package:invenmanager/global/invenmanager_colors.dart';
+import 'package:invenmanager/global/app_color.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class _SearchPageState extends State<SearchPage> {
       appBar: AppBar(
         title: const Text('Busca'),
         centerTitle: true,
-        backgroundColor: Color(InvenmanagerColors.gray_800),
+        backgroundColor: AppColor.gray_800,
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.more_vert),
@@ -44,14 +44,13 @@ class _SearchPageState extends State<SearchPage> {
             ),
             const SizedBox(height: 20),
             TextFormField(
-              decoration: InputDecoration(
-                labelStyle:
-                    TextStyle(color: Color(InvenmanagerColors.gray_200)),
+              decoration: const InputDecoration(
+                labelStyle: TextStyle(color: AppColor.gray_200),
                 filled: true,
-                fillColor: Color(InvenmanagerColors.gray_700),
+                fillColor: AppColor.gray_700,
                 hintText: 'Digite o nome ou o código do produto',
-                hintStyle: TextStyle(color: Color(InvenmanagerColors.gray_250)),
-                border: const OutlineInputBorder(
+                hintStyle: TextStyle(color: AppColor.gray_250),
+                border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
                   borderSide: BorderSide.none,
                 ),
@@ -60,20 +59,20 @@ class _SearchPageState extends State<SearchPage> {
             const SizedBox(height: 20),
             ElevatedButton.icon(
                 onPressed: () {},
-                label: Text(
+                label: const Text(
                   'BUSCAR PRODUTO',
-                  style: TextStyle(color: Color(InvenmanagerColors.gray_800)),
+                  style: TextStyle(color: AppColor.gray_800),
                 ),
-                icon: Icon(
+                icon: const Icon(
                   Icons.search,
-                  color: Color(InvenmanagerColors.gray_800),
+                  color: AppColor.gray_800,
                 ),
                 style: ElevatedButton.styleFrom(
                   textStyle: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
-                  backgroundColor: Color(InvenmanagerColors.yellow),
+                  backgroundColor: AppColor.yellow,
                   minimumSize: const Size(335, 52),
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

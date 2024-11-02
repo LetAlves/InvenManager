@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:invenmanager/global/invenmanager_colors.dart';
+import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/pages/login_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -33,7 +33,7 @@ class _SplashPageState extends State<SplashPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(InvenmanagerColors.gray_800),
+      backgroundColor: AppColor.gray_800,
       body: SizedBox(
         width: double.infinity,
         child: Column(
