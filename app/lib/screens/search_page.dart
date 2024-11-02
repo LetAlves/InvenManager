@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invenmanager/components/bottomNavBar.dart';
+import 'package:invenmanager/layout/bottomNavBar.dart';
 import 'package:invenmanager/global/invenmanager_colors.dart';
 
 class SearchPage extends StatefulWidget {

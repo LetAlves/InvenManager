@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:invenmanager/components/bottomNavBar.dart';
-import 'package:invenmanager/components/lateralMenu.dart';
+import 'package:invenmanager/layout/bottomNavBar.dart';
+import 'package:invenmanager/layout/lateralMenu.dart';
 import 'package:invenmanager/global/invenmanager_colors.dart';
 
 class ProductInformationPage extends StatefulWidget {
