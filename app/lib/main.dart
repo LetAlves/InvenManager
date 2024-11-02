@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invenmanager/screens/login_page.dart';
+import 'package:invenmanager/pages/login_page.dart';
 
 void main() {
   runApp(const Invenmanager());

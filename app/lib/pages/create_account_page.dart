@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/invenmanager_colors.dart';
-import 'package:invenmanager/screens/login_page.dart';
+import 'package:invenmanager/pages/login_page.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({super.key});

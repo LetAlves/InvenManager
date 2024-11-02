@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/invenmanager_colors.dart';
-import 'package:invenmanager/screens/create_product_page.dart';
-import 'package:invenmanager/screens/home_page.dart';
+import 'package:invenmanager/pages/create_product_page.dart';
+import 'package:invenmanager/pages/home_page.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({Key? key}) : super(key: key);

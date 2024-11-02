@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:invenmanager/layout/bottomNavBar.dart';
 import 'package:invenmanager/layout/lateralMenu.dart';
 import 'package:invenmanager/global/invenmanager_colors.dart';
-import 'package:invenmanager/screens/create_product_page.dart';
-import 'package:invenmanager/screens/search_page.dart';
+import 'package:invenmanager/pages/create_product_page.dart';
+import 'package:invenmanager/pages/search_page.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);

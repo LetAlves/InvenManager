@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/invenmanager_colors.dart';
-import 'package:invenmanager/screens/home_page.dart';
-import 'package:invenmanager/screens/create_account_page.dart';
-import 'package:invenmanager/screens/recover_password_page.dart';
+import 'package:invenmanager/pages/home_page.dart';
+import 'package:invenmanager/pages/create_account_page.dart';
+import 'package:invenmanager/pages/recover_password_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
