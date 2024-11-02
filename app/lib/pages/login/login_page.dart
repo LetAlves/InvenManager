@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
-import 'package:invenmanager/pages/home_page.dart';
+import 'package:invenmanager/pages/home/home_page.dart';
 import 'package:invenmanager/pages/create_account_page.dart';
 import 'package:invenmanager/pages/recover_password_page.dart';
 import 'package:invenmanager/widget/custom_button.dart';
@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
         },
         child: Text(
           'Esqueci a minha senha',
-          style: AppTextStyle.mediumText.copyWith(color: AppColor.gray_200),
+          style: AppTextStyle.mediumTextBold.copyWith(color: AppColor.gray_200),
         ),
       ),
       const SizedBox(height: 52),
@@ -161,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
         },
         child: Text(
           'Criar uma nova conta',
-          style: AppTextStyle.mediumText.copyWith(color: AppColor.gray_200),
+          style: AppTextStyle.mediumTextBold.copyWith(color: AppColor.gray_200),
         ),
       ),
     ];

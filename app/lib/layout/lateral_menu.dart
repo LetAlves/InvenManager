@@ -25,8 +25,8 @@ class LateralMenu extends StatelessWidget {
                 ),
                 Text(
                   'John Doe',
-                  style:
-                      AppTextStyle.mediumText.copyWith(color: AppColor.white),
+                  style: AppTextStyle.mediumTextBold
+                      .copyWith(color: AppColor.white),
                 ),
                 TextButton(
                   onPressed: () {
@@ -50,7 +50,7 @@ class LateralMenu extends StatelessWidget {
               ListTile(
                 title: Text(
                   '85 Produtos cadastrados',
-                  style: AppTextStyle.mediumText
+                  style: AppTextStyle.mediumTextBold
                       .copyWith(color: AppColor.gray_200),
                 ),
                 onTap: () {
@@ -63,7 +63,7 @@ class LateralMenu extends StatelessWidget {
               ListTile(
                 title: Text(
                   '9 produtos em falta',
-                  style: AppTextStyle.mediumText
+                  style: AppTextStyle.mediumTextBold
                       .copyWith(color: AppColor.gray_200),
                 ),
                 onTap: () {
@@ -84,7 +84,8 @@ class LateralMenu extends StatelessWidget {
             leading: const Icon(Icons.exit_to_app, color: AppColor.yellow),
             title: Text(
               'Sair',
-              style: AppTextStyle.mediumText.copyWith(color: AppColor.yellow),
+              style:
+                  AppTextStyle.mediumTextBold.copyWith(color: AppColor.yellow),
             ),
             onTap: () {},
           ),

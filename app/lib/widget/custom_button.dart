@@ -30,7 +30,7 @@ class CustomButton extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: AppTextStyle.mediumText
+        style: AppTextStyle.mediumTextBold
             .copyWith(color: labelColor ?? AppColor.gray_800),
       ),
     );

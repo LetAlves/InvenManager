@@ -1,4 +1,8 @@
+import 'dart:developer';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/layout/bottom_navbar.dart';
 import 'package:invenmanager/layout/lateral_menu.dart';
 import 'package:invenmanager/global/app_color.dart';
@@ -50,24 +54,30 @@ class Homepage extends StatelessWidget {
                 color: AppColor.gray_600,
               ),
               const SizedBox(height: 16),
-              Wrap(
-                children: [
-                  const Text(
-                      'Você ainda não tem nenhum produto cadastrado, que tal '),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CreateProductPage()));
-                    },
-                    child: const Text(
-                      'adicionar algum ao estoque?',
-                      style: TextStyle(color: AppColor.yellow),
+              GestureDetector(
+                onTap: () {
+                  log('message');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CreateProductPage()),
+                  );
+                },
+                child: Wrap(
+                  children: [
+                    Text(
+                      'Você ainda não tem nenhum produto cadastrado! ',
+                      style: AppTextStyle.mediumText
+                          .copyWith(color: AppColor.white),
                     ),
-                  )
-                ],
-              )
+                    Text(
+                      'adicione algum ao estoque.',
+                      style: AppTextStyle.mediumText
+                          .copyWith(color: AppColor.yellow),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
