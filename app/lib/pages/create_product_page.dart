@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/layout/bottomNavBar.dart';
 import 'package:invenmanager/layout/lateralMenu.dart';
 import 'package:invenmanager/global/app_color.dart';
@@ -40,15 +41,11 @@ class _CreateProductPageState extends State<CreateProductPage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              const Padding(
-                padding: EdgeInsets.only(top: 20.0),
-                child: Text(
-                  'Informações do produto',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Text('Informações do produto',
+                    style: AppTextStyle.headerText
+                        .copyWith(color: AppColor.white)),
               ),
               const SizedBox(height: 20),
               _buildTextField(

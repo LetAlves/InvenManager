@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
+import 'package:invenmanager/global/app_text_style.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({super.key});
@@ -35,14 +36,9 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   child: Column(
                     children: [
                       const SizedBox(height: 24),
-                      const Text(
-                        'Informações do usuário',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: AppColor.white,
-                        ),
-                      ),
+                      Text('Informações do usuário',
+                          style: AppTextStyle.headerText
+                              .copyWith(color: AppColor.white)),
                       const SizedBox(height: 24),
                       TextFormField(
                         decoration: InputDecoration(
