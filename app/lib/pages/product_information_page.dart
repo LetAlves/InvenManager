@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:invenmanager/layout/bottomNavBar.dart';
-import 'package:invenmanager/layout/lateralMenu.dart';
+import 'package:invenmanager/layout/bottom_navbar.dart';
+import 'package:invenmanager/layout/lateral_menu.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/widget/custom_button.dart';
 
