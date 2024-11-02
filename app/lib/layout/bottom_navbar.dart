@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/pages/create_product_page.dart';
-import 'package:invenmanager/pages/home_page.dart';
+import 'package:invenmanager/pages/home/home_page.dart';
+import 'package:invenmanager/widget/text_button_navbar.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -15,7 +16,9 @@ class BottomNavBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextButton.icon(
+            TextButtonNavBar(
+              label: 'Novo Produto',
+              icon: Icons.add_circle_outline,
               onPressed: () {
                 Navigator.push(
                   context,
@@ -23,31 +26,17 @@ class BottomNavBar extends StatelessWidget {
                       builder: (context) => const CreateProductPage()),
                 );
               },
-              label: const Text(
-                'Novo Produto',
-                style: TextStyle(color: AppColor.gray_300),
-              ),
-              icon: const Icon(
-                Icons.add_circle_outline,
-                color: AppColor.gray_300,
-              ),
             ),
-            TextButton.icon(
+            TextButtonNavBar(
+              label: 'Meu inventário',
+              icon: Icons.inventory,
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const Homepage()),
                 );
               },
-              label: const Text(
-                'Meu inventário',
-                style: TextStyle(color: AppColor.yellow),
-              ),
-              icon: const Icon(
-                Icons.inventory,
-                color: AppColor.yellow,
-              ),
-            ),
+            )
           ],
         ),
       ),
