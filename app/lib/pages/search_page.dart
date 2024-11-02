@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/layout/bottomNavBar.dart';
 import 'package:invenmanager/global/app_color.dart';
+import 'package:invenmanager/widget/custom_button.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -57,29 +58,10 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton.icon(
-                onPressed: () {},
-                label: const Text(
-                  'BUSCAR PRODUTO',
-                  style: TextStyle(color: AppColor.gray_800),
-                ),
-                icon: const Icon(
-                  Icons.search,
-                  color: AppColor.gray_800,
-                ),
-                style: ElevatedButton.styleFrom(
-                  textStyle: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  backgroundColor: AppColor.yellow,
-                  minimumSize: const Size(335, 52),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                ))
+            CustomButton(
+              label: 'Buscar Produto',
+              onPressed: () {},
+            ),
           ],
         ),
       ),

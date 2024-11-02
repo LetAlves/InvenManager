@@ -4,6 +4,7 @@ import 'package:invenmanager/layout/bottomNavBar.dart';
 import 'package:invenmanager/layout/lateralMenu.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/pages/product_information_page.dart';
+import 'package:invenmanager/widget/custom_button.dart';
 
 class CreateProductPage extends StatefulWidget {
   const CreateProductPage({Key? key}) : super(key: key);
@@ -107,7 +108,8 @@ class _CreateProductPageState extends State<CreateProductPage> {
                 },
               ),
               const SizedBox(height: 20),
-              ElevatedButton.icon(
+              CustomButton(
+                label: 'Adicionar ao estoque',
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -132,25 +134,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
                     );
                   }
                 },
-                icon: const Icon(Icons.add, color: AppColor.gray_800),
-                label: const Text(
-                  'Adicionar ao estoque',
-                  style: TextStyle(color: AppColor.gray_800),
-                ),
-                style: ElevatedButton.styleFrom(
-                  textStyle: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  backgroundColor: AppColor.yellow,
-                  minimumSize: const Size(335, 52),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                ),
-              )
+              ),
             ],
           ),
         ),

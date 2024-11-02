@@ -4,6 +4,7 @@ import 'package:invenmanager/layout/lateralMenu.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/pages/create_product_page.dart';
 import 'package:invenmanager/pages/search_page.dart';
+import 'package:invenmanager/widget/custom_button.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -31,36 +32,17 @@ class Homepage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 20.0),
           child: Column(
             children: <Widget>[
-              ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SearchPage(),
-                      ),
-                    );
-                  },
-                  label: const Text(
-                    'Buscar',
-                    style: TextStyle(color: AppColor.gray_800),
-                  ),
-                  icon: const Icon(
-                    Icons.search,
-                    color: AppColor.gray_800,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    textStyle: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
+              CustomButton(
+                label: 'Buscar',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SearchPage(),
                     ),
-                    backgroundColor: AppColor.yellow,
-                    minimumSize: const Size(335, 52),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  )),
+                  );
+                },
+              ),
               const SizedBox(height: 16),
               Container(
                 width: 335,

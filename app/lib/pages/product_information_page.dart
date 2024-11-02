@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:invenmanager/layout/bottomNavBar.dart';
 import 'package:invenmanager/layout/lateralMenu.dart';
 import 'package:invenmanager/global/app_color.dart';
+import 'package:invenmanager/widget/custom_button.dart';
 
 class ProductInformationPage extends StatefulWidget {
   const ProductInformationPage({Key? key}) : super(key: key);
@@ -179,29 +180,11 @@ class _ProductInformationPageState extends State<ProductInformationPage> {
                         ],
                       ),
                       const SizedBox(height: 20),
-                      ElevatedButton.icon(
+                      CustomButton(
+                        label: 'Confirmar Estoque',
+                        labelColor: AppColor.white,
+                        backgroundColor: AppColor.green,
                         onPressed: () {},
-                        icon: const Icon(
-                          Icons.check,
-                          color: AppColor.white,
-                        ),
-                        label: const Text(
-                          'CONFIRMAR ESTOQUE',
-                          style: TextStyle(color: AppColor.white),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          textStyle: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          backgroundColor: AppColor.green,
-                          minimumSize: const Size(335, 52),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
                       ),
                     ],
                   ),

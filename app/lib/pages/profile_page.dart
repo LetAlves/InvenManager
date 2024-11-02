@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
+import 'package:invenmanager/widget/custom_button.dart';
 
 class Profilepage extends StatefulWidget {
   const Profilepage({super.key});
@@ -107,30 +108,10 @@ class _ProfilepageState extends State<Profilepage> {
                   cursorColor: AppColor.yellow,
                 ),
                 const SizedBox(height: 64),
-                ElevatedButton.icon(
+                CustomButton(
+                  label: 'Editar',
                   onPressed: () {},
-                  icon: const Icon(
-                    Icons.edit,
-                    color: AppColor.gray_800,
-                  ),
-                  label: const Text(
-                    'Editar',
-                    style: TextStyle(color: AppColor.gray_800),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    textStyle: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    backgroundColor: AppColor.yellow,
-                    minimumSize: const Size(335, 52),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                ),
+                )
               ],
             ),
           ),
