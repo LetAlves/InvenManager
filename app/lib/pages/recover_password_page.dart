@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/pages/login/login_page.dart';
+import 'package:invenmanager/widget/border_button.dart';
+import 'package:invenmanager/widget/custom_button.dart';
 
 class RecoverPassword extends StatefulWidget {
   const RecoverPassword({Key? key}) : super(key: key);
@@ -87,7 +89,8 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                         },
                       ),
                       const SizedBox(height: 24),
-                      ElevatedButton.icon(
+                      CustomButton(
+                        label: 'Continuar',
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             setState(() {
@@ -95,26 +98,7 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                             });
                           }
                         },
-                        icon: const Icon(Icons.arrow_forward,
-                            color: AppColor.gray_800),
-                        label: const Text(
-                          'Continuar',
-                          style: TextStyle(color: AppColor.gray_800),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          textStyle: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          backgroundColor: AppColor.yellow,
-                          minimumSize: const Size(300, 52),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                      ),
+                      )
                     ],
                   ),
                 ),
@@ -129,7 +113,9 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                             TextStyle(fontSize: 16, color: AppColor.gray_200),
                       ),
                       const SizedBox(height: 24),
-                      ElevatedButton.icon(
+                      BorderButton(
+                        label: 'Email',
+                        icon: Icons.email_outlined,
                         onPressed: () {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -152,24 +138,11 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                                 builder: (context) => const LoginPage()),
                           );
                         },
-                        icon: const Icon(Icons.email_outlined,
-                            color: AppColor.gray_300),
-                        label: const Text('E-mail',
-                            style: TextStyle(color: AppColor.gray_200)),
-                        style: ElevatedButton.styleFrom(
-                          textStyle: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
-                          minimumSize: const Size(300, 52),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          side: const BorderSide(color: AppColor.gray_300),
-                        ),
                       ),
                       const SizedBox(height: 24),
-                      ElevatedButton.icon(
+                      BorderButton(
+                        label: 'SMS',
+                        icon: Icons.sms_outlined,
                         onPressed: () {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -191,21 +164,7 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                                 builder: (context) => const LoginPage()),
                           );
                         },
-                        icon: const Icon(Icons.phone, color: AppColor.gray_300),
-                        label: const Text('SMS',
-                            style: TextStyle(color: AppColor.gray_200)),
-                        style: ElevatedButton.styleFrom(
-                          textStyle: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
-                          minimumSize: const Size(300, 52),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          side: const BorderSide(color: AppColor.gray_300),
-                        ),
-                      ),
+                      )
                     ],
                   ),
                 ),
