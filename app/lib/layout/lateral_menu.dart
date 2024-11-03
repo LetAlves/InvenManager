@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:invenmanager/global/invenmanager_colors.dart';
-import 'package:invenmanager/screens/inventory_history_page.dart';
-import 'package:invenmanager/screens/profile_page.dart';
+import 'package:invenmanager/global/app_color.dart';
+import 'package:invenmanager/global/app_text_style.dart';
+import 'package:invenmanager/pages/home/home_page.dart';
+import 'package:invenmanager/pages/profile_page.dart';
 
 class LateralMenu extends StatelessWidget {
   const LateralMenu({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class LateralMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Color(InvenmanagerColors.black),
+      backgroundColor: AppColor.gray_900,
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
@@ -24,10 +25,8 @@ class LateralMenu extends StatelessWidget {
                 ),
                 Text(
                   'John Doe',
-                  style: TextStyle(
-                      color: Color(InvenmanagerColors.white),
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
+                  style: AppTextStyle.mediumTextBold
+                      .copyWith(color: AppColor.white),
                 ),
                 TextButton(
                   onPressed: () {
@@ -38,7 +37,8 @@ class LateralMenu extends StatelessWidget {
                   },
                   child: Text(
                     'Ver perfil',
-                    style: TextStyle(color: Color(InvenmanagerColors.yellow)),
+                    style:
+                        AppTextStyle.smallText.copyWith(color: AppColor.yellow),
                   ),
                 ),
               ],
@@ -50,40 +50,42 @@ class LateralMenu extends StatelessWidget {
               ListTile(
                 title: Text(
                   '85 Produtos cadastrados',
-                  style: TextStyle(color: Color(InvenmanagerColors.gray_200)),
+                  style: AppTextStyle.mediumTextBold
+                      .copyWith(color: AppColor.gray_200),
                 ),
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const InventoryHistoryPage()));
+                          builder: (context) => const Homepage()));
                 },
               ),
               ListTile(
                 title: Text(
                   '9 produtos em falta',
-                  style: TextStyle(color: Color(InvenmanagerColors.gray_200)),
+                  style: AppTextStyle.mediumTextBold
+                      .copyWith(color: AppColor.gray_200),
                 ),
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const InventoryHistoryPage()));
+                          builder: (context) => const Homepage()));
                 },
               ),
             ],
           ),
           const SizedBox(height: 20),
-          Divider(
-            color: Color(InvenmanagerColors.yellow),
+          const Divider(
+            color: AppColor.yellow,
             thickness: 1,
           ),
           ListTile(
-            leading: Icon(Icons.exit_to_app,
-                color: Color(InvenmanagerColors.yellow)),
+            leading: const Icon(Icons.exit_to_app, color: AppColor.yellow),
             title: Text(
               'Sair',
-              style: TextStyle(color: Color(InvenmanagerColors.yellow)),
+              style:
+                  AppTextStyle.mediumTextBold.copyWith(color: AppColor.yellow),
             ),
             onTap: () {},
           ),
