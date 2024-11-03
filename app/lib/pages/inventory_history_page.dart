@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:invenmanager/classes/product.dart';
 import 'package:invenmanager/layout/bottom_navbar.dart';
 import 'package:invenmanager/layout/lateral_menu.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/pages/product_information_page.dart';
 
 class InventoryHistoryPage extends StatefulWidget {
-  const InventoryHistoryPage({Key? key}) : super(key: key);
+  final Product product;
+  const InventoryHistoryPage({Key? key, required this.product})
+      : super(key: key);
 
   @override
   State<InventoryHistoryPage> createState() => _InventoryHistoryPageState();
@@ -22,7 +25,7 @@ class _InventoryHistoryPageState extends State<InventoryHistoryPage> {
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.file_upload_outlined),
-            tooltip: 'Upload',
+            tooltip: 'Exportar histórico',
             onPressed: () {},
           ),
         ],
@@ -33,21 +36,21 @@ class _InventoryHistoryPageState extends State<InventoryHistoryPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              const Text(
-                'Produto 1',
-                style: TextStyle(
-                  color: AppColor.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 16),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Text(
+                        'Produto 1',
+                        style: TextStyle(
+                          color: AppColor.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 16),
                       Text(
                         'Quantidade em estoque: 50',
                         style: TextStyle(color: AppColor.gray_200),
@@ -127,11 +130,17 @@ class _InventoryHistoryPageState extends State<InventoryHistoryPage> {
                 ],
               ),
               const SizedBox(height: 30),
-              _buildStockUpdateContainer(
-                  '20 de Novembro de 2023 às 12:00', '50', '80'),
-              const SizedBox(height: 30),
-              _buildStockUpdateContainer(
-                  '20 de Novembro de 2023 às 12:00', '50', '80'),
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    _buildStockUpdateContainer(
+                        '20 de Novembro de 2023 às 12:00', '50', '80'),
+                    const SizedBox(height: 30),
+                    _buildStockUpdateContainer(
+                        '20 de Novembro de 2023 às 12:00', '50', '80'),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

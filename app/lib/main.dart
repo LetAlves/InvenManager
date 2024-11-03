@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:invenmanager/pages/home/home_page.dart';
+import 'package:invenmanager/pages/inventory_history_page.dart';
 import 'package:invenmanager/pages/login/login_page.dart';
 
 void main() {
@@ -14,7 +16,7 @@ class Invenmanager extends StatelessWidget {
       title: 'InvenManager',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: const SafeArea(child: LoginPage()),
+      home: const SafeArea(child: Homepage()),
     );
   }
 }
