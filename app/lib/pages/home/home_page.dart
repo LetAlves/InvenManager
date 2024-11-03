@@ -5,12 +5,12 @@ import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/layout/bottom_navbar.dart';
 import 'package:invenmanager/layout/lateral_menu.dart';
 import 'package:invenmanager/global/app_color.dart';
-import 'package:invenmanager/pages/create_product_page.dart';
-import 'package:invenmanager/pages/information_product/info_product_page.dart';
-import 'package:invenmanager/pages/search_page.dart';
+import 'package:invenmanager/pages/product/create_product_page.dart';
+import 'package:invenmanager/pages/product/info_product_page.dart';
 import 'package:invenmanager/layout/content_info_product.dart';
 import 'package:invenmanager/widget/custom_button.dart';
 import 'package:invenmanager/widget/custom_card.dart';
+import 'package:invenmanager/widget/custom_text_form_field.dart';
 
 final Product product = Product(
     id: 1,
@@ -20,8 +20,15 @@ final Product product = Product(
     unitValue: 10.0,
     barCode: 1234567890);
 
-class Homepage extends StatelessWidget {
+class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
+
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+  bool isVisibleSearch = false;
 
   @override
   Widget build(BuildContext context) {
@@ -42,63 +49,85 @@ class Homepage extends StatelessWidget {
             )
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 20.0),
-          child: Column(
-            children: <Widget>[
-              CustomButton(
-                label: 'Buscar',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SearchPage(),
-                    ),
-                  );
-                },
-              ),
-              const SizedBox(height: 16),
-              Container(
-                width: 335,
-                height: 1,
-                color: AppColor.gray_600,
-              ),
-              const SizedBox(height: 16),
-              GestureDetector(
-                onTap: () {
-                  log('message');
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const CreateProductPage()),
-                  );
-                },
-                child: Wrap(
-                  children: [
-                    Text(
-                      'Você ainda não tem nenhum produto cadastrado! ',
-                      style: AppTextStyle.mediumText
-                          .copyWith(color: AppColor.white),
-                    ),
-                    Text(
-                      'adicione algum ao estoque.',
-                      style: AppTextStyle.mediumText
-                          .copyWith(color: AppColor.yellow),
-                    ),
-                  ],
-                ),
-              ),
-              GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                InfoProductPage(product: product)));
+        body: SingleChildScrollView(
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 24.0, horizontal: 20.0),
+            child: Column(
+              children: <Widget>[
+                Visibility(
+                    visible: isVisibleSearch,
+                    child: Column(
+                      children: [
+                        Text(
+                          'Informações do Produto',
+                          style: AppTextStyle.headerText
+                              .copyWith(color: AppColor.white),
+                        ),
+                        const CustomTextFormField(
+                          label: '',
+                          hintText: 'Digite o nome ou o código do produto',
+                        )
+                      ],
+                    )),
+                CustomButton(
+                  label: 'Buscar',
+                  onPressed: () {
+                    setState(() {
+                      isVisibleSearch = !isVisibleSearch;
+                    });
                   },
-                  child:
-                      CustomCard(content: ContentInfoProduct(product: product)))
-            ],
+                ),
+                Visibility(
+                    visible: !isVisibleSearch,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 16),
+                        Container(
+                          width: 335,
+                          height: 1,
+                          color: AppColor.gray_600,
+                        ),
+                        const SizedBox(height: 16),
+                        GestureDetector(
+                          onTap: () {
+                            log('message');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const CreateProductPage()),
+                            );
+                          },
+                          child: Wrap(
+                            children: [
+                              Text(
+                                'Você ainda não tem nenhum produto cadastrado! ',
+                                style: AppTextStyle.mediumText
+                                    .copyWith(color: AppColor.white),
+                              ),
+                              Text(
+                                'adicione algum ao estoque.',
+                                style: AppTextStyle.mediumText
+                                    .copyWith(color: AppColor.yellow),
+                              ),
+                            ],
+                          ),
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          InfoProductPage(product: product)));
+                            },
+                            child: CustomCard(
+                                content: ContentInfoProduct(product: product)))
+                      ],
+                    ))
+              ],
+            ),
           ),
         ),
         endDrawer: const LateralMenu(),

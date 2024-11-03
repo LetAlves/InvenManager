@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
-import 'package:invenmanager/pages/login/login_page.dart';
+import 'package:invenmanager/pages/user/login_page.dart';
 import 'package:invenmanager/widget/border_button.dart';
 import 'package:invenmanager/widget/custom_button.dart';
 

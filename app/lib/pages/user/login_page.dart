@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/pages/home/home_page.dart';
-import 'package:invenmanager/pages/create_account_page.dart';
-import 'package:invenmanager/pages/recover_password_page.dart';
+import 'package:invenmanager/pages/user/create_account_page.dart';
+import 'package:invenmanager/pages/user/recover_password_page.dart';
 import 'package:invenmanager/widget/custom_button.dart';
 
 class LoginPage extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
-import 'package:invenmanager/pages/create_product_page.dart';
+import 'package:invenmanager/pages/product/create_product_page.dart';
 import 'package:invenmanager/pages/home/home_page.dart';
 import 'package:invenmanager/widget/text_button_navbar.dart';
 
