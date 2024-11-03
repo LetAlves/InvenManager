@@ -6,7 +6,7 @@ import 'package:invenmanager/layout/bottom_navbar.dart';
 import 'package:invenmanager/layout/lateral_menu.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/pages/create_product_page.dart';
-import 'package:invenmanager/pages/inventory_history_page.dart';
+import 'package:invenmanager/pages/information_product/info_product_page.dart';
 import 'package:invenmanager/pages/search_page.dart';
 import 'package:invenmanager/layout/content_info_product.dart';
 import 'package:invenmanager/widget/custom_button.dart';
@@ -94,7 +94,7 @@ class Homepage extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                InventoryHistoryPage(product: product)));
+                                InfoProductPage(product: product)));
                   },
                   child:
                       CustomCard(content: ContentInfoProduct(product: product)))

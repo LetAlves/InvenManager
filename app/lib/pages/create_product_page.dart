@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:invenmanager/classes/product.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/layout/bottom_navbar.dart';
 import 'package:invenmanager/layout/lateral_menu.dart';
 import 'package:invenmanager/global/app_color.dart';
-import 'package:invenmanager/pages/product_information_page.dart';
+import 'package:invenmanager/pages/information_product/info_product_page.dart';
 import 'package:invenmanager/widget/custom_button.dart';
 
 class CreateProductPage extends StatefulWidget {
@@ -14,6 +15,13 @@ class CreateProductPage extends StatefulWidget {
 }
 
 class _CreateProductPageState extends State<CreateProductPage> {
+  final Product product = Product(
+      id: 1,
+      name: 'Chocolate',
+      currentQuantity: 200,
+      minimumQuantity: 30,
+      unitValue: 10.0,
+      barCode: 1234567890);
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -129,7 +137,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const ProductInformationPage(),
+                        builder: (context) => InfoProductPage(product: product),
                       ),
                     );
                   }

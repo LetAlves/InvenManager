@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:invenmanager/classes/product.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
-import 'package:invenmanager/pages/inventory_history_page.dart';
 
 class ContentInfoProduct extends StatelessWidget {
   final Product product;
