@@ -6,6 +6,7 @@ import 'package:invenmanager/layout/lateral_menu.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/pages/product/info_product_page.dart';
 import 'package:invenmanager/widget/custom_button.dart';
+import 'package:invenmanager/widget/custom_text_form_field.dart';
 
 class CreateProductPage extends StatefulWidget {
   const CreateProductPage({Key? key}) : super(key: key);
@@ -56,22 +57,19 @@ class _CreateProductPageState extends State<CreateProductPage> {
                     style: AppTextStyle.headerText
                         .copyWith(color: AppColor.white)),
               ),
-              const SizedBox(height: 20),
-              _buildTextField(
-                label: 'Nome do Produto',
-                hint: 'Produto 1',
-                validator: (value) {
+              CustomTextFormField(label: 'nome do produto',
+               hintText: 'produto 1',
+               validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira o nome do produto';
                   }
                   return null;
                 },
-              ),
-              const SizedBox(height: 20),
-              _buildTextField(
-                label: 'Valor Unitário',
-                hint: 'R\$ 100,00',
-                validator: (value) {
+              ),  
+              CustomTextFormField(label: 'Valor unitario',
+               hintText: 'R\$ 100,00',
+               keyboardType: TextInputType.number,
+              validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira o valor unitário';
                   }
@@ -80,42 +78,34 @@ class _CreateProductPageState extends State<CreateProductPage> {
                     return 'Por favor, insira um número válido';
                   }
                   return null;
-                },
-              ),
-              const SizedBox(height: 20),
-              _buildTextField(
-                label: 'Código',
-                hint: '0000001',
-                validator: (value) {
+                }, ),
+                CustomTextFormField(label: 'Código',
+                 hintText:'0000001',
+                 keyboardType: TextInputType.number,
+                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira o código do produto';
                   }
                   return null;
-                },
-              ),
-              const SizedBox(height: 20),
-              _buildTextField(
-                label: 'Quantidade',
-                hint: 'Ex. 10',
-                validator: (value) {
+                }, ),
+                CustomTextFormField(label: 'Quantidade', 
+                hintText: 'Ex. 10',
+                keyboardType: TextInputType.number,
+                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira a quantidade do produto';
                   }
                   return null;
-                },
-              ),
-              const SizedBox(height: 20),
-              _buildTextField(
-                label: 'Quantidade mínima',
-                hint: 'Ex. 10',
-                validator: (value) {
+                },),
+                CustomTextFormField(label: 'Quantidade mínima',
+                 hintText: 'Ex. 10',
+                 keyboardType: TextInputType.number,
+                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira a quantidade mínima';
                   }
                   return null;
-                },
-              ),
-              const SizedBox(height: 20),
+                },),
               CustomButton(
                 label: 'Adicionar ao estoque',
                 onPressed: () {
@@ -152,45 +142,4 @@ class _CreateProductPageState extends State<CreateProductPage> {
     );
   }
 
-  Widget _buildTextField({
-    required String label,
-    required String hint,
-    required FormFieldValidator<String> validator,
-  }) {
-    return TextFormField(
-      decoration: InputDecoration(
-        labelText: label,
-        labelStyle: const TextStyle(color: AppColor.gray_200),
-        filled: true,
-        fillColor: AppColor.gray_700,
-        hintText: hint,
-        hintStyle: const TextStyle(color: AppColor.gray_250),
-        border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-          borderSide: BorderSide.none,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
-          borderSide: const BorderSide(color: AppColor.gray_250),
-        ),
-        enabledBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-          borderSide: BorderSide.none,
-        ),
-        errorStyle: const TextStyle(color: AppColor.red),
-        errorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColor.red),
-        ),
-        focusedErrorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-            color: AppColor.red,
-            width: 2.0,
-          ),
-        ),
-      ),
-      style: const TextStyle(color: AppColor.white),
-      cursorColor: AppColor.yellow,
-      validator: validator,
-    );
-  }
 }
