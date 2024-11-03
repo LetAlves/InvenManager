@@ -43,7 +43,7 @@ class _InfoProductPageState extends State<InfoProductPage> {
           ),
         ],
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 20.0),
         child: Center(
           child: Column(
@@ -58,7 +58,9 @@ class _InfoProductPageState extends State<InfoProductPage> {
               ),
               const SizedBox(height: 16),
               Container(
-                color: AppColor.gray_750,
+                decoration: BoxDecoration(
+                    color: AppColor.gray_750,
+                    borderRadius: BorderRadius.circular(4.0)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -87,8 +89,17 @@ class _InfoProductPageState extends State<InfoProductPage> {
               ),
               const SizedBox(height: 30),
               Visibility(
-                  visible: isVisibleHistory,
-                  child: const ContentInfoUpdatedProduct()),
+                visible: isVisibleHistory,
+                child: const Column(
+                  children: [
+                    ContentInfoUpdatedProduct(),
+                    SizedBox(height: 10),
+                    ContentInfoUpdatedProduct(),
+                    SizedBox(height: 10),
+                    ContentInfoUpdatedProduct()
+                  ],
+                ),
+              ),
               Visibility(
                   visible: isVisibleAction,
                   child: CustomCard(

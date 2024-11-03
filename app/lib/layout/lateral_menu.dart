@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/pages/home/home_page.dart';
-import 'package:invenmanager/pages/profile_page.dart';
+import 'package:invenmanager/pages/edit_profile_page.dart';
 
 class LateralMenu extends StatelessWidget {
   const LateralMenu({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class LateralMenu extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Profilepage()));
+                            builder: (context) => const EditProfilePage()));
                   },
                   child: Text(
                     'Ver perfil',

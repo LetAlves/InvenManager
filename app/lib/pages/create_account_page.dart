@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
+import 'package:invenmanager/widget/custom_button.dart';
+import 'package:invenmanager/widget/custom_text_form_field.dart';
+import 'package:invenmanager/widget/password_form_field.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({super.key});
@@ -40,42 +43,11 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                           style: AppTextStyle.headerText
                               .copyWith(color: AppColor.white)),
                       const SizedBox(height: 24),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'Nome',
-                          labelStyle: const TextStyle(color: AppColor.gray_200),
-                          filled: true,
-                          fillColor: AppColor.gray_700,
-                          hintText: 'John Doe',
-                          hintStyle: const TextStyle(color: AppColor.gray_250),
-                          border: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide:
-                                const BorderSide(color: AppColor.gray_250),
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                            borderSide: BorderSide.none,
-                          ),
-                          errorStyle: const TextStyle(color: AppColor.red),
-                          errorBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: AppColor.red),
-                          ),
-                          focusedErrorBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppColor.red,
-                              width: 2.0,
-                            ),
-                          ),
-                        ),
-                        style: const TextStyle(color: AppColor.white),
-                        cursorColor: AppColor.yellow,
+                      CustomTextFormField(
+                        label: 'Nome',
+                        hintText: 'John Doe',
+                        textCapitalization: TextCapitalization.words,
+                        keyboardType: TextInputType.name,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Por favor informe o seu nome completo';
@@ -88,43 +60,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                           return null;
                         },
                       ),
-                      const SizedBox(height: 24),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'E-mail',
-                          labelStyle: const TextStyle(color: AppColor.gray_200),
-                          filled: true,
-                          fillColor: AppColor.gray_700,
-                          hintText: 'john.doe@email.com',
-                          hintStyle: const TextStyle(color: AppColor.gray_250),
-                          border: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide:
-                                const BorderSide(color: AppColor.gray_250),
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                            borderSide: BorderSide.none,
-                          ),
-                          errorStyle: const TextStyle(color: AppColor.red),
-                          errorBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: AppColor.red),
-                          ),
-                          focusedErrorBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppColor.red,
-                              width: 2.0,
-                            ),
-                          ),
-                        ),
-                        style: const TextStyle(color: AppColor.white),
-                        cursorColor: AppColor.yellow,
+                      CustomTextFormField(
+                        label: 'E-mail',
+                        hintText: 'john.doe@email.com',
+                        keyboardType: TextInputType.emailAddress,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Por favor informe o seu nome de usuário';
@@ -134,44 +73,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                           return null;
                         },
                       ),
-                      const SizedBox(height: 24),
-                      TextFormField(
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Contato',
-                          labelStyle: const TextStyle(color: AppColor.gray_200),
-                          filled: true,
-                          fillColor: AppColor.gray_700,
-                          hintText: '(11) 94002-8922',
-                          hintStyle: const TextStyle(color: AppColor.gray_250),
-                          border: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide:
-                                const BorderSide(color: AppColor.gray_250),
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                            borderSide: BorderSide.none,
-                          ),
-                          errorStyle: const TextStyle(color: AppColor.red),
-                          errorBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: AppColor.red),
-                          ),
-                          focusedErrorBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppColor.red,
-                              width: 2.0,
-                            ),
-                          ),
-                        ),
-                        style: const TextStyle(color: AppColor.white),
-                        cursorColor: AppColor.yellow,
+                      CustomTextFormField(
+                        label: 'Contato',
+                        hintText: '4002-8922',
+                        keyboardType: TextInputType.phone,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Por favor informe o seu número de contato';
@@ -184,7 +89,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         },
                       ),
                       const SizedBox(height: 24),
-                      ElevatedButton.icon(
+                      CustomButton(
+                        label: 'Continuar',
+                        labelColor: AppColor.white,
+                        backgroundColor: AppColor.green,
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             setState(() {
@@ -192,25 +100,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                             });
                           }
                         },
-                        icon: const Icon(Icons.arrow_forward),
-                        label: const Text(
-                          'Continuar',
-                          style: TextStyle(color: AppColor.white),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          textStyle: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          backgroundColor: AppColor.green,
-                          minimumSize: const Size(300, 52),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                      ),
+                      )
                     ],
                   ),
                 ),
@@ -218,99 +108,22 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   visible: !isVisible,
                   child: Column(
                     children: [
-                      const SizedBox(height: 24),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'Usuário',
-                          labelStyle: const TextStyle(color: AppColor.gray_200),
-                          filled: true,
-                          fillColor: AppColor.gray_700,
-                          hintText: 'john.doe',
-                          hintStyle: const TextStyle(color: AppColor.gray_250),
-                          border: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide:
-                                const BorderSide(color: AppColor.gray_250),
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                            borderSide: BorderSide.none,
-                          ),
-                          errorStyle: const TextStyle(color: AppColor.red),
-                          errorBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: AppColor.red),
-                          ),
-                          focusedErrorBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppColor.red,
-                              width: 2.0,
-                            ),
-                          ),
-                        ),
-                        style: const TextStyle(color: AppColor.white),
-                        cursorColor: AppColor.yellow,
+                      CustomTextFormField(
+                        label: 'Usuário',
+                        hintText: 'john.doe',
+                        keyboardType: TextInputType.text,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Por favor informe o seu e-mail';
+                            return 'Por favor informe o seu usuário';
                           } else if (value.length < 10) {
-                            return 'E-mail Inválido';
+                            return 'Usuário Inválido';
                           }
                           return null;
                         },
                       ),
-                      const SizedBox(height: 24),
-                      TextFormField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          labelText: 'Senha',
-                          labelStyle: const TextStyle(color: AppColor.gray_200),
-                          filled: true,
-                          fillColor: AppColor.gray_700,
-                          hintText: '********',
-                          hintStyle: const TextStyle(color: AppColor.gray_250),
-                          border: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide:
-                                const BorderSide(color: AppColor.gray_250),
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                            borderSide: BorderSide.none,
-                          ),
-                          errorStyle: const TextStyle(color: AppColor.red),
-                          errorBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: AppColor.red),
-                          ),
-                          focusedErrorBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppColor.red,
-                              width: 2.0,
-                            ),
-                          ),
-                        ),
-                        style: const TextStyle(color: AppColor.white),
-                        cursorColor: AppColor.yellow,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Por favor informe a sua senha';
-                          } else if (value.length < 8) {
-                            return 'Senha muito curta';
-                          }
-                          return null;
-                        },
-                      ),
+                      PasswordFormField(label: 'Senha', hintText: '********'),
+                      PasswordFormField(
+                          label: 'Confirmar senha', hintText: 'P@ssw0rd'),
                       const SizedBox(height: 24),
                       ElevatedButton(
                         onPressed: () {

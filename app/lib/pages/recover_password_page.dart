@@ -3,7 +3,6 @@ import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/pages/login/login_page.dart';
 import 'package:invenmanager/widget/border_button.dart';
 import 'package:invenmanager/widget/custom_button.dart';
-import 'package:invenmanager/widget/notification_card.dart';
 
 class RecoverPassword extends StatefulWidget {
   const RecoverPassword({Key? key}) : super(key: key);
@@ -118,11 +117,11 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                         label: 'Email',
                         icon: Icons.email_outlined,
                         onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const NotificationCard(
-                                      message:
-                                          'Caso esse usuário exista na plataforma um email será enviado com a nova senha :)')
-                                  as SnackBar);
+                          // ScaffoldMessenger.of(context).showSnackBar(
+                          //     const NotificationCard(
+                          //             message:
+                          //                 'Caso esse usuário exista na plataforma um email será enviado com a nova senha :)')
+                          //         as SnackBar);
 
                           Navigator.push(
                             context,
@@ -136,11 +135,11 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                         label: 'SMS',
                         icon: Icons.sms_outlined,
                         onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const NotificationCard(
-                                      message:
-                                          'Caso esse usuário exista na plataforma um SMS será enviado com a nova senha :)')
-                                  as SnackBar);
+                          // ScaffoldMessenger.of(context).showSnackBar(
+                          //     const NotificationCard(
+                          //             message:
+                          //                 'Caso esse usuário exista na plataforma um SMS será enviado com a nova senha :)')
+                          //         as SnackBar);
                           Navigator.push(
                             context,
                             MaterialPageRoute(

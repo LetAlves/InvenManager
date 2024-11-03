@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invenmanager/pages/home/home_page.dart';
+import 'package:invenmanager/pages/splash/splash_page.dart';
 
 void main() {
   runApp(const Invenmanager());
@@ -14,7 +14,7 @@ class Invenmanager extends StatelessWidget {
       title: 'InvenManager',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: const SafeArea(child: Homepage()),
+      home: const SafeArea(child: SplashPage()),
     );
   }
 }
