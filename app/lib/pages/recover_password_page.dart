@@ -3,6 +3,7 @@ import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/pages/login/login_page.dart';
 import 'package:invenmanager/widget/border_button.dart';
 import 'package:invenmanager/widget/custom_button.dart';
+import 'package:invenmanager/widget/notification_card.dart';
 
 class RecoverPassword extends StatefulWidget {
   const RecoverPassword({Key? key}) : super(key: key);
@@ -118,19 +119,10 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                         icon: Icons.email_outlined,
                         onPressed: () {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: const Text(
-                                'Caso esse usuário exista na plataforma um email será enviado com a nova senha :)',
-                                style: TextStyle(color: AppColor.gray_200),
-                              ),
-                              backgroundColor: AppColor.gray_750,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4),
-                                side: const BorderSide(color: AppColor.yellow),
-                              ),
-                              duration: const Duration(seconds: 3),
-                            ),
-                          );
+                              const NotificationCard(
+                                      message:
+                                          'Caso esse usuário exista na plataforma um email será enviado com a nova senha :)')
+                                  as SnackBar);
 
                           Navigator.push(
                             context,
@@ -145,19 +137,10 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                         icon: Icons.sms_outlined,
                         onPressed: () {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: const Text(
-                                'Caso esse usuário exista na plataforma um SMS será enviado com a nova senha :)',
-                                style: TextStyle(color: AppColor.gray_200),
-                              ),
-                              backgroundColor: AppColor.gray_750,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4),
-                                side: const BorderSide(color: AppColor.yellow),
-                              ),
-                              duration: const Duration(seconds: 3),
-                            ),
-                          );
+                              const NotificationCard(
+                                      message:
+                                          'Caso esse usuário exista na plataforma um SMS será enviado com a nova senha :)')
+                                  as SnackBar);
                           Navigator.push(
                             context,
                             MaterialPageRoute(
