@@ -3,6 +3,7 @@ import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/pages/user/login_page.dart';
 import 'package:invenmanager/widget/border_button.dart';
 import 'package:invenmanager/widget/custom_button.dart';
+import 'package:invenmanager/widget/custom_text_form_field.dart';
 
 class RecoverPassword extends StatefulWidget {
   const RecoverPassword({Key? key}) : super(key: key);
@@ -43,42 +44,7 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                         ),
                       ),
                       const SizedBox(height: 24),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'Usuário',
-                          labelStyle: const TextStyle(color: AppColor.gray_200),
-                          filled: true,
-                          fillColor: AppColor.gray_700,
-                          hintText: 'john.doe',
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          border: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                            borderSide: BorderSide(color: Colors.grey),
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                            borderSide: BorderSide.none,
-                          ),
-                          errorStyle: const TextStyle(color: AppColor.red),
-                          errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide: const BorderSide(color: AppColor.red),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide: const BorderSide(
-                                color: AppColor.red, width: 2.0),
-                          ),
-                        ),
-                        style: const TextStyle(color: Colors.white),
-                        cursorColor: AppColor.yellow,
+                      CustomTextFormField(label: 'Usuário', hintText: 'john.doe',
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Por favor informe o seu usuário';

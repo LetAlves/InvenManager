@@ -5,6 +5,8 @@ import 'package:invenmanager/pages/home/home_page.dart';
 import 'package:invenmanager/pages/user/create_account_page.dart';
 import 'package:invenmanager/pages/user/recover_password_page.dart';
 import 'package:invenmanager/widget/custom_button.dart';
+import 'package:invenmanager/widget/custom_text_form_field.dart';
+import 'package:invenmanager/widget/password_form_field.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -25,91 +27,19 @@ class _LoginPageState extends State<LoginPage> {
         fit: BoxFit.cover,
       ),
       const SizedBox(height: 52),
-      TextFormField(
-        decoration: const InputDecoration(
-          labelText: 'Usuário',
-          labelStyle: TextStyle(color: AppColor.gray_200),
-          filled: true,
-          fillColor: AppColor.gray_700,
-          hintText: 'john.doe',
-          hintStyle: TextStyle(color: AppColor.gray_250),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            borderSide: BorderSide.none,
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            borderSide: BorderSide(color: AppColor.gray_250),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            borderSide: BorderSide.none,
-          ),
-          errorStyle: TextStyle(color: AppColor.red),
-          errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.red),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: AppColor.red,
-              width: 2.0,
-            ),
-          ),
-        ),
-        style: const TextStyle(color: AppColor.white),
-        cursorColor: AppColor.yellow,
-        validator: (value) {
+      CustomTextFormField(label: 'Usuário', 
+      hintText: 'john.doe',
+       validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Por favor informe o seu usuário';
           } else if (value.length < 3 || value.length > 30) {
             return 'Usuário inválido';
           }
           return null;
-        },
-      ),
-      const SizedBox(height: 16),
-      TextFormField(
-        decoration: const InputDecoration(
-          labelText: 'Senha',
-          labelStyle: TextStyle(color: AppColor.gray_200),
-          filled: true,
-          fillColor: AppColor.gray_700,
-          hintText: '********',
-          hintStyle: TextStyle(color: AppColor.gray_250),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            borderSide: BorderSide.none,
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            borderSide: BorderSide(color: AppColor.gray_250),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            borderSide: BorderSide.none,
-          ),
-          errorStyle: TextStyle(color: AppColor.red),
-          errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.red),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: AppColor.red,
-              width: 2.0,
-            ),
-          ),
-        ),
-        style: const TextStyle(color: AppColor.white),
-        cursorColor: AppColor.yellow,
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Por favor informe a sua senha';
-          } else if (value.length < 8) {
-            return 'Senha inválida';
-          }
-          return null;
-        },
-      ),
+        },),
+        PasswordFormField(label: 'Senha', 
+        hintText: '********',),
+        
       const SizedBox(height: 12),
       TextButton(
         onPressed: () {
