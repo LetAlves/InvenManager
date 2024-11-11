@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/pages/user/login_page.dart';
+import 'package:invenmanager/utils/user_validator.dart';
 import 'package:invenmanager/widget/border_button.dart';
 import 'package:invenmanager/widget/custom_button.dart';
 import 'package:invenmanager/widget/custom_text_form_field.dart';
@@ -44,15 +45,10 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                         ),
                       ),
                       const SizedBox(height: 24),
-                      CustomTextFormField(label: 'Usuário', hintText: 'john.doe',
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Por favor informe o seu usuário';
-                          } else if (value.length < 3 || value.length > 30) {
-                            return 'Usuário inválido';
-                          }
-                          return null;
-                        },
+                      CustomTextFormField(
+                        label: 'Usuário',
+                        hintText: 'john.doe',
+                        validator: UserValidator.validateUserName,
                       ),
                       const SizedBox(height: 24),
                       CustomButton(

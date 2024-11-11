@@ -15,4 +15,8 @@ class AppTextStyle {
   static const TextStyle mediumText = TextStyle(fontSize: 16);
 
   static const TextStyle smallText = TextStyle(fontSize: 14);
+
+  static const TextStyle inputText = TextStyle(fontSize: 16);
+
+  static const TextStyle hintText = TextStyle(fontSize: 14);
 }

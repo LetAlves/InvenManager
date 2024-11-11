@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
+import 'package:invenmanager/global/app_text_style.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final String label;
@@ -10,7 +11,8 @@ class CustomTextFormField extends StatefulWidget {
   final int? maxLength;
   final Widget? suffixIcon;
   final bool? obscureText;
-  final String? Function(String?)? validator;
+  final FormFieldValidator<String>? validator;
+  final String? helperText;
 
   const CustomTextFormField({
     Key? key,
@@ -23,6 +25,7 @@ class CustomTextFormField extends StatefulWidget {
     this.suffixIcon,
     this.obscureText,
     this.validator,
+    this.helperText,
   }) : super(key: key);
 
   @override
@@ -34,14 +37,33 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       borderSide: BorderSide(width: 3.0),
       borderRadius: BorderRadius.all(Radius.circular(8.0)));
 
+  String? _helperText;
+
+  @override
+  void initState() {
+    super.initState();
+    _helperText = widget.helperText;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12),
       child: TextFormField(
+        onChanged: (value) {
+          if (value.isNotEmpty) {
+            setState(() {
+              _helperText = null;
+            });
+          } else if (value.isEmpty) {
+            setState(() {
+              _helperText = widget.helperText;
+            });
+          }
+        },
         controller: widget.controller,
         validator: widget.validator,
-        style: const TextStyle(color: AppColor.white),
+        style: AppTextStyle.inputText.copyWith(color: AppColor.white),
         cursorColor: AppColor.yellow,
         keyboardType: widget.keyboardType ?? TextInputType.text,
         textCapitalization:
@@ -49,6 +71,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         obscureText: widget.obscureText ?? false,
         maxLength: widget.maxLength,
         decoration: InputDecoration(
+          helperText: _helperText,
+          helperMaxLines: 3,
           suffixIcon: widget.suffixIcon,
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelText: widget.label,
@@ -56,7 +80,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           filled: true,
           fillColor: AppColor.gray_750,
           hintText: widget.hintText,
-          hintStyle: const TextStyle(color: AppColor.gray_250),
+          hintStyle: AppTextStyle.hintText.copyWith(color: AppColor.gray_250),
           border: defaultBorder.copyWith(
               borderSide: const BorderSide(color: AppColor.gray_600)),
           enabledBorder: defaultBorder.copyWith(

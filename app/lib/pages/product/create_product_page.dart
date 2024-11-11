@@ -53,23 +53,25 @@ class _CreateProductPageState extends State<CreateProductPage> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
-                child: Text('Informações do produto',
+                child: Text('Informações do Produto',
                     style: AppTextStyle.headerText
                         .copyWith(color: AppColor.white)),
               ),
-              CustomTextFormField(label: 'nome do produto',
-               hintText: 'produto 1',
-               validator: (value) {
+              CustomTextFormField(
+                label: 'Nome do Produto',
+                hintText: 'Produto 1',
+                validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira o nome do produto';
                   }
                   return null;
                 },
-              ),  
-              CustomTextFormField(label: 'Valor unitario',
-               hintText: 'R\$ 100,00',
-               keyboardType: TextInputType.number,
-              validator: (value) {
+              ),
+              CustomTextFormField(
+                label: 'Valor Unitário',
+                hintText: 'R\$ 100,00',
+                keyboardType: TextInputType.number,
+                validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira o valor unitário';
                   }
@@ -78,36 +80,43 @@ class _CreateProductPageState extends State<CreateProductPage> {
                     return 'Por favor, insira um número válido';
                   }
                   return null;
-                }, ),
-                CustomTextFormField(label: 'Código',
-                 hintText:'0000001',
-                 keyboardType: TextInputType.number,
-                 validator: (value) {
+                },
+              ),
+              CustomTextFormField(
+                label: 'Código',
+                hintText: '0000001',
+                keyboardType: TextInputType.number,
+                validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira o código do produto';
                   }
                   return null;
-                }, ),
-                CustomTextFormField(label: 'Quantidade', 
+                },
+              ),
+              CustomTextFormField(
+                label: 'Quantidade',
                 hintText: 'Ex. 10',
                 keyboardType: TextInputType.number,
-                 validator: (value) {
+                validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira a quantidade do produto';
                   }
                   return null;
-                },),
-                CustomTextFormField(label: 'Quantidade mínima',
-                 hintText: 'Ex. 10',
-                 keyboardType: TextInputType.number,
-                 validator: (value) {
+                },
+              ),
+              CustomTextFormField(
+                label: 'Quantidade Mínima',
+                hintText: 'Ex. 10',
+                keyboardType: TextInputType.number,
+                validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira a quantidade mínima';
                   }
                   return null;
-                },),
+                },
+              ),
               CustomButton(
-                label: 'Adicionar ao estoque',
+                label: 'Adicionar ao Estoque',
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -141,5 +150,4 @@ class _CreateProductPageState extends State<CreateProductPage> {
       bottomNavigationBar: const BottomNavBar(),
     );
   }
-
 }

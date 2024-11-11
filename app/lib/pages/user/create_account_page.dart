@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
+import 'package:invenmanager/utils/user_validator.dart';
 import 'package:invenmanager/widget/custom_button.dart';
 import 'package:invenmanager/widget/custom_text_form_field.dart';
 import 'package:invenmanager/widget/password_form_field.dart';
@@ -15,9 +16,7 @@ class CreateAccountPage extends StatefulWidget {
 class _CreateAccountPageState extends State<CreateAccountPage> {
   bool isVisible = true;
   final _formKey = GlobalKey<FormState>();
-
-  final RegExp _regexNum = RegExp(r'[0-9]');
-  final RegExp _regexSpecial = RegExp(r'[!@#$%^&*(),.?":{}|<>]');
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,45 +47,19 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         hintText: 'John Doe',
                         textCapitalization: TextCapitalization.words,
                         keyboardType: TextInputType.name,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Por favor informe o seu nome completo';
-                          } else if (value.length < 5 ||
-                              value.length > 30 ||
-                              _regexNum.hasMatch(value) ||
-                              _regexSpecial.hasMatch(value)) {
-                            return 'Nome Inválido';
-                          }
-                          return null;
-                        },
+                        validator: UserValidator.validateName,
                       ),
                       CustomTextFormField(
                         label: 'E-mail',
                         hintText: 'john.doe@email.com',
                         keyboardType: TextInputType.emailAddress,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Por favor informe o seu nome de usuário';
-                          } else if (value.length < 3) {
-                            return 'Nome de usuário inválido ou já cadastrado';
-                          }
-                          return null;
-                        },
+                        validator: UserValidator.validateEmail,
                       ),
                       CustomTextFormField(
                         label: 'Contato',
                         hintText: '4002-8922',
                         keyboardType: TextInputType.phone,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Por favor informe o seu número de contato';
-                          } else if (value.length < 5 ||
-                              value.length > 30 ||
-                              !_regexNum.hasMatch(value)) {
-                            return 'Número inválido';
-                          }
-                          return null;
-                        },
+                        validator: UserValidator.validateContact,
                       ),
                       const SizedBox(height: 24),
                       CustomButton(
@@ -112,26 +85,35 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         label: 'Usuário',
                         hintText: 'john.doe',
                         keyboardType: TextInputType.text,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Por favor informe o seu usuário';
-                          } else if (value.length < 10) {
-                            return 'Usuário Inválido';
-                          }
-                          return null;
-                        },
+                        validator: UserValidator.validateUserName,
                       ),
-                      PasswordFormField(label: 'Senha', hintText: '********'),
                       PasswordFormField(
-                          label: 'Confirmar senha', hintText: 'P@ssw0rd'),
+                        controller: _passwordController,
+                        label: 'Senha',
+                        hintText: '********',
+                        helperText:
+                            'A senha deve conter no mínimo 8 caracteres, 1 letra maiúscula e 1 número',
+                        validator: UserValidator.validatePassword,
+                      ),
+                      PasswordFormField(
+                        label: 'Confirmar senha',
+                        hintText: 'P@ssw0rd123',
+                        validator: (value) =>
+                            UserValidator.validateConfirmPassword(
+                          value,
+                          _passwordController.text,
+                        ),
+                      ),
                       const SizedBox(height: 24),
-                      ElevatedButton(
+                      CustomButton(
+                        label: 'Registrar',
+                        labelColor: AppColor.white,
+                        backgroundColor: AppColor.green,
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            // Ação de criar conta
+                            //TODO: Implementar a ação de criar conta
                           }
                         },
-                        child: const Text('Criar conta'),
                       ),
                     ],
                   ),
