@@ -7,10 +7,9 @@ class UserValidator {
 
     if (value == null || value.isEmpty) {
       return 'Por favor informe o seu nome completo';
-    } else if (value.length < 5 ||
-        value.length > 30 ||
-        !regexSpecial.hasMatch(value) ||
-        !regexNum.hasMatch(value)) {
+    } else if ((value.length < 5 && value.length > 30) ||
+        regexSpecial.hasMatch(value) ||
+        regexNum.hasMatch(value)) {
       return 'Nome Inválido';
     }
     return null;

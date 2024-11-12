@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:invenmanager/global/app_color.dart';
-import 'package:invenmanager/pages/user/login_page.dart';
+import 'package:invenmanager/pages/user/login/login_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});

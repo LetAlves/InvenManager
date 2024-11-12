@@ -1,6 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
+import 'package:invenmanager/pages/home/home_page.dart';
+import 'package:invenmanager/pages/user/create_account/create_account_controller.dart';
+import 'package:invenmanager/pages/user/create_account/create_account_state.dart';
 import 'package:invenmanager/utils/user_validator.dart';
 import 'package:invenmanager/widget/custom_button.dart';
 import 'package:invenmanager/widget/custom_text_form_field.dart';
@@ -17,6 +22,41 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   bool isVisible = true;
   final _formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
+  final _controller = CreateAccountController();
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      if (_controller.state is CreateAccountLoadingState) {
+        showDialog(
+            context: context,
+            builder: (context) =>
+                const Center(child: CircularProgressIndicator()));
+      }
+      if (_controller.state is CreateAccountSuccessState) {
+        Navigator.pop(context);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Homepage()));
+      }
+      if (_controller.state is CreateAccountErrorState) {
+        Navigator.pop(context);
+        showModalBottomSheet(
+            context: context,
+            //TODO: trocar aqui para snackBar
+            builder: (context) => const SizedBox(
+                  height: 150.0,
+                  child: Text("Erro ao logar, tente novamente."),
+                ));
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,8 +150,9 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         labelColor: AppColor.white,
                         backgroundColor: AppColor.green,
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            //TODO: Implementar a ação de criar conta
+                          final valid = _formKey.currentState!.validate();
+                          if (valid) {
+                            _controller.doCreateAccount();
                           }
                         },
                       ),

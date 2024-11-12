@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/pages/home/home_page.dart';
-import 'package:invenmanager/pages/user/create_account_page.dart';
+import 'package:invenmanager/pages/user/create_account/create_account_page.dart';
+import 'package:invenmanager/pages/user/login/login_controller.dart';
+import 'package:invenmanager/pages/user/login/login_state.dart';
 import 'package:invenmanager/pages/user/recover_password_page.dart';
 import 'package:invenmanager/utils/user_validator.dart';
 import 'package:invenmanager/widget/custom_button.dart';
@@ -18,6 +20,35 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+  final _controller = LoginController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      if (_controller.state is LoginLoadingState) {
+        showDialog(
+            context: context,
+            builder: (context) =>
+                const Center(child: CircularProgressIndicator()));
+      }
+      if (_controller.state is LoginSuccessState) {
+        Navigator.pop(context);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Homepage()));
+      }
+      if (_controller.state is LoginErrorState) {
+        Navigator.pop(context);
+        showModalBottomSheet(
+            context: context,
+            //TODO: trocar aqui para snackBar e erro
+            builder: (context) => const SizedBox(
+                  height: 150.0,
+                  child: Text("Erro ao logar, tente novamente."),
+                ));
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
