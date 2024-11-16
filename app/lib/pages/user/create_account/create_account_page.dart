@@ -4,6 +4,7 @@ import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/pages/home/home_page.dart';
 import 'package:invenmanager/pages/user/create_account/create_account_controller.dart';
 import 'package:invenmanager/pages/user/create_account/create_account_state.dart';
+import 'package:invenmanager/services/mock_auth_service.dart';
 import 'package:invenmanager/utils/user_validator.dart';
 import 'package:invenmanager/widget/custom_bottom_sheet.dart';
 import 'package:invenmanager/widget/custom_button.dart';
@@ -21,11 +22,19 @@ class CreateAccountPage extends StatefulWidget {
 class _CreateAccountPageState extends State<CreateAccountPage> {
   bool isVisible = true;
   final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _controller = CreateAccountController();
+  final _controller = CreateAccountController(MockAuthService());
 
   @override
   void dispose() {
+    _nameController.dispose();
+    _usernameController.dispose();
+    _emailController.dispose();
+    _phoneController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -46,6 +55,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               context, MaterialPageRoute(builder: (context) => Homepage()));
         }
         if (_controller.state is CreateAccountErrorState) {
+          final error = _controller.state as CreateAccountErrorState;
           Navigator.pop(context);
           CustomBottomSheet(context);
         }
@@ -78,6 +88,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                               .copyWith(color: AppColor.white)),
                       const SizedBox(height: 24),
                       CustomTextFormField(
+                        controller: _nameController,
                         label: 'Nome',
                         hintText: 'John Doe',
                         textCapitalization: TextCapitalization.words,
@@ -85,12 +96,14 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         validator: UserValidator.validateName,
                       ),
                       CustomTextFormField(
+                        controller: _emailController,
                         label: 'E-mail',
                         hintText: 'john.doe@email.com',
                         keyboardType: TextInputType.emailAddress,
                         validator: UserValidator.validateEmail,
                       ),
                       CustomTextFormField(
+                        controller: _phoneController,
                         label: 'Contato',
                         hintText: '4002-8922',
                         keyboardType: TextInputType.phone,
@@ -117,6 +130,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   child: Column(
                     children: [
                       CustomTextFormField(
+                        controller: _usernameController,
                         label: 'Usuário',
                         hintText: 'john.doe',
                         keyboardType: TextInputType.text,
@@ -147,7 +161,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         onPressed: () {
                           final valid = _formKey.currentState!.validate();
                           if (valid) {
-                            _controller.doCreateAccount();
+                            _controller.createAccount(
+                                username: _usernameController.text,
+                                email: _emailController.text,
+                                password: _passwordController.text);
                           }
                         },
                       ),

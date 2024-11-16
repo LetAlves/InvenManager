@@ -1,9 +1,12 @@
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:invenmanager/pages/user/create_account/create_account_state.dart';
+import 'package:invenmanager/services/auth_service.dart';
 
 class CreateAccountController extends ChangeNotifier {
+  final AuthService _service;
+
+  CreateAccountController(this._service);
+
   CreateAccountState _state = CreateAccountInitialState();
 
   CreateAccountState get state => _state;
@@ -13,22 +16,18 @@ class CreateAccountController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> doCreateAccount() async {
+  Future<void> createAccount(
+      {required String username,
+      required String email,
+      required String password}) async {
     _changeState(CreateAccountLoadingState());
 
     try {
-      await Future.delayed(Duration(seconds: 2));
-
-      //throw Exception("teste de erro");
-
-      //Implementar lógica de Criar Usuário
-      log("usuário criado com sucesso");
-
+      await _service.createAccount(
+          username: username, email: email, password: password);
       _changeState(CreateAccountSuccessState());
-      return true;
     } catch (e) {
-      _changeState(CreateAccountErrorState());
-      return false;
+      _changeState(CreateAccountErrorState(e.toString()));
     }
   }
 }
