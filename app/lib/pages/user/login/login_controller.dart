@@ -18,6 +18,8 @@ class LoginController extends ChangeNotifier {
     try {
       await Future.delayed(Duration(seconds: 2));
 
+      throw Exception("TEste");
+
       //TODO: Implementar logica de logar usuário
       log("usuário logado");
 

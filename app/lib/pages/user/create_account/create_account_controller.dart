@@ -19,8 +19,10 @@ class CreateAccountController extends ChangeNotifier {
     try {
       await Future.delayed(Duration(seconds: 2));
 
+      //throw Exception("teste de erro");
+
       //Implementar lógica de Criar Usuário
-      log("usuário criado");
+      log("usuário criado com sucesso");
 
       _changeState(CreateAccountSuccessState());
       return true;

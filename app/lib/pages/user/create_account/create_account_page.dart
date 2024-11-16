@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
@@ -7,7 +5,9 @@ import 'package:invenmanager/pages/home/home_page.dart';
 import 'package:invenmanager/pages/user/create_account/create_account_controller.dart';
 import 'package:invenmanager/pages/user/create_account/create_account_state.dart';
 import 'package:invenmanager/utils/user_validator.dart';
+import 'package:invenmanager/widget/custom_bottom_sheet.dart';
 import 'package:invenmanager/widget/custom_button.dart';
+import 'package:invenmanager/widget/custom_circular_progress_indicator.dart';
 import 'package:invenmanager/widget/custom_text_form_field.dart';
 import 'package:invenmanager/widget/password_form_field.dart';
 
@@ -33,29 +33,24 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   @override
   void initState() {
     super.initState();
-    _controller.addListener(() {
-      if (_controller.state is CreateAccountLoadingState) {
-        showDialog(
-            context: context,
-            builder: (context) =>
-                const Center(child: CircularProgressIndicator()));
-      }
-      if (_controller.state is CreateAccountSuccessState) {
-        Navigator.pop(context);
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Homepage()));
-      }
-      if (_controller.state is CreateAccountErrorState) {
-        Navigator.pop(context);
-        showModalBottomSheet(
-            context: context,
-            //TODO: trocar aqui para snackBar
-            builder: (context) => const SizedBox(
-                  height: 150.0,
-                  child: Text("Erro ao logar, tente novamente."),
-                ));
-      }
-    });
+    _controller.addListener(
+      () {
+        if (_controller.state is CreateAccountLoadingState) {
+          showDialog(
+              context: context,
+              builder: (context) => const CustomCircularProgressIndicator());
+        }
+        if (_controller.state is CreateAccountSuccessState) {
+          Navigator.pop(context);
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Homepage()));
+        }
+        if (_controller.state is CreateAccountErrorState) {
+          Navigator.pop(context);
+          CustomBottomSheet(context);
+        }
+      },
+    );
   }
 
   @override

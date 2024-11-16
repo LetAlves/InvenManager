@@ -7,7 +7,9 @@ import 'package:invenmanager/pages/user/login/login_controller.dart';
 import 'package:invenmanager/pages/user/login/login_state.dart';
 import 'package:invenmanager/pages/user/recover_password_page.dart';
 import 'package:invenmanager/utils/user_validator.dart';
+import 'package:invenmanager/widget/custom_bottom_sheet.dart';
 import 'package:invenmanager/widget/custom_button.dart';
+import 'package:invenmanager/widget/custom_circular_progress_indicator.dart';
 import 'package:invenmanager/widget/custom_text_form_field.dart';
 import 'package:invenmanager/widget/password_form_field.dart';
 
@@ -29,8 +31,7 @@ class _LoginPageState extends State<LoginPage> {
       if (_controller.state is LoginLoadingState) {
         showDialog(
             context: context,
-            builder: (context) =>
-                const Center(child: CircularProgressIndicator()));
+            builder: (context) => const CustomCircularProgressIndicator());
       }
       if (_controller.state is LoginSuccessState) {
         Navigator.pop(context);
@@ -39,13 +40,7 @@ class _LoginPageState extends State<LoginPage> {
       }
       if (_controller.state is LoginErrorState) {
         Navigator.pop(context);
-        showModalBottomSheet(
-            context: context,
-            //TODO: trocar aqui para snackBar e erro
-            builder: (context) => const SizedBox(
-                  height: 150.0,
-                  child: Text("Erro ao logar, tente novamente."),
-                ));
+        CustomBottomSheet(context);
       }
     });
   }

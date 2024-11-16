@@ -1,17 +1,19 @@
-class User{
-    final String name;
-    final String login;
-    final String password;
-    final Product products;
-    final String email;
-    final String phone;
+import 'package:invenmanager/classes/product.dart';
 
-    User ({
-        required this.name,
-        required this.login,
-        required this.password,
-        required this.products,
-        required this.email,
-        required this.phone,
-    });
+class User {
+  final String name;
+  final String login;
+  final String password;
+  final Product products;
+  final String email;
+  final String phone;
+
+  User({
+    required this.name,
+    required this.login,
+    required this.password,
+    required this.products,
+    required this.email,
+    required this.phone,
+  });
 }
