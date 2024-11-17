@@ -4,8 +4,8 @@ class UserModel {
   final int? id;
   final String? name;
   final String? username;
+  final String? photoUrl;
   final String? email;
-  final String? login;
   final String? phone;
   final String? password;
   final Product? products;
@@ -14,8 +14,8 @@ class UserModel {
       {this.id,
       this.name,
       this.username,
+      this.photoUrl,
       this.email,
-      this.login,
       this.phone,
       this.password,
       this.products});

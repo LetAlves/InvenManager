@@ -161,8 +161,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                           final valid = _formKey.currentState!.validate();
                           if (valid) {
                             _controller.createAccount(
+                                name: _nameController.text,
                                 username: _usernameController.text,
                                 email: _emailController.text,
+                                phone: _phoneController.text,
                                 password: _passwordController.text);
                           }
                         },

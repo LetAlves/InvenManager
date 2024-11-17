@@ -16,15 +16,23 @@ class CreateAccountController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> createAccount(
-      {required String username,
-      required String email,
-      required String password}) async {
+  Future<void> createAccount({
+    required String username,
+    required String name,
+    required String email,
+    required String phone,
+    required String password,
+  }) async {
     _changeState(CreateAccountLoadingState());
 
     try {
       await _service.createAccount(
-          username: username, email: email, password: password);
+        username: username,
+        name: name,
+        email: email,
+        phone: phone,
+        password: password,
+      );
       _changeState(CreateAccountSuccessState());
     } catch (e) {
       _changeState(CreateAccountErrorState(e.toString()));
