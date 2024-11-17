@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/global/routes.dart';
-import 'package:invenmanager/pages/home/home_page.dart';
-import 'package:invenmanager/pages/user/create_account/create_account_page.dart';
+import 'package:invenmanager/locator.dart';
 import 'package:invenmanager/pages/user/login/login_controller.dart';
 import 'package:invenmanager/pages/user/login/login_state.dart';
-import 'package:invenmanager/pages/user/recover_password_page.dart';
 import 'package:invenmanager/utils/user_validator.dart';
 import 'package:invenmanager/widget/custom_bottom_sheet.dart';
 import 'package:invenmanager/widget/custom_button.dart';
@@ -23,7 +21,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  final _controller = LoginController();
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _controller = locator.get<LoginController>();
 
   @override
   void initState() {
@@ -63,11 +63,13 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 52),
                 CustomTextFormField(
+                  controller: _usernameController,
                   label: 'Usuário',
                   hintText: 'john.doe',
                   validator: UserValidator.validateUserName,
                 ),
                 PasswordFormField(
+                  controller: _passwordController,
                   label: 'Senha',
                   hintText: '********',
                   validator: UserValidator.validatePassword,
@@ -75,8 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 12),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(
-                        context, NamedRoutes.recoverPassword);
+                    Navigator.pushNamed(context, NamedRoutes.recoverPassword);
                   },
                   child: Text(
                     'Esqueci a minha senha',
@@ -88,20 +89,18 @@ class _LoginPageState extends State<LoginPage> {
                 CustomButton(
                   label: 'Entrar',
                   onPressed: () {
-                    final valid = _formKey.currentState?.validate();
-                    if (valid == true) {
-                      //TODO: Logar usuário
+                    final valid = _formKey.currentState!.validate();
+                    if (valid) {
+                      _controller.login(
+                          username: _usernameController.text,
+                          password: _passwordController.text);
                     }
                   },
                 ),
                 const SizedBox(height: 40),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const CreateAccountPage()),
-                    );
+                    Navigator.pushNamed(context, NamedRoutes.createAccount);
                   },
                   child: Text(
                     'Criar uma nova conta',

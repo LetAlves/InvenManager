@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/global/routes.dart';
+import 'package:invenmanager/locator.dart';
 import 'package:invenmanager/pages/user/create_account/create_account_controller.dart';
 import 'package:invenmanager/pages/user/create_account/create_account_state.dart';
-import 'package:invenmanager/services/mock_auth_service.dart';
 import 'package:invenmanager/utils/user_validator.dart';
 import 'package:invenmanager/widget/custom_bottom_sheet.dart';
 import 'package:invenmanager/widget/custom_button.dart';
@@ -27,7 +27,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _controller = CreateAccountController(MockAuthService());
+  final _controller = locator.get<CreateAccountController>();
 
   @override
   void dispose() {

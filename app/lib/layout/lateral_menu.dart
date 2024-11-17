@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/global/routes.dart';
-import 'package:invenmanager/pages/home/home_page.dart';
-import 'package:invenmanager/pages/user/edit_account_page.dart';
 
 class LateralMenu extends StatelessWidget {
   const LateralMenu({Key? key}) : super(key: key);

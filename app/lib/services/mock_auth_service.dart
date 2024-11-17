@@ -23,8 +23,20 @@ class MockAuthService implements AuthService {
   }
 
   @override
-  Future login() {
-    // TODO: implement login
-    throw UnimplementedError();
+  Future<UserModel> login(
+      {required String username, required String password}) async {
+    try {
+      await Future.delayed(const Duration(seconds: 2));
+      if (password.startsWith('123')) {
+        throw Exception();
+      }
+
+      return UserModel(id: username.hashCode, username: username);
+    } catch (e) {
+      if (password.startsWith('123')) {
+        throw 'Erro ao logar. Tente novamente';
+      }
+      throw 'Não foi possivel realizar o login nesse momento. Tente mais tarde';
+    }
   }
 }

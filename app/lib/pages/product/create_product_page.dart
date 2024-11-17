@@ -5,7 +5,6 @@ import 'package:invenmanager/global/routes.dart';
 import 'package:invenmanager/layout/bottom_navbar.dart';
 import 'package:invenmanager/layout/lateral_menu.dart';
 import 'package:invenmanager/global/app_color.dart';
-import 'package:invenmanager/pages/product/info_product_page.dart';
 import 'package:invenmanager/widget/custom_button.dart';
 import 'package:invenmanager/widget/custom_text_form_field.dart';
 
