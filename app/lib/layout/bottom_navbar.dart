@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
-import 'package:invenmanager/pages/product/create_product_page.dart';
-import 'package:invenmanager/pages/home/home_page.dart';
+import 'package:invenmanager/global/routes.dart';
 import 'package:invenmanager/widget/text_button_navbar.dart';
 
 class BottomNavBar extends StatelessWidget {
@@ -20,21 +19,15 @@ class BottomNavBar extends StatelessWidget {
               label: 'Novo Produto',
               icon: Icons.add_circle_outline,
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const CreateProductPage()),
-                );
+                Navigator.pushReplacementNamed(
+                    context, NamedRoutes.createProduct);
               },
             ),
             TextButtonNavBar(
               label: 'Meu inventário',
               icon: Icons.inventory,
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Homepage()),
-                );
+                Navigator.pushReplacementNamed(context, NamedRoutes.initial);
               },
             )
           ],

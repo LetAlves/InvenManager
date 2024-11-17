@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:invenmanager/global/routes.dart';
+import 'package:invenmanager/pages/home/home_page.dart';
+import 'package:invenmanager/pages/product/create_product_page.dart';
+import 'package:invenmanager/pages/product/info_product_page.dart';
 import 'package:invenmanager/pages/splash/splash_page.dart';
+import 'package:invenmanager/pages/user/create_account/create_account_page.dart';
+import 'package:invenmanager/pages/user/edit_account_page.dart';
+import 'package:invenmanager/pages/user/login/login_page.dart';
+import 'package:invenmanager/pages/user/recover_password_page.dart';
 
 void main() {
   runApp(const Invenmanager());
@@ -14,7 +22,17 @@ class Invenmanager extends StatelessWidget {
       title: 'InvenManager',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: const SafeArea(child: SplashPage()),
+      initialRoute: NamedRoutes.splash,
+      routes: {
+        NamedRoutes.initial: (context) => const Homepage(),
+        NamedRoutes.splash: (context) => const SplashPage(),
+        NamedRoutes.login: (context) => const LoginPage(),
+        NamedRoutes.createAccount: (context) => const CreateAccountPage(),
+        NamedRoutes.editAccount: (context) => const EditAccountPage(),
+        NamedRoutes.recoverPassword: (context) => const RecoverPasswordPage(),
+        NamedRoutes.createProduct: (context) => const CreateProductPage(),
+        //NamedRoutes.informationProduct: (context) => const InfoProductPage()
+      },
     );
   }
 }

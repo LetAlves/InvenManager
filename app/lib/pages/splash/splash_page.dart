@@ -1,7 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:invenmanager/global/app_color.dart';
-import 'package:invenmanager/pages/user/login/login_page.dart';
+import 'package:invenmanager/global/routes.dart';
+import 'package:invenmanager/widget/custom_circular_progress_indicator.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -10,24 +12,22 @@ class SplashPage extends StatefulWidget {
   State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage>
-    with SingleTickerProviderStateMixin {
+class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    Future.delayed(const Duration(seconds: 5), () {
-      // ignore: use_build_context_synchronously
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const LoginPage()));
-    });
+    init();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: SystemUiOverlay.values);
+  Timer init() {
+    return Timer(Duration(seconds: 2), navigateToLoginPage);
+  }
+
+  void navigateToLoginPage() {
+    Navigator.pushReplacementNamed(
+      context,
+      NamedRoutes.login,
+    );
   }
 
   @override
@@ -43,6 +43,7 @@ class _SplashPageState extends State<SplashPage>
               'lib/assets/logo-light.png',
               fit: BoxFit.cover,
             ),
+            const CustomCircularProgressIndicator()
           ],
         ),
       ),

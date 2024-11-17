@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
+import 'package:invenmanager/global/routes.dart';
 import 'package:invenmanager/pages/home/home_page.dart';
 import 'package:invenmanager/pages/user/create_account/create_account_page.dart';
 import 'package:invenmanager/pages/user/login/login_controller.dart';
@@ -35,8 +36,7 @@ class _LoginPageState extends State<LoginPage> {
       }
       if (_controller.state is LoginSuccessState) {
         Navigator.pop(context);
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Homepage()));
+        Navigator.pushReplacementNamed(context, NamedRoutes.initial);
       }
       if (_controller.state is LoginErrorState) {
         Navigator.pop(context);
@@ -75,11 +75,8 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 12),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const RecoverPassword()),
-                    );
+                    Navigator.pushReplacementNamed(
+                        context, NamedRoutes.recoverPassword);
                   },
                   child: Text(
                     'Esqueci a minha senha',
@@ -94,11 +91,6 @@ class _LoginPageState extends State<LoginPage> {
                     final valid = _formKey.currentState?.validate();
                     if (valid == true) {
                       //TODO: Logar usuário
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Homepage()),
-                      );
                     }
                   },
                 ),

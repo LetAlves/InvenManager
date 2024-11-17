@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:invenmanager/classes/product.dart';
 import 'package:invenmanager/global/app_text_style.dart';
+import 'package:invenmanager/global/routes.dart';
 import 'package:invenmanager/layout/bottom_navbar.dart';
 import 'package:invenmanager/layout/lateral_menu.dart';
 import 'package:invenmanager/global/app_color.dart';
@@ -92,12 +93,8 @@ class _HomepageState extends State<Homepage> {
                         GestureDetector(
                           onTap: () {
                             log('message');
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const CreateProductPage()),
-                            );
+                            Navigator.pushNamed(
+                                context, NamedRoutes.createProduct);
                           },
                           child: Wrap(
                             children: [
@@ -116,11 +113,8 @@ class _HomepageState extends State<Homepage> {
                         ),
                         GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          InfoProductPage(product: product)));
+                              Navigator.pushNamed(
+                                  context, NamedRoutes.informationProduct);
                             },
                             child: CustomCard(
                                 content: ContentInfoProduct(product: product)))

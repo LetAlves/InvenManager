@@ -6,14 +6,14 @@ import 'package:invenmanager/widget/border_button.dart';
 import 'package:invenmanager/widget/custom_button.dart';
 import 'package:invenmanager/widget/custom_text_form_field.dart';
 
-class RecoverPassword extends StatefulWidget {
-  const RecoverPassword({Key? key}) : super(key: key);
+class RecoverPasswordPage extends StatefulWidget {
+  const RecoverPasswordPage({Key? key}) : super(key: key);
 
   @override
-  _RecoverPasswordState createState() => _RecoverPasswordState();
+  _RecoverPasswordPageState createState() => _RecoverPasswordPageState();
 }
 
-class _RecoverPasswordState extends State<RecoverPassword> {
+class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
   bool isVisible = true;
   final _formKey = GlobalKey<FormState>();
 

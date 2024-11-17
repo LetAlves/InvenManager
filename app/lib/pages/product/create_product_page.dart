@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/classes/product.dart';
 import 'package:invenmanager/global/app_text_style.dart';
+import 'package:invenmanager/global/routes.dart';
 import 'package:invenmanager/layout/bottom_navbar.dart';
 import 'package:invenmanager/layout/lateral_menu.dart';
 import 'package:invenmanager/global/app_color.dart';
@@ -133,12 +134,8 @@ class _CreateProductPageState extends State<CreateProductPage> {
                         duration: const Duration(seconds: 3),
                       ),
                     );
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => InfoProductPage(product: product),
-                      ),
-                    );
+                    Navigator.pushNamed(
+                        context, NamedRoutes.informationProduct);
                   }
                 },
               ),

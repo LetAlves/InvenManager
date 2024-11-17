@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
-import 'package:invenmanager/pages/home/home_page.dart';
+import 'package:invenmanager/global/routes.dart';
 import 'package:invenmanager/pages/user/create_account/create_account_controller.dart';
 import 'package:invenmanager/pages/user/create_account/create_account_state.dart';
 import 'package:invenmanager/services/mock_auth_service.dart';
@@ -51,11 +51,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         }
         if (_controller.state is CreateAccountSuccessState) {
           Navigator.pop(context);
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Homepage()));
+          Navigator.pushReplacementNamed(context, NamedRoutes.initial);
         }
         if (_controller.state is CreateAccountErrorState) {
-          final error = _controller.state as CreateAccountErrorState;
+          //final error = _controller.state as CreateAccountErrorState;
           Navigator.pop(context);
           CustomBottomSheet(context);
         }
