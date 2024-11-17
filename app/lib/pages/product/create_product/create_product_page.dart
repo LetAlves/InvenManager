@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:invenmanager/classes/product.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/global/routes.dart';
 import 'package:invenmanager/layout/bottom_navbar.dart';
 import 'package:invenmanager/layout/lateral_menu.dart';
 import 'package:invenmanager/global/app_color.dart';
+import 'package:invenmanager/locator.dart';
+import 'package:invenmanager/pages/product/create_product/create_product_state.dart';
+import 'package:invenmanager/pages/product/create_product/create_product_controller.dart';
+import 'package:invenmanager/utils/product_validator.dart';
+import 'package:invenmanager/widget/custom_bottom_sheet.dart';
 import 'package:invenmanager/widget/custom_button.dart';
+import 'package:invenmanager/widget/custom_circular_progress_indicator.dart';
 import 'package:invenmanager/widget/custom_text_form_field.dart';
 
 class CreateProductPage extends StatefulWidget {
@@ -16,14 +21,44 @@ class CreateProductPage extends StatefulWidget {
 }
 
 class _CreateProductPageState extends State<CreateProductPage> {
-  final Product product = Product(
-      id: 1,
-      name: 'Chocolate',
-      currentQuantity: 200,
-      minimumQuantity: 30,
-      unitValue: 10.0,
-      barCode: 1234567890);
   final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+  final _currentQuantityController = TextEditingController();
+  final _minimumQuantityController = TextEditingController();
+  final _unitValueController = TextEditingController();
+  final _barCodeController = TextEditingController();
+  final _controller = locator.get<CreateProductController>();
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _currentQuantityController.dispose();
+    _minimumQuantityController.dispose();
+    _unitValueController.dispose();
+    _barCodeController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      if (_controller.state is CreateProductLoadingState) {
+        showDialog(
+            context: context,
+            builder: (context) => const CustomCircularProgressIndicator());
+      }
+      if (_controller.state is CreateProductSuccessState) {
+        Navigator.pop(context);
+        Navigator.pushReplacementNamed(context, NamedRoutes.initial);
+      }
+      if (_controller.state is CreateProductErrorState) {
+        //final error = _controller.state as CreateProductErrorState;
+        Navigator.pop(context);
+        CustomBottomSheet(context);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,83 +93,53 @@ class _CreateProductPageState extends State<CreateProductPage> {
                         .copyWith(color: AppColor.white)),
               ),
               CustomTextFormField(
+                controller: _nameController,
                 label: 'Nome do Produto',
                 hintText: 'Produto 1',
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor, insira o nome do produto';
-                  }
-                  return null;
-                },
+                validator: ProductValidator.validateProductName,
               ),
               CustomTextFormField(
+                controller: _unitValueController,
                 label: 'Valor Unitário',
                 hintText: 'R\$ 100,00',
                 keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor, insira o valor unitário';
-                  }
-                  final parsedValue = double.tryParse(value);
-                  if (parsedValue == null) {
-                    return 'Por favor, insira um número válido';
-                  }
-                  return null;
-                },
+                validator: ProductValidator.validateUnitValue,
               ),
               CustomTextFormField(
+                controller: _barCodeController,
                 label: 'Código',
                 hintText: '0000001',
                 keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor, insira o código do produto';
-                  }
-                  return null;
-                },
+                validator: ProductValidator.validateBarCode,
               ),
               CustomTextFormField(
+                controller: _currentQuantityController,
                 label: 'Quantidade',
                 hintText: 'Ex. 10',
                 keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor, insira a quantidade do produto';
-                  }
-                  return null;
-                },
+                validator: ProductValidator.validateQuantity,
               ),
               CustomTextFormField(
+                controller: _minimumQuantityController,
                 label: 'Quantidade Mínima',
                 hintText: 'Ex. 10',
                 keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor, insira a quantidade mínima';
-                  }
-                  return null;
-                },
+                validator: ProductValidator.validateQuantity,
               ),
               CustomButton(
                 label: 'Adicionar ao Estoque',
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: const Text(
-                          'Produto Adicionado!',
-                          style: TextStyle(color: AppColor.gray_200),
-                        ),
-                        backgroundColor: AppColor.gray_750,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4),
-                          side: const BorderSide(color: AppColor.yellow),
-                        ),
-                        duration: const Duration(seconds: 3),
-                      ),
+                  final valid = _formKey.currentState!.validate();
+                  if (valid) {
+                    _controller.createProduct(
+                      name: _nameController.text,
+                      unitValue: double.parse(_unitValueController.text),
+                      currentQuantity:
+                          int.parse(_currentQuantityController.text),
+                      minimumQuantity:
+                          int.parse(_minimumQuantityController.text),
+                      barCode: int.parse(_barCodeController.text),
                     );
-                    Navigator.pushNamed(
-                        context, NamedRoutes.informationProduct);
                   }
                 },
               ),

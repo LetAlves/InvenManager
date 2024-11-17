@@ -1,17 +1,17 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:invenmanager/classes/product.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/global/routes.dart';
 import 'package:invenmanager/layout/bottom_navbar.dart';
 import 'package:invenmanager/layout/lateral_menu.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/layout/content_info_product.dart';
+import 'package:invenmanager/models/product_model.dart';
 import 'package:invenmanager/widget/custom_button.dart';
 import 'package:invenmanager/widget/custom_card.dart';
 import 'package:invenmanager/widget/custom_text_form_field.dart';
 
-final Product product = Product(
+final ProductModel product = ProductModel(
     id: 1,
     name: 'Chocolate',
     currentQuantity: 200,

@@ -8,5 +8,6 @@ class NamedRoutes {
   static const String recoverPassword = "recover password";
   static const String login = "login";
   static const String createProduct = "create product";
+  static const String editProduct = "edit product";
   static const String informationProduct = "information product";
 }

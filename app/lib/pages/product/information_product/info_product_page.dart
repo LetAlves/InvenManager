@@ -1,32 +1,64 @@
 import 'package:flutter/material.dart';
-import 'package:invenmanager/classes/product.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
+import 'package:invenmanager/global/routes.dart';
 import 'package:invenmanager/layout/bottom_navbar.dart';
 import 'package:invenmanager/layout/content_info_product.dart';
 import 'package:invenmanager/layout/content_info_updated_product.dart';
 import 'package:invenmanager/layout/lateral_menu.dart';
+import 'package:invenmanager/locator.dart';
 import 'package:invenmanager/pages/home/home_page.dart';
+import 'package:invenmanager/pages/product/information_product/info_product_controller.dart';
+import 'package:invenmanager/pages/product/information_product/info_product_state.dart';
+import 'package:invenmanager/widget/custom_bottom_sheet.dart';
 import 'package:invenmanager/widget/custom_button.dart';
 import 'package:invenmanager/widget/custom_card.dart';
+import 'package:invenmanager/widget/custom_circular_progress_indicator.dart';
 import 'package:invenmanager/widget/custom_filled_button_bar.dart';
 import 'package:invenmanager/widget/custom_sized_box.dart';
 
 class InfoProductPage extends StatefulWidget {
-  final Product product;
-
-  const InfoProductPage({
-    Key? key,
-    required this.product,
-  }) : super(key: key);
+  const InfoProductPage({Key? key}) : super(key: key);
 
   @override
   State<InfoProductPage> createState() => _InfoProductPageState();
 }
 
 class _InfoProductPageState extends State<InfoProductPage> {
+  final _oldQuantity = TextEditingController();
+  final _newQuantity = TextEditingController();
+  final _controller = locator.get<InfoProductController>();
+
   bool isVisibleHistory = false;
   bool isVisibleAction = true;
+
+  @override
+  void dispose() {
+    _oldQuantity.dispose();
+    _newQuantity.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      if (_controller.state is InfoProductLoadingState) {
+        showDialog(
+            context: context,
+            builder: (context) => const CustomCircularProgressIndicator());
+      }
+      if (_controller.state is InfoProductSuccessState) {
+        Navigator.pop(context);
+        Navigator.pushReplacementNamed(context, NamedRoutes.initial);
+      }
+      if (_controller.state is InfoProductErrorState) {
+        //final error = _controller.state as InfoProductErrorState;
+        Navigator.pop(context);
+        CustomBottomSheet(context);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,9 +133,9 @@ class _InfoProductPageState extends State<InfoProductPage> {
                 ),
               ),
               Visibility(
-                  visible: isVisibleAction,
-                  child: CustomCard(
-                      content: Column(
+                visible: isVisibleAction,
+                child: CustomCard(
+                  content: Column(
                     children: [
                       Text(
                         'Atualizar estoque',
@@ -132,8 +164,9 @@ class _InfoProductPageState extends State<InfoProductPage> {
                         onPressed: () {},
                       )
                     ],
-                    //TODO: Fazer uns inputs para atualizar as informações do Produto: Nome, estoque mínimo, valor unitário e código
-                  )))
+                  ),
+                ),
+              ),
             ],
           ),
         ),

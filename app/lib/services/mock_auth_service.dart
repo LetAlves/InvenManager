@@ -1,14 +1,16 @@
+import 'package:invenmanager/models/product_model.dart';
 import 'package:invenmanager/models/user_model.dart';
 import 'package:invenmanager/services/auth_service.dart';
 
 class MockAuthService implements AuthService {
   @override
-  Future<UserModel> createAccount(
-      {required String name,
-      required String username,
-      required String email,
-      required String phone,
-      required String password}) async {
+  Future<UserModel> createAccount({
+    required String name,
+    required String username,
+    required String email,
+    required String phone,
+    required String password,
+  }) async {
     try {
       await Future.delayed(const Duration(seconds: 2));
       if (password.startsWith('123')) {
@@ -25,11 +27,12 @@ class MockAuthService implements AuthService {
   }
 
   @override
-  Future<UserModel> editAccount(
-      {required String name,
-      required String email,
-      required String phone,
-      required String password}) async {
+  Future<UserModel> editAccount({
+    required String name,
+    required String email,
+    required String phone,
+    required String password,
+  }) async {
     try {
       await Future.delayed(const Duration(seconds: 2));
       if (password.startsWith('123')) {
@@ -61,5 +64,61 @@ class MockAuthService implements AuthService {
       }
       throw 'Não foi possivel realizar o login nesse momento. Tente mais tarde';
     }
+  }
+
+  @override
+  Future<ProductModel> createProduct({
+    required String name,
+    required int currentQuantity,
+    required int minimumQuantity,
+    required double unitValue,
+    required int barCode,
+  }) async {
+    try {
+      await Future.delayed(const Duration(seconds: 2));
+
+      return ProductModel(
+        id: name.hashCode,
+        name: name,
+        unitValue: unitValue,
+        currentQuantity: currentQuantity,
+        minimumQuantity: minimumQuantity,
+        barCode: barCode,
+      );
+    } catch (e) {
+      throw 'Não foi possivel cadastrar o produto nesse momento. Tente mais tarde';
+    }
+  }
+
+  @override
+  Future<ProductModel> editProduct({
+    required String name,
+    required int minimumQuantity,
+    required double unitValue,
+    required int barCode,
+  }) async {
+    try {
+      await Future.delayed(const Duration(seconds: 2));
+
+      return ProductModel(
+        id: name.hashCode,
+        name: name,
+        unitValue: unitValue,
+        minimumQuantity: minimumQuantity,
+        barCode: barCode,
+      );
+    } catch (e) {
+      throw 'Não foi possivel editar o produto nesse momento. Tente mais tarde';
+    }
+  }
+
+  @override
+  Future<ProductModel> updateQuantityProduct(
+      {required int id,
+      required int oldQuantity,
+      required int newQuantity,
+      required DateTime currentDate}) {
+    // TODO: implement updateQuantityProduct
+    throw UnimplementedError();
   }
 }

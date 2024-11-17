@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:invenmanager/classes/product.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
+import 'package:invenmanager/models/product_model.dart';
 
 class ContentInfoProduct extends StatelessWidget {
-  final Product product;
+  final ProductModel product;
 
   const ContentInfoProduct({
     Key? key,
@@ -21,7 +21,7 @@ class ContentInfoProduct extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              product.name,
+              product.name!,
               style:
                   AppTextStyle.cardHeaderText.copyWith(color: AppColor.white),
             ),
