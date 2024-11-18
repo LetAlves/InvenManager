@@ -9,7 +9,7 @@ import 'package:invenmanager/pages/splash/splash_page.dart';
 import 'package:invenmanager/pages/user/create_account/create_account_page.dart';
 import 'package:invenmanager/pages/user/edit_account/edit_account_page.dart';
 import 'package:invenmanager/pages/user/login/login_page.dart';
-import 'package:invenmanager/pages/user/recover_password_page.dart';
+import 'package:invenmanager/pages/user/recover_password/recover_password_page.dart';
 
 void main() {
   setupDependencies();

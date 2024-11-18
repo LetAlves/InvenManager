@@ -121,4 +121,10 @@ class MockAuthService implements AuthService {
     // TODO: implement updateQuantityProduct
     throw UnimplementedError();
   }
+
+  @override
+  Future<void> recoverPassword({required String email}) async {
+    await Future.delayed(Duration(seconds: 2));
+    print('E-mail de recuperação enviado para $email');
+  }
 }

@@ -40,5 +40,10 @@ abstract class AuthService {
       {required int id,
       required int oldQuantity,
       required int newQuantity,
-      required DateTime currentDate});
+      required DateTime currentDate,
+  });
+    
+  Future<void> recoverPassword({
+    required String email,
+  });
 }
