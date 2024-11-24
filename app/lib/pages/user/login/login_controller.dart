@@ -17,14 +17,14 @@ class LoginController extends ChangeNotifier {
   }
 
   Future<void> login({
-    required String username,
+    required String email,
     required String password,
   }) async {
     _changeState(LoginLoadingState());
 
     try {
       await _service.login(
-        username: username,
+        email: email,
         password: password,
       );
       _changeState(LoginSuccessState());

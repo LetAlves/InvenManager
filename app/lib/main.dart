@@ -10,8 +10,14 @@ import 'package:invenmanager/pages/user/create_account/create_account_page.dart'
 import 'package:invenmanager/pages/user/edit_account/edit_account_page.dart';
 import 'package:invenmanager/pages/user/login/login_page.dart';
 import 'package:invenmanager/pages/user/recover_password/recover_password_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   setupDependencies();
   runApp(const Invenmanager());
 }

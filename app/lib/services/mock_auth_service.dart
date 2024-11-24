@@ -17,7 +17,8 @@ class MockAuthService implements AuthService {
         throw Exception();
       }
 
-      return UserModel(id: email.hashCode, username: username, email: email);
+      return UserModel(
+          id: email.hashCode.toString(), username: username, email: email);
     } catch (e) {
       if (password.startsWith('123')) {
         throw 'Senha insegura. Digite uma senha forte';
@@ -39,7 +40,7 @@ class MockAuthService implements AuthService {
         throw Exception();
       }
 
-      return UserModel(id: email.hashCode, name: name, email: email);
+      return UserModel(id: email.hashCode.toString(), name: name, email: email);
     } catch (e) {
       if (password.startsWith('123')) {
         throw 'Senha insegura. Digite uma senha forte';
@@ -50,14 +51,14 @@ class MockAuthService implements AuthService {
 
   @override
   Future<UserModel> login(
-      {required String username, required String password}) async {
+      {required String email, required String password}) async {
     try {
       await Future.delayed(const Duration(seconds: 2));
       if (password.startsWith('123')) {
         throw Exception();
       }
 
-      return UserModel(id: username.hashCode, username: username);
+      return UserModel(id: email.hashCode.toString(), email: email);
     } catch (e) {
       if (password.startsWith('123')) {
         throw 'Erro ao logar. Tente novamente';

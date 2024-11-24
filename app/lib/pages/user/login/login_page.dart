@@ -21,7 +21,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _controller = locator.get<LoginController>();
 
@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    _usernameController.dispose();
+    _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -70,10 +70,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 52),
                 CustomTextFormField(
-                  controller: _usernameController,
-                  label: 'Usuário',
-                  hintText: 'john.doe',
-                  validator: UserValidator.validateUserName,
+                  controller: _emailController,
+                  label: 'E-mail',
+                  hintText: 'john.doe@email.com',
+                  keyboardType: TextInputType.emailAddress,
+                  validator: UserValidator.validateEmail,
                 ),
                 PasswordFormField(
                   controller: _passwordController,
@@ -99,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                     final valid = _formKey.currentState!.validate();
                     if (valid) {
                       _controller.login(
-                          username: _usernameController.text,
+                          email: _emailController.text,
                           password: _passwordController.text);
                     }
                   },

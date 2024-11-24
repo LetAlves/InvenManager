@@ -17,7 +17,7 @@ abstract class AuthService {
   });
 
   Future<UserModel> login({
-    required String username,
+    required String email,
     required String password,
   });
 
@@ -36,13 +36,13 @@ abstract class AuthService {
     required int barCode,
   });
 
-  Future<ProductModel> updateQuantityProduct(
-      {required int id,
-      required int oldQuantity,
-      required int newQuantity,
-      required DateTime currentDate,
+  Future<ProductModel> updateQuantityProduct({
+    required int id,
+    required int oldQuantity,
+    required int newQuantity,
+    required DateTime currentDate,
   });
-    
+
   Future<void> recoverPassword({
     required String email,
   });

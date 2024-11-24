@@ -117,7 +117,7 @@ class _EditProductPageState extends State<EditProductPage> {
                   keyboardType: TextInputType.number,
                   validator: ProductValidator.validateQuantity),
               CustomButton(
-                label: 'Adicionar ao Estoque',
+                label: 'Atualizar Produto',
                 onPressed: () {
                   final valid = _formKey.currentState!.validate();
                   if (valid) {
@@ -130,6 +130,12 @@ class _EditProductPageState extends State<EditProductPage> {
                     );
                   }
                 },
+              ),
+              CustomButton(
+                label: 'Excluir Produto',
+                labelColor: AppColor.white,
+                backgroundColor: AppColor.red,
+                onPressed: () {},
               ),
             ],
           ),

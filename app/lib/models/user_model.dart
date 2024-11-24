@@ -1,5 +1,5 @@
 class UserModel {
-  final int? id;
+  final String? id;
   final String? name;
   final String? username;
   final String? photoUrl;
