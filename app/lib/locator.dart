@@ -2,16 +2,21 @@ import 'package:get_it/get_it.dart';
 import 'package:invenmanager/pages/product/create_product/create_product_controller.dart';
 import 'package:invenmanager/pages/product/edit_product/edit_product_controller.dart';
 import 'package:invenmanager/pages/product/information_product/info_product_controller.dart';
+import 'package:invenmanager/pages/splash/splash_controller.dart';
 import 'package:invenmanager/pages/user/create_account/create_account_controller.dart';
 import 'package:invenmanager/pages/user/edit_account/edit_account_controller.dart';
 import 'package:invenmanager/pages/user/login/login_controller.dart';
 import 'package:invenmanager/services/auth_service.dart';
 import 'package:invenmanager/services/firebase_auth_service.dart';
+import 'package:invenmanager/services/secure_storage.dart';
 
 final locator = GetIt.instance;
 
 void setupDependencies() {
   locator.registerLazySingleton<AuthService>(() => FirebaseAuthService());
+
+  locator.registerFactory<SplashController>(
+      () => SplashController(const SecureStorage()));
 
   locator.registerFactory<CreateAccountController>(
       () => CreateAccountController(locator.get<AuthService>()));

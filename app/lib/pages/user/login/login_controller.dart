@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/pages/user/login/login_state.dart';
 import 'package:invenmanager/services/auth_service.dart';
+import 'package:invenmanager/services/secure_storage.dart';
 
 class LoginController extends ChangeNotifier {
   final AuthService _service;
@@ -20,13 +21,20 @@ class LoginController extends ChangeNotifier {
     required String email,
     required String password,
   }) async {
+    const secureStorage = SecureStorage();
     _changeState(LoginLoadingState());
 
     try {
-      await _service.login(
+      final user = await _service.login(
         email: email,
         password: password,
       );
+
+      if (user.id == null) {
+        throw Exception("Usuário não pode ser nulo!");
+      }
+
+      await secureStorage.write(key: "CURRENT_USER", value: user.toJson());
       _changeState(LoginSuccessState());
     } catch (e) {
       _changeState(LoginErrorState(e.toString()));

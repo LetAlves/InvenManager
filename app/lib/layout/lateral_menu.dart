@@ -2,9 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/global/routes.dart';
+import 'package:invenmanager/services/secure_storage.dart';
 
-class LateralMenu extends StatelessWidget {
+class LateralMenu extends StatefulWidget {
   const LateralMenu({Key? key}) : super(key: key);
+
+  @override
+  State<LateralMenu> createState() => _LateralMenuState();
+}
+
+class _LateralMenuState extends State<LateralMenu> {
+  final _secureStorage = const SecureStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +85,14 @@ class LateralMenu extends StatelessWidget {
               style:
                   AppTextStyle.mediumTextBold.copyWith(color: AppColor.yellow),
             ),
-            onTap: () {},
+            onTap: () {
+              _secureStorage
+                  .delete(key: "CURRENT_USER")
+                  .then((_) => Navigator.popAndPushNamed(
+                        context,
+                        NamedRoutes.login,
+                      ));
+            },
           ),
         ],
       ),

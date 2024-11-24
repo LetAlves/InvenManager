@@ -21,6 +21,8 @@ abstract class AuthService {
     required String password,
   });
 
+  Future<void> logout();
+
   Future<ProductModel> createProduct({
     required String name,
     required int currentQuantity,

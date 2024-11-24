@@ -39,6 +39,7 @@ class Invenmanager extends StatelessWidget {
         NamedRoutes.createAccount: (context) => const CreateAccountPage(),
         NamedRoutes.editAccount: (context) => const EditAccountPage(),
         NamedRoutes.recoverPassword: (context) => const RecoverPasswordPage(),
+        NamedRoutes.home: (context) => const Homepage(),
         NamedRoutes.createProduct: (context) => const CreateProductPage(),
         NamedRoutes.editProduct: (context) => const EditProductPage(),
         NamedRoutes.informationProduct: (context) => const InfoProductPage()
