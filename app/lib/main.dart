@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/routes.dart';
 import 'package:invenmanager/locator.dart';
-import 'package:invenmanager/pages/home/home_page.dart';
+import 'package:invenmanager/pages/home/home_page_view.dart';
 import 'package:invenmanager/pages/product/create_product/create_product_page.dart';
 import 'package:invenmanager/pages/product/edit_product/edit_product_page.dart';
 import 'package:invenmanager/pages/product/information_product/info_product_page.dart';
@@ -33,13 +33,13 @@ class Invenmanager extends StatelessWidget {
       theme: ThemeData.dark(),
       initialRoute: NamedRoutes.splash,
       routes: {
-        NamedRoutes.initial: (context) => const Homepage(),
+        NamedRoutes.initial: (context) => const HomePageView(),
         NamedRoutes.splash: (context) => const SplashPage(),
         NamedRoutes.login: (context) => const LoginPage(),
         NamedRoutes.createAccount: (context) => const CreateAccountPage(),
         NamedRoutes.editAccount: (context) => const EditAccountPage(),
         NamedRoutes.recoverPassword: (context) => const RecoverPasswordPage(),
-        NamedRoutes.home: (context) => const Homepage(),
+        NamedRoutes.home: (context) => const HomePageView(),
         NamedRoutes.createProduct: (context) => const CreateProductPage(),
         NamedRoutes.editProduct: (context) => const EditProductPage(),
         NamedRoutes.informationProduct: (context) => const InfoProductPage()

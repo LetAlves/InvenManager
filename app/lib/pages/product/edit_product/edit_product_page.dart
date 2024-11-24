@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/global/routes.dart';
-import 'package:invenmanager/layout/bottom_navbar.dart';
-import 'package:invenmanager/layout/lateral_menu.dart';
+import 'package:invenmanager/widget/lateral_menu.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/locator.dart';
 import 'package:invenmanager/pages/product/Edit_Product/Edit_product_state.dart';
@@ -142,7 +141,6 @@ class _EditProductPageState extends State<EditProductPage> {
         ),
       ),
       endDrawer: const LateralMenu(),
-      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }

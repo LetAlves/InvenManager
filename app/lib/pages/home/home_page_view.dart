@@ -1,11 +1,10 @@
-import 'package:flutter/foundation.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:invenmanager/global/app_color.dart';
-import 'package:invenmanager/global/routes.dart';
 import 'package:invenmanager/pages/home/home_page.dart';
 import 'package:invenmanager/pages/product/create_product/create_product_page.dart';
-import 'package:invenmanager/widget/text_button_navbar.dart';
+import 'package:invenmanager/widget/custom_bottom_app_bar.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({super.key});
@@ -15,39 +14,48 @@ class HomePageView extends StatefulWidget {
 }
 
 class _HomePageViewState extends State<HomePageView> {
+  final pageController = PageController();
+
+  @override
+  void initState() {
+    super.initState();
+    pageController.addListener(() {
+      log(pageController.page.toString());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: PageView(
+        controller: pageController,
         physics: const AlwaysScrollableScrollPhysics(),
-        children: const [Homepage(), CreateProductPage()],
+        children: const [
+          Homepage(),
+          CreateProductPage(),
+        ],
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: AppColor.gray_800,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextButtonNavBar(
-                label: 'Novo Produto',
-                icon: Icons.add_circle_outline,
-                onPressed: () {
-                  Navigator.pushReplacementNamed(
-                      context, NamedRoutes.createProduct);
-                },
-              ),
-              TextButtonNavBar(
-                label: 'Meu inventário',
-                icon: Icons.inventory,
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, NamedRoutes.initial);
-                },
-              )
-            ],
+      bottomNavigationBar: CustomBottomAppBar(
+        selectedItemColor: AppColor.yellow,
+        children: [
+          CustomBottomAppBarItem(
+            label: "Novo Produto",
+            primaryIcon: Icons.add_circle_outline,
+            secondaryIcon: Icons.add_circle,
+            onPressed: () => pageController.jumpToPage(
+              1,
+            ),
           ),
-        ),
+          CustomBottomAppBarItem(
+            label: "Meu Inventário",
+            primaryIcon: Icons.inventory_2_outlined,
+            secondaryIcon: Icons.inventory_2,
+            onPressed: () => pageController.jumpToPage(
+              0,
+            ),
+          ),
+        ],
       ),
     );
   }

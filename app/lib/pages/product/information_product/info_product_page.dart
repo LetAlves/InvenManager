@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/global/routes.dart';
-import 'package:invenmanager/layout/bottom_navbar.dart';
-import 'package:invenmanager/layout/content_info_product.dart';
-import 'package:invenmanager/layout/content_info_updated_product.dart';
-import 'package:invenmanager/layout/lateral_menu.dart';
+import 'package:invenmanager/widget/content_info_product.dart';
+import 'package:invenmanager/widget/content_info_updated_product.dart';
+import 'package:invenmanager/widget/lateral_menu.dart';
 import 'package:invenmanager/locator.dart';
 import 'package:invenmanager/pages/home/home_page.dart';
 import 'package:invenmanager/pages/product/information_product/info_product_controller.dart';
@@ -172,7 +171,6 @@ class _InfoProductPageState extends State<InfoProductPage> {
         ),
       ),
       endDrawer: const LateralMenu(),
-      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }
