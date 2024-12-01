@@ -1,1 +1,35 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"invenmanager-41a2a","appId":"1:286017392799:android:58fdd1c9f5749f1b2dd2aa","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"invenmanager-41a2a","configurations":{"android":"1:286017392799:android:58fdd1c9f5749f1b2dd2aa","ios":"1:286017392799:ios:5a2326d2e7beb1962dd2aa"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "invenmanager-41a2a",
+          "appId": "1:286017392799:android:58fdd1c9f5749f1b2dd2aa",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "invenmanager-41a2a",
+          "configurations": {
+            "android": "1:286017392799:android:58fdd1c9f5749f1b2dd2aa",
+            "ios": "1:286017392799:ios:5a2326d2e7beb1962dd2aa"
+          }
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ]
+    }
+  ]
+}

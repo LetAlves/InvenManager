@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/routes.dart';
 import 'package:invenmanager/locator.dart';
