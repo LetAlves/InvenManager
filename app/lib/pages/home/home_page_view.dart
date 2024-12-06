@@ -15,6 +15,7 @@ class HomePageView extends StatefulWidget {
 
 class _HomePageViewState extends State<HomePageView> {
   final pageController = PageController();
+  int _currentPage = 0;
 
   @override
   void initState() {
@@ -31,6 +32,11 @@ class _HomePageViewState extends State<HomePageView> {
       body: PageView(
         controller: pageController,
         physics: const AlwaysScrollableScrollPhysics(),
+        onPageChanged: (index) {
+          setState(() {
+            _currentPage = index;
+          });
+        },
         children: const [
           Homepage(),
           CreateProductPage(),
@@ -38,22 +44,19 @@ class _HomePageViewState extends State<HomePageView> {
       ),
       bottomNavigationBar: CustomBottomAppBar(
         selectedItemColor: AppColor.yellow,
+        currentIndex: _currentPage, // Passa a página atual
         children: [
-          CustomBottomAppBarItem(
-            label: "Novo Produto",
-            primaryIcon: Icons.add_circle_outline,
-            secondaryIcon: Icons.add_circle,
-            onPressed: () => pageController.jumpToPage(
-              1,
-            ),
-          ),
           CustomBottomAppBarItem(
             label: "Meu Inventário",
             primaryIcon: Icons.inventory_2_outlined,
             secondaryIcon: Icons.inventory_2,
-            onPressed: () => pageController.jumpToPage(
-              0,
-            ),
+            onPressed: () => pageController.jumpToPage(0),
+          ),
+          CustomBottomAppBarItem(
+            label: "Novo Produto",
+            primaryIcon: Icons.add_circle_outline,
+            secondaryIcon: Icons.add_circle,
+            onPressed: () => pageController.jumpToPage(1),
           ),
         ],
       ),

@@ -1,23 +1,18 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 
-class CustomBottomAppBar extends StatefulWidget {
+class CustomBottomAppBar extends StatelessWidget {
   final Color? selectedItemColor;
+  final int currentIndex;
   final List<CustomBottomAppBarItem> children;
+
   const CustomBottomAppBar({
     Key? key,
     this.selectedItemColor,
+    required this.currentIndex,
     required this.children,
   }) : super(key: key);
-
-  @override
-  State<CustomBottomAppBar> createState() => _CustomBottomAppBarState();
-}
-
-class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
-  int _selectedItemIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -25,47 +20,42 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
       color: AppColor.gray_800,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: widget.children.map(
-          (item) {
-            final currentItem =
-                widget.children.indexOf(item) == _selectedItemIndex;
+        children: children.asMap().entries.map((entry) {
+          final int index = entry.key;
+          final CustomBottomAppBarItem item = entry.value;
+          final bool isSelected = index == currentIndex;
 
-            return Expanded(
-              key: item.key,
-              child: InkWell(
-                onTap: item.onPressed,
-                onTapUp: (_) {
-                  _selectedItemIndex = widget.children.indexOf(item);
-                  log(_selectedItemIndex.toString());
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        currentItem ? item.primaryIcon : item.secondaryIcon,
-                        color: currentItem
-                            ? widget.selectedItemColor
-                            : AppColor.gray_300,
+          return Expanded(
+            key: item.key,
+            child: InkWell(
+              onTap: () {
+                if (item.onPressed != null) {
+                  item.onPressed!();
+                }
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      isSelected ? item.secondaryIcon : item.primaryIcon,
+                      color: isSelected ? selectedItemColor : AppColor.gray_300,
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      item.label ?? '',
+                      style: TextStyle(
+                        color:
+                            isSelected ? selectedItemColor : AppColor.gray_300,
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        item.label!,
-                        style: TextStyle(
-                            color: currentItem
-                                ? widget.selectedItemColor
-                                : AppColor.gray_300),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            );
-          },
-        ).toList(),
+            ),
+          );
+        }).toList(),
       ),
     );
   }
