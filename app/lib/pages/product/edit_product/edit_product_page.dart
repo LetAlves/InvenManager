@@ -4,8 +4,8 @@ import 'package:invenmanager/global/routes.dart';
 import 'package:invenmanager/widget/lateral_menu.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/locator.dart';
-import 'package:invenmanager/pages/product/Edit_Product/Edit_product_state.dart';
-import 'package:invenmanager/pages/product/Edit_product/Edit_product_controller.dart';
+import 'package:invenmanager/pages/product/edit_product/edit_product_state.dart';
+import 'package:invenmanager/pages/product/edit_product/edit_product_controller.dart';
 import 'package:invenmanager/utils/product_validator.dart';
 import 'package:invenmanager/widget/custom_bottom_sheet.dart';
 import 'package:invenmanager/widget/custom_button.dart';
@@ -116,7 +116,7 @@ class _EditProductPageState extends State<EditProductPage> {
                   keyboardType: TextInputType.number,
                   validator: ProductValidator.validateQuantity),
               CustomButton(
-                label: 'Atualizar Produto',
+                label: 'Editar',
                 onPressed: () {
                   final valid = _formKey.currentState!.validate();
                   if (valid) {
@@ -130,9 +130,11 @@ class _EditProductPageState extends State<EditProductPage> {
                   }
                 },
               ),
+              const SizedBox(
+                height: 10,
+              ),
               CustomButton(
-                label: 'Excluir Produto',
-                labelColor: AppColor.white,
+                label: 'Apagar',
                 backgroundColor: AppColor.red,
                 onPressed: () {},
               ),

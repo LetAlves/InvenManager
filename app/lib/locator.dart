@@ -20,14 +20,19 @@ void setupDependencies() {
 
   locator.registerFactory<CreateAccountController>(
       () => CreateAccountController(locator.get<AuthService>()));
+
   locator.registerFactory<LoginController>(
       () => LoginController(locator.get<AuthService>()));
+
   locator.registerFactory<EditAccountController>(
       () => EditAccountController(locator.get<AuthService>()));
+
   locator.registerFactory<CreateProductController>(
       () => CreateProductController(locator.get<AuthService>()));
+
   locator.registerFactory<EditProductController>(
       () => EditProductController(locator.get<AuthService>()));
+
   locator.registerFactory<InfoProductController>(
       () => InfoProductController(locator.get<AuthService>()));
 }

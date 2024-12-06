@@ -113,12 +113,14 @@ class _HomepageState extends State<Homepage>
                         ),
                       ),
                       GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, NamedRoutes.informationProduct);
-                          },
-                          child: CustomCard(
-                              content: ContentInfoProduct(product: product)))
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, NamedRoutes.informationProduct);
+                        },
+                        child: CustomCard(
+                          content: ContentInfoProduct(product: product),
+                        ),
+                      ),
                     ],
                   ))
             ],

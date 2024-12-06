@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:invenmanager/pages/product/Edit_product/edit_product_state.dart';
+import 'package:invenmanager/pages/product/edit_product/edit_product_state.dart';
 import 'package:invenmanager/services/auth_service.dart';
 
 class EditProductController extends ChangeNotifier {

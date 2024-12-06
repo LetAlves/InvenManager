@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:invenmanager/pages/product/create_Product/create_product_state.dart';
+import 'package:invenmanager/pages/product/create_product/create_product_state.dart';
 import 'package:invenmanager/services/auth_service.dart';
 
 class CreateProductController extends ChangeNotifier {

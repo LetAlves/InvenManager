@@ -75,6 +75,7 @@ class _EditAccountPageState extends State<EditAccountPage> {
             key: _formKey,
             child: Column(
               children: [
+                Stack(),
                 ClipOval(
                   child: Image.asset(
                     'lib/assets/profile_image.jpg',

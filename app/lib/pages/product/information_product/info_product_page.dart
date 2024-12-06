@@ -80,7 +80,14 @@ class _InfoProductPageState extends State<InfoProductPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              ContentInfoProduct(product: product),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, NamedRoutes.editProduct);
+                },
+                child: ContentInfoProduct(
+                  product: product,
+                ),
+              ),
               const SizedBox(height: 16),
               Container(
                 width: 380,
@@ -98,6 +105,8 @@ class _InfoProductPageState extends State<InfoProductPage> {
                     CustomFilledButtonBar(
                       label: 'Histórico de Ações',
                       icon: Icons.history,
+                      color:
+                          isVisibleHistory == true ? AppColor.gray_600 : null,
                       onPressed: () {
                         setState(() {
                           isVisibleHistory = true;
@@ -108,6 +117,7 @@ class _InfoProductPageState extends State<InfoProductPage> {
                     CustomFilledButtonBar(
                       label: 'Ações',
                       icon: Icons.pending_actions,
+                      color: isVisibleAction == true ? AppColor.gray_600 : null,
                       onPressed: () {
                         setState(() {
                           isVisibleHistory = false;
