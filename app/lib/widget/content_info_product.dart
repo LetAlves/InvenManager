@@ -21,7 +21,7 @@ class ContentInfoProduct extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              product.name!,
+              product.name ?? "",
               style:
                   AppTextStyle.cardHeaderText.copyWith(color: AppColor.white),
             ),

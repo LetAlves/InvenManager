@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/global/routes.dart';
+import 'package:invenmanager/models/product_model.dart';
 import 'package:invenmanager/widget/content_info_product.dart';
 import 'package:invenmanager/widget/content_info_updated_product.dart';
 import 'package:invenmanager/widget/lateral_menu.dart';
 import 'package:invenmanager/locator.dart';
-import 'package:invenmanager/pages/home/home_page.dart';
 import 'package:invenmanager/pages/product/information_product/info_product_controller.dart';
 import 'package:invenmanager/pages/product/information_product/info_product_state.dart';
 import 'package:invenmanager/widget/custom_bottom_sheet.dart';
@@ -61,18 +61,13 @@ class _InfoProductPageState extends State<InfoProductPage> {
 
   @override
   Widget build(BuildContext context) {
+    final product = ModalRoute.of(context)!.settings.arguments as ProductModel;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Informações do Produto'),
         centerTitle: true,
         backgroundColor: AppColor.gray_800,
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.file_upload_outlined),
-            tooltip: 'Exportar histórico',
-            onPressed: () {},
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 20.0),

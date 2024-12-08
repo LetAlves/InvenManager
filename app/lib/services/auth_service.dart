@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:invenmanager/models/product_model.dart';
 import 'package:invenmanager/models/user_model.dart';
 
@@ -45,6 +46,8 @@ abstract class AuthService {
     required int newQuantity,
     required DateTime currentDate,
   });
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getAllProducts();
 
   Future<void> recoverPassword({
     required String email,

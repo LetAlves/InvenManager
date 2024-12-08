@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:invenmanager/pages/home/home_controller.dart';
 import 'package:invenmanager/pages/product/create_product/create_product_controller.dart';
 import 'package:invenmanager/pages/product/edit_product/edit_product_controller.dart';
 import 'package:invenmanager/pages/product/information_product/info_product_controller.dart';
@@ -17,6 +18,9 @@ void setupDependencies() {
 
   locator.registerFactory<SplashController>(
       () => SplashController(const SecureStorage()));
+
+  locator.registerFactory<HomeController>(
+      () => HomeController(locator.get<AuthService>()));
 
   locator.registerFactory<CreateAccountController>(
       () => CreateAccountController(locator.get<AuthService>()));

@@ -1,10 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:invenmanager/models/product_model.dart';
 import 'package:invenmanager/models/user_model.dart';
 import 'package:invenmanager/services/auth_service.dart';
+import 'package:uuid/uuid.dart';
 
 class FirebaseAuthService implements AuthService {
   final _auth = FirebaseAuth.instance;
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
   //User
   @override
@@ -123,9 +126,22 @@ class FirebaseAuthService implements AuthService {
       required int currentQuantity,
       required int minimumQuantity,
       required double unitValue,
-      required int barCode}) {
-    // TODO: implement createProduct
-    throw UnimplementedError();
+      required int barCode}) async {
+    ProductModel productModel = ProductModel(
+      id: const Uuid().v1(),
+      name: name,
+      unitValue: unitValue,
+      currentQuantity: currentQuantity,
+      minimumQuantity: minimumQuantity,
+      barCode: barCode,
+    );
+
+    await firebaseFirestore
+        .collection(_auth.currentUser!.uid)
+        .doc(productModel.id)
+        .set(productModel.toMap());
+
+    return productModel;
   }
 
   @override
@@ -146,5 +162,9 @@ class FirebaseAuthService implements AuthService {
       required DateTime currentDate}) {
     // TODO: implement updateQuantityProduct
     throw UnimplementedError();
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getAllProducts() {
+    return firebaseFirestore.collection(_auth.currentUser!.uid).snapshots();
   }
 }

@@ -2,21 +2,16 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/global/routes.dart';
+import 'package:invenmanager/locator.dart';
+import 'package:invenmanager/models/product_model.dart';
+import 'package:invenmanager/pages/home/home_controller.dart';
+import 'package:invenmanager/widget/content_info_product.dart';
+import 'package:invenmanager/widget/custom_card.dart';
+import 'package:invenmanager/widget/custom_circular_progress_indicator.dart';
 import 'package:invenmanager/widget/lateral_menu.dart';
 import 'package:invenmanager/global/app_color.dart';
-import 'package:invenmanager/widget/content_info_product.dart';
-import 'package:invenmanager/models/product_model.dart';
 import 'package:invenmanager/widget/custom_button.dart';
-import 'package:invenmanager/widget/custom_card.dart';
 import 'package:invenmanager/widget/custom_text_form_field.dart';
-
-final ProductModel product = ProductModel(
-    id: 1,
-    name: 'Chocolate',
-    currentQuantity: 200,
-    minimumQuantity: 30,
-    unitValue: 10.0,
-    barCode: 1234567890);
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -28,9 +23,16 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage>
     with AutomaticKeepAliveClientMixin<Homepage> {
   bool isVisibleSearch = false;
+  final _controller = locator.get<HomeController>();
 
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,48 +83,75 @@ class _HomepageState extends State<Homepage>
                 },
               ),
               Visibility(
-                  visible: !isVisibleSearch,
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 16),
-                      Container(
-                        width: 335,
-                        height: 1,
-                        color: AppColor.gray_600,
-                      ),
-                      const SizedBox(height: 16),
-                      GestureDetector(
-                        onTap: () {
-                          log('message');
-                          Navigator.pushNamed(
-                              context, NamedRoutes.createProduct);
-                        },
-                        child: Wrap(
-                          children: [
-                            Text(
-                              'Você ainda não tem nenhum produto cadastrado! ',
-                              style: AppTextStyle.mediumText
-                                  .copyWith(color: AppColor.white),
-                            ),
-                            Text(
-                              'adicione algum ao estoque.',
-                              style: AppTextStyle.mediumText
-                                  .copyWith(color: AppColor.yellow),
-                            ),
-                          ],
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, NamedRoutes.informationProduct);
-                        },
-                        child: CustomCard(
-                          content: ContentInfoProduct(product: product),
-                        ),
-                      ),
-                    ],
-                  ))
+                visible: !isVisibleSearch,
+                child: Column(
+                  children: [
+                    const SizedBox(height: 16),
+                    Container(
+                      width: 335,
+                      height: 1,
+                      color: AppColor.gray_600,
+                    ),
+                    const SizedBox(height: 16),
+                    StreamBuilder(
+                      stream: _controller.getProducts(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CustomCircularProgressIndicator(),
+                          );
+                        } else {
+                          if (snapshot.hasData &&
+                              snapshot.data != null &&
+                              snapshot.data!.docs.isNotEmpty) {
+                            List<ProductModel> products = [];
+
+                            for (var doc in snapshot.data!.docs) {
+                              products.add(ProductModel.fromMap(doc.data()));
+                            }
+
+                            return Column(
+                              children: products.map(
+                                (product) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        NamedRoutes.informationProduct,
+                                        arguments: product,
+                                      );
+                                    },
+                                    child: CustomCard(
+                                      content:
+                                          ContentInfoProduct(product: product),
+                                    ),
+                                  );
+                                },
+                              ).toList(),
+                            );
+                          } else {
+                            return Wrap(
+                              children: [
+                                Text(
+                                  'Você ainda não tem nenhum produto cadastrado! ',
+                                  style: AppTextStyle.mediumText
+                                      .copyWith(color: AppColor.white),
+                                ),
+                                Text(
+                                  'adicione algum ao estoque.',
+                                  style: AppTextStyle.mediumText
+                                      .copyWith(color: AppColor.yellow),
+                                ),
+                              ],
+                            );
+                          }
+                        }
+                      },
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ),

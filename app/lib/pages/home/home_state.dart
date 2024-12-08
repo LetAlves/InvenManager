@@ -7,7 +7,7 @@ class HomeStateLoading extends HomeState {}
 class HomeStateSuccess extends HomeState {}
 
 class HomeStateError extends HomeState {
-  HomeStateError({required this.message});
+  HomeStateError(String string, {required this.message});
 
   final String message;
 }
