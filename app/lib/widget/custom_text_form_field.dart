@@ -13,6 +13,7 @@ class CustomTextFormField extends StatefulWidget {
   final bool? obscureText;
   final FormFieldValidator<String>? validator;
   final String? helperText;
+  final bool? enabled;
 
   const CustomTextFormField({
     Key? key,
@@ -26,6 +27,7 @@ class CustomTextFormField extends StatefulWidget {
     this.obscureText,
     this.validator,
     this.helperText,
+    this.enabled = true,
   }) : super(key: key);
 
   @override
@@ -63,13 +65,16 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         },
         controller: widget.controller,
         validator: widget.validator,
-        style: AppTextStyle.inputText.copyWith(color: AppColor.white),
+        style: widget.enabled!
+            ? AppTextStyle.inputText.copyWith(color: AppColor.white)
+            : AppTextStyle.inputText.copyWith(color: AppColor.gray_300),
         cursorColor: AppColor.yellow,
         keyboardType: widget.keyboardType ?? TextInputType.text,
         textCapitalization:
             widget.textCapitalization ?? TextCapitalization.none,
         obscureText: widget.obscureText ?? false,
         maxLength: widget.maxLength,
+        enabled: widget.enabled,
         decoration: InputDecoration(
           helperText: _helperText,
           helperMaxLines: 3,

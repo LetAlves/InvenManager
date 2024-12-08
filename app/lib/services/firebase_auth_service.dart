@@ -9,10 +9,8 @@ class FirebaseAuthService implements AuthService {
   //User
   @override
   Future<UserModel> createAccount({
-    required String name,
     required String username,
     required String email,
-    required String phone,
     required String password,
   }) async {
     try {
@@ -26,11 +24,14 @@ class FirebaseAuthService implements AuthService {
       }
 
       result.user!.updateDisplayName(username);
+      result.user!.updatePhotoURL(
+          'https://i.pinimg.com/originals/50/ef/65/50ef65b8af841eb8638282f9dfc8f008.jpg');
 
       return UserModel(
         id: _auth.currentUser?.uid,
         username: _auth.currentUser?.displayName,
         email: _auth.currentUser?.email,
+        photoUrl: _auth.currentUser?.photoURL,
       );
     } on FirebaseAuthException catch (e) {
       throw e.message ?? "null";
@@ -40,13 +41,37 @@ class FirebaseAuthService implements AuthService {
   }
 
   @override
-  Future<UserModel> editAccount(
-      {required String name,
-      required String email,
-      required String phone,
-      required String password}) {
-    // TODO: implement editAccount
-    throw UnimplementedError();
+  Future<UserModel> editAccount({
+    required String username,
+    required String photoUrl,
+  }) async {
+    try {
+      _auth.currentUser?.updateDisplayName(username);
+      _auth.currentUser?.updatePhotoURL(
+          'https://i.pinimg.com/originals/50/ef/65/50ef65b8af841eb8638282f9dfc8f008.jpg');
+
+      return UserModel(
+        id: _auth.currentUser?.uid,
+        username: _auth.currentUser?.displayName,
+        email: _auth.currentUser?.email,
+        photoUrl: _auth.currentUser?.photoURL,
+      );
+    } on FirebaseAuthException catch (e) {
+      throw e.message ?? "null";
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> editUserPassword({required String password}) async {
+    try {
+      _auth.currentUser?.updatePassword(password);
+    } on FirebaseAuthException catch (e) {
+      throw e.message ?? "null";
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override

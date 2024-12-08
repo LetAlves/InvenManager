@@ -19,9 +19,7 @@ class CreateAccountController extends ChangeNotifier {
 
   Future<void> createAccount({
     required String username,
-    required String name,
     required String email,
-    required String phone,
     required String password,
   }) async {
     final secureStorage = SecureStorage();
@@ -30,9 +28,7 @@ class CreateAccountController extends ChangeNotifier {
     try {
       final user = await _service.createAccount(
         username: username,
-        name: name,
         email: email,
-        phone: phone,
         password: password,
       );
       if (user.id == null) {

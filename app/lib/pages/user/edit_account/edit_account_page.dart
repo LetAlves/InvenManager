@@ -1,12 +1,15 @@
-import 'dart:developer';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/routes.dart';
 import 'package:invenmanager/locator.dart';
 import 'package:invenmanager/pages/user/edit_account/edit_account_controller.dart';
 import 'package:invenmanager/pages/user/edit_account/edit_account_state.dart';
+import 'package:invenmanager/repositories/user_repository.dart';
 import 'package:invenmanager/utils/user_validator.dart';
+import 'package:invenmanager/utils/util.dart';
 import 'package:invenmanager/widget/custom_bottom_sheet.dart';
 import 'package:invenmanager/widget/custom_button.dart';
 import 'package:invenmanager/widget/custom_circular_progress_indicator.dart';
@@ -22,17 +25,19 @@ class EditAccountPage extends StatefulWidget {
 
 class _EditAccountPageState extends State<EditAccountPage> {
   final _formKey = GlobalKey<FormState>();
+  final _formKeyPassword = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
-  final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
   final _controller = locator.get<EditAccountController>();
+  final _currentUser = UserRepository().getUser();
+  bool isChangePasswordVisible = false;
+  Uint8List? _image;
 
   @override
   void dispose() {
     _nameController.dispose();
     _emailController.dispose();
-    _phoneController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -58,6 +63,9 @@ class _EditAccountPageState extends State<EditAccountPage> {
         }
       },
     );
+
+    _nameController.text = _currentUser!.displayName!;
+    _emailController.text = _currentUser.email!;
   }
 
   @override
@@ -69,71 +77,134 @@ class _EditAccountPageState extends State<EditAccountPage> {
         backgroundColor: AppColor.gray_800,
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                Stack(),
-                ClipOval(
-                  child: Image.asset(
-                    'lib/assets/profile_image.jpg',
-                    height: 164,
-                    width: 164,
-                    fit: BoxFit.cover,
+        child: Column(
+          children: [
+            Visibility(
+              visible: !isChangePasswordVisible,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Stack(
+                        children: [
+                          _image != null
+                              ? CircleAvatar(
+                                  radius: 64,
+                                  backgroundImage: MemoryImage(_image!),
+                                )
+                              : const CircleAvatar(
+                                  radius: 64,
+                                  backgroundImage: NetworkImage(
+                                      'https://i.pinimg.com/originals/50/ef/65/50ef65b8af841eb8638282f9dfc8f008.jpg'),
+                                ),
+                          Positioned(
+                            bottom: -10,
+                            left: 80,
+                            child: IconButton(
+                              onPressed: () async {
+                                Uint8List image =
+                                    await pickImage(ImageSource.gallery);
+                                setState(() {
+                                  _image = image;
+                                });
+                              },
+                              icon: const Icon(
+                                Icons.edit,
+                                color: AppColor.gray_200,
+                                size: 30,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 32),
+                      CustomTextFormField(
+                        controller: _nameController,
+                        label: 'Nome',
+                        hintText: 'John Doe',
+                        textCapitalization: TextCapitalization.words,
+                        keyboardType: TextInputType.name,
+                        validator: UserValidator.validateName,
+                      ),
+                      CustomTextFormField(
+                        enabled: false,
+                        controller: _emailController,
+                        label: 'E-mail',
+                        hintText: 'john.doe@email.com',
+                        keyboardType: TextInputType.emailAddress,
+                        validator: UserValidator.validateEmail,
+                      ),
+                      CustomButton(
+                        label: 'Editar',
+                        labelColor: AppColor.white,
+                        backgroundColor: AppColor.green,
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            _controller.editAccount(
+                              username: _nameController.text,
+                            );
+                          }
+                        },
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      CustomButton(
+                        label: 'Mudar a senha',
+                        backgroundColor: AppColor.yellow,
+                        onPressed: () {
+                          setState(() {
+                            isChangePasswordVisible = true;
+                          });
+                        },
+                      )
+                    ],
                   ),
                 ),
-                const SizedBox(height: 32),
-                CustomTextFormField(
-                  controller: _nameController,
-                  label: 'Nome',
-                  hintText: 'John Doe',
-                  textCapitalization: TextCapitalization.words,
-                  keyboardType: TextInputType.name,
-                  validator: UserValidator.validateName,
-                ),
-                CustomTextFormField(
-                  controller: _emailController,
-                  label: 'E-mail',
-                  hintText: 'john.doe@email.com',
-                  keyboardType: TextInputType.emailAddress,
-                  validator: UserValidator.validateEmail,
-                ),
-                CustomTextFormField(
-                  controller: _phoneController,
-                  label: 'Contato',
-                  hintText: '4002-8922',
-                  keyboardType: TextInputType.phone,
-                  validator: UserValidator.validateContact,
-                ),
-                PasswordFormField(
-                  controller: _passwordController,
-                  label: 'Nova senha',
-                  hintText: '********',
-                  validator: UserValidator.validatePassword,
-                ),
-                PasswordFormField(
-                  label: 'Confirmar senha',
-                  hintText: 'P@ssw0rd',
-                  validator: (value) => UserValidator.validateConfirmPassword(
-                    value,
-                    _passwordController.text,
-                  ),
-                ),
-                CustomButton(
-                  label: 'Editar',
-                  labelColor: AppColor.white,
-                  backgroundColor: AppColor.green,
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      log("Usuário Editado");
-                    }
-                  },
-                )
-              ],
+              ),
             ),
-          ),
+            Visibility(
+              visible: isChangePasswordVisible,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Form(
+                  key: _formKeyPassword,
+                  child: Column(
+                    children: [
+                      PasswordFormField(
+                        controller: _passwordController,
+                        label: 'Nova senha',
+                        hintText: '********',
+                        validator: UserValidator.validatePassword,
+                      ),
+                      PasswordFormField(
+                        label: 'Confirmar senha',
+                        hintText: 'P@ssw0rd',
+                        validator: (value) =>
+                            UserValidator.validateConfirmPassword(
+                          value,
+                          _passwordController.text,
+                        ),
+                      ),
+                      CustomButton(
+                        label: 'Salvar nova senha',
+                        labelColor: AppColor.white,
+                        backgroundColor: AppColor.green,
+                        onPressed: () {
+                          if (_formKeyPassword.currentState!.validate()) {
+                            _controller.editPassword(
+                                password: _passwordController.text);
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
