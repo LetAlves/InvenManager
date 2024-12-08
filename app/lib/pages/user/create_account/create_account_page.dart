@@ -22,19 +22,15 @@ class CreateAccountPage extends StatefulWidget {
 class _CreateAccountPageState extends State<CreateAccountPage> {
   bool isVisible = true;
   final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
   final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
-  final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
   final _controller = locator.get<CreateAccountController>();
 
   @override
   void dispose() {
-    _nameController.dispose();
     _usernameController.dispose();
     _emailController.dispose();
-    _phoneController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -87,12 +83,11 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                               .copyWith(color: AppColor.white)),
                       const SizedBox(height: 24),
                       CustomTextFormField(
-                        controller: _nameController,
-                        label: 'Nome',
-                        hintText: 'John Doe',
-                        textCapitalization: TextCapitalization.words,
-                        keyboardType: TextInputType.name,
-                        validator: UserValidator.validateName,
+                        controller: _usernameController,
+                        label: 'Usuário',
+                        hintText: 'john.doe',
+                        keyboardType: TextInputType.text,
+                        validator: UserValidator.validateUserName,
                       ),
                       CustomTextFormField(
                         controller: _emailController,
@@ -100,13 +95,6 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         hintText: 'john.doe@email.com',
                         keyboardType: TextInputType.emailAddress,
                         validator: UserValidator.validateEmail,
-                      ),
-                      CustomTextFormField(
-                        controller: _phoneController,
-                        label: 'Contato',
-                        hintText: '4002-8922',
-                        keyboardType: TextInputType.phone,
-                        validator: UserValidator.validateContact,
                       ),
                       const SizedBox(height: 24),
                       CustomButton(
@@ -128,13 +116,6 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   visible: !isVisible,
                   child: Column(
                     children: [
-                      CustomTextFormField(
-                        controller: _usernameController,
-                        label: 'Usuário',
-                        hintText: 'john.doe',
-                        keyboardType: TextInputType.text,
-                        validator: UserValidator.validateUserName,
-                      ),
                       PasswordFormField(
                         controller: _passwordController,
                         label: 'Senha',
@@ -161,10 +142,8 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                           final valid = _formKey.currentState!.validate();
                           if (valid) {
                             _controller.createAccount(
-                                name: _nameController.text,
                                 username: _usernameController.text,
                                 email: _emailController.text,
-                                phone: _phoneController.text,
                                 password: _passwordController.text);
                           }
                         },

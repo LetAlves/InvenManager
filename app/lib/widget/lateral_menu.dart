@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/global/routes.dart';
+import 'package:invenmanager/repositories/user_repository.dart';
 import 'package:invenmanager/services/secure_storage.dart';
 
 class LateralMenu extends StatefulWidget {
@@ -13,6 +14,12 @@ class LateralMenu extends StatefulWidget {
 
 class _LateralMenuState extends State<LateralMenu> {
   final _secureStorage = const SecureStorage();
+  final _currentUser = UserRepository().getUser();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +38,7 @@ class _LateralMenuState extends State<LateralMenu> {
                   backgroundImage: AssetImage('lib/assets/profile_image.jpg'),
                 ),
                 Text(
-                  'John Doe',
+                  _currentUser!.displayName!,
                   style: AppTextStyle.mediumTextBold
                       .copyWith(color: AppColor.white),
                 ),

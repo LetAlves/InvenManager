@@ -17,18 +17,29 @@ class EditAccountController extends ChangeNotifier {
   }
 
   Future<void> editAccount({
-    required String name,
-    required String email,
-    required String phone,
-    required String password,
+    required String username,
   }) async {
     _changeState(EditAccountLoadingState());
 
     try {
       await _service.editAccount(
-        name: name,
-        email: email,
-        phone: phone,
+        username: username,
+        photoUrl:
+            'https://i.pinimg.com/originals/50/ef/65/50ef65b8af841eb8638282f9dfc8f008.jpg',
+      );
+      _changeState(EditAccountSuccessState());
+    } catch (e) {
+      _changeState(EditAccountErrorState(e.toString()));
+    }
+  }
+
+  Future<void> editPassword({
+    required String password,
+  }) async {
+    _changeState(EditAccountLoadingState());
+
+    try {
+      await _service.editUserPassword(
         password: password,
       );
       _changeState(EditAccountSuccessState());
