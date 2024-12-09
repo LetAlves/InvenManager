@@ -17,6 +17,7 @@ class EditProductController extends ChangeNotifier {
   }
 
   Future<void> editProduct({
+    required String id,
     required String name,
     required double unitValue,
     required int minimumQuantity,
@@ -26,11 +27,30 @@ class EditProductController extends ChangeNotifier {
 
     try {
       await _service.editProduct(
+        id: id,
         name: name,
         unitValue: unitValue,
         minimumQuantity: minimumQuantity,
         barCode: barCode,
       );
+      await _service.editProduct(
+          id: id,
+          name: name,
+          unitValue: unitValue,
+          minimumQuantity: minimumQuantity,
+          barCode: barCode);
+      _changeState(EditProductSuccessState());
+    } catch (e) {
+      _changeState(EditProductErrorState(e.toString()));
+    }
+  }
+
+  Future<void> deleteProduct({
+    required String id,
+  }) async {
+    _changeState(EditProductLoadingState());
+    try {
+      await _service.deleteProduct(idProduct: id);
       _changeState(EditProductSuccessState());
     } catch (e) {
       _changeState(EditProductErrorState(e.toString()));

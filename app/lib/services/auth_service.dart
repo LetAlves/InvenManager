@@ -34,6 +34,7 @@ abstract class AuthService {
   });
 
   Future<ProductModel> editProduct({
+    required String id,
     required String name,
     required int minimumQuantity,
     required double unitValue,
@@ -48,6 +49,8 @@ abstract class AuthService {
   });
 
   Stream<QuerySnapshot<Map<String, dynamic>>> getAllProducts();
+
+  Future<void> deleteProduct({required String idProduct});
 
   Future<void> recoverPassword({
     required String email,

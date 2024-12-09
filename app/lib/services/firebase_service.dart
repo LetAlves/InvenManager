@@ -5,7 +5,7 @@ import 'package:invenmanager/models/user_model.dart';
 import 'package:invenmanager/services/auth_service.dart';
 import 'package:uuid/uuid.dart';
 
-class FirebaseAuthService implements AuthService {
+class FirebaseService implements AuthService {
   final _auth = FirebaseAuth.instance;
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
@@ -146,11 +146,18 @@ class FirebaseAuthService implements AuthService {
 
   @override
   Future<ProductModel> editProduct(
-      {required String name,
+      {required String id,
+      required String name,
       required int minimumQuantity,
       required double unitValue,
       required int barCode}) {
-    // TODO: implement editProduct
+    // TODO: Fazer o editar produto
+    // Buscar produto pelo id
+    // Atualizar com novos campos
+    // Alguma coisa assim product.name = name; não sei (´。＿。｀)
+    // Atualizar de fato o no firestore
+
+    // Apagar a linha debaixo
     throw UnimplementedError();
   }
 
@@ -166,5 +173,12 @@ class FirebaseAuthService implements AuthService {
 
   Stream<QuerySnapshot<Map<String, dynamic>>> getAllProducts() {
     return firebaseFirestore.collection(_auth.currentUser!.uid).snapshots();
+  }
+
+  Future<void> deleteProduct({required String idProduct}) {
+    return firebaseFirestore
+        .collection(_auth.currentUser!.uid)
+        .doc(idProduct)
+        .delete();
   }
 }

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/global/routes.dart';
@@ -125,6 +124,10 @@ class _HomepageState extends State<Homepage>
                                     child: CustomCard(
                                       content:
                                           ContentInfoProduct(product: product),
+                                      isErrorStyle: product.currentQuantity! <=
+                                              product.minimumQuantity!
+                                          ? true
+                                          : false,
                                     ),
                                   );
                                 },

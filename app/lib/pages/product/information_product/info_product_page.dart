@@ -68,6 +68,17 @@ class _InfoProductPageState extends State<InfoProductPage> {
         title: const Text('Informações do Produto'),
         centerTitle: true,
         backgroundColor: AppColor.gray_800,
+        actions: <Widget>[
+          Builder(
+            builder: (context) => IconButton(
+              icon: const Icon(Icons.more_vert),
+              tooltip: 'Configurações',
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer();
+              },
+            ),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 20.0),
@@ -77,7 +88,11 @@ class _InfoProductPageState extends State<InfoProductPage> {
             children: <Widget>[
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, NamedRoutes.editProduct);
+                  Navigator.pushNamed(
+                    context,
+                    NamedRoutes.editProduct,
+                    arguments: product,
+                  );
                 },
                 child: ContentInfoProduct(
                   product: product,

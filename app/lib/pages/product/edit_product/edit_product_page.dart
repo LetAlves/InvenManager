@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/global/routes.dart';
+import 'package:invenmanager/models/product_model.dart';
 import 'package:invenmanager/widget/lateral_menu.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/locator.dart';
@@ -59,6 +60,13 @@ class _EditProductPageState extends State<EditProductPage> {
 
   @override
   Widget build(BuildContext context) {
+    final product = ModalRoute.of(context)!.settings.arguments as ProductModel;
+    setState(() {
+      _nameController.text = product.name!;
+      _minimumQuantityController.text = product.minimumQuantity!.toString();
+      _unitValueController.text = product.unitValue!.toString();
+      _barCodeController.text = product.barCode!.toString();
+    });
     return Scaffold(
       appBar: AppBar(
         title: const Text('Editar Produto'),
@@ -121,6 +129,7 @@ class _EditProductPageState extends State<EditProductPage> {
                   final valid = _formKey.currentState!.validate();
                   if (valid) {
                     _controller.editProduct(
+                      id: product.id!,
                       name: _nameController.text,
                       unitValue: double.parse(_unitValueController.text),
                       minimumQuantity:
@@ -136,7 +145,9 @@ class _EditProductPageState extends State<EditProductPage> {
               CustomButton(
                 label: 'Apagar',
                 backgroundColor: AppColor.red,
-                onPressed: () {},
+                onPressed: () {
+                  _controller.deleteProduct(id: product.id!);
+                },
               ),
             ],
           ),
