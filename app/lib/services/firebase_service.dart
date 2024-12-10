@@ -9,7 +9,7 @@ class FirebaseService implements AuthService {
   final _auth = FirebaseAuth.instance;
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
-  //User
+  // User
   @override
   Future<UserModel> createAccount({
     required String username,
@@ -50,8 +50,7 @@ class FirebaseService implements AuthService {
   }) async {
     try {
       _auth.currentUser?.updateDisplayName(username);
-      _auth.currentUser?.updatePhotoURL(
-          'https://i.pinimg.com/originals/50/ef/65/50ef65b8af841eb8638282f9dfc8f008.jpg');
+      _auth.currentUser?.updatePhotoURL(photoUrl);
 
       return UserModel(
         id: _auth.currentUser?.uid,
@@ -121,12 +120,13 @@ class FirebaseService implements AuthService {
 
   // Product
   @override
-  Future<ProductModel> createProduct(
-      {required String name,
-      required int currentQuantity,
-      required int minimumQuantity,
-      required double unitValue,
-      required int barCode}) async {
+  Future<ProductModel> createProduct({
+    required String name,
+    required int currentQuantity,
+    required int minimumQuantity,
+    required double unitValue,
+    required int barCode,
+  }) async {
     ProductModel productModel = ProductModel(
       id: const Uuid().v1(),
       name: name,
@@ -145,28 +145,44 @@ class FirebaseService implements AuthService {
   }
 
   @override
-  Future<ProductModel> editProduct(
-      {required String id,
-      required String name,
-      required int minimumQuantity,
-      required double unitValue,
-      required int barCode}) {
-    // TODO: Fazer o editar produto
-    // Buscar produto pelo id
-    // Atualizar com novos campos
-    // Alguma coisa assim product.name = name; não sei (´。＿。｀)
-    // Atualizar de fato o no firestore
+  Future<ProductModel> editProduct({
+    required String id,
+    required String name,
+    required int minimumQuantity,
+    required double unitValue,
+    required int barCode,
+  }) async {
+    try {
+      await firebaseFirestore
+          .collection(_auth.currentUser!.uid) 
+          .doc(id) 
+          .update({
+        'name': name,
+        'minimumQuantity': minimumQuantity,
+        'unitValue': unitValue,
+        'barCode': barCode,
+      });
 
-    // Apagar a linha debaixo
-    throw UnimplementedError();
+      return ProductModel(
+        id: id,
+        name: name,
+        unitValue: unitValue,
+        currentQuantity: 0, 
+        minimumQuantity: minimumQuantity,
+        barCode: barCode,
+      );
+    } catch (e) {
+      rethrow; 
+    }
   }
 
   @override
-  Future<ProductModel> updateQuantityProduct(
-      {required int id,
-      required int oldQuantity,
-      required int newQuantity,
-      required DateTime currentDate}) {
+  Future<ProductModel> updateQuantityProduct({
+    required int id,
+    required int oldQuantity,
+    required int newQuantity,
+    required DateTime currentDate,
+  }) async {
     // TODO: implement updateQuantityProduct
     throw UnimplementedError();
   }
@@ -175,10 +191,14 @@ class FirebaseService implements AuthService {
     return firebaseFirestore.collection(_auth.currentUser!.uid).snapshots();
   }
 
-  Future<void> deleteProduct({required String idProduct}) {
-    return firebaseFirestore
-        .collection(_auth.currentUser!.uid)
-        .doc(idProduct)
-        .delete();
+  Future<void> deleteProduct({required String idProduct}) async {
+    try {
+      await firebaseFirestore
+          .collection(_auth.currentUser!.uid)
+          .doc(idProduct)
+          .delete();
+    } catch (e) {
+      rethrow;
+    }
   }
 }
