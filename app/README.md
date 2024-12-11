@@ -1,4 +1,5 @@
 ![Logo](https://github.com/LetAlves/InvenManager/blob/dev/app/lib/assets/logo-light.png)
+
 Bem-vindo ao seu novo gerenciador de estoque!
 
 ---
