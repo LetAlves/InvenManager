@@ -9,7 +9,7 @@ import 'package:invenmanager/widget/content_info_product.dart';
 import 'package:invenmanager/widget/custom_button.dart';
 import 'package:invenmanager/widget/custom_card.dart';
 import 'package:invenmanager/widget/custom_circular_progress_indicator.dart';
-import 'package:invenmanager/widget/lateral_menu.dart';
+import 'package:invenmanager/widget/lateral_menu/lateral_menu.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/widget/custom_text_form_field.dart';
 

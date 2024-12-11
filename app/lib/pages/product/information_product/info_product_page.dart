@@ -5,7 +5,7 @@ import 'package:invenmanager/global/routes.dart';
 import 'package:invenmanager/models/product_model.dart';
 import 'package:invenmanager/widget/content_info_product.dart';
 import 'package:invenmanager/widget/content_info_updated_product.dart';
-import 'package:invenmanager/widget/lateral_menu.dart';
+import 'package:invenmanager/widget/lateral_menu/lateral_menu.dart';
 import 'package:invenmanager/locator.dart';
 import 'package:invenmanager/pages/product/information_product/info_product_controller.dart';
 import 'package:invenmanager/pages/product/information_product/info_product_state.dart';

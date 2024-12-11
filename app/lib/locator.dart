@@ -11,6 +11,7 @@ import 'package:invenmanager/pages/user/login/login_controller.dart';
 import 'package:invenmanager/services/auth_service.dart';
 import 'package:invenmanager/services/firebase_service.dart';
 import 'package:invenmanager/services/secure_storage.dart';
+import 'package:invenmanager/widget/lateral_menu/lateral_menu_controller.dart';
 
 final locator = GetIt.instance;
 
@@ -43,4 +44,7 @@ void setupDependencies() {
 
   locator.registerFactory<SearchProductController>(
       () => SearchProductController(locator.get<AuthService>()));
+
+  locator.registerFactory<LateralMenuController>(
+      () => LateralMenuController(locator.get<AuthService>()));
 }
