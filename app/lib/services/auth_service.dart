@@ -50,6 +50,14 @@ abstract class AuthService {
 
   Stream<QuerySnapshot<Map<String, dynamic>>> getAllProducts();
 
+  Stream<QuerySnapshot<Map<String, dynamic>>> getProductByName({
+    required String searchName,
+  });
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getProductByBarcode({
+    required int searchBarcode,
+  });
+
   Future<void> deleteProduct({required String idProduct});
 
   Future<void> recoverPassword({

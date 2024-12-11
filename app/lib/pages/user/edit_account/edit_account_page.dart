@@ -100,7 +100,7 @@ class _EditAccountPageState extends State<EditAccountPage> {
                                       'https://i.pinimg.com/originals/50/ef/65/50ef65b8af841eb8638282f9dfc8f008.jpg'),
                                 ),
                           Positioned(
-                            bottom: -10,
+                            bottom: -5,
                             left: 80,
                             child: IconButton(
                               onPressed: () async {
@@ -112,9 +112,12 @@ class _EditAccountPageState extends State<EditAccountPage> {
                               },
                               icon: const Icon(
                                 Icons.edit,
-                                color: AppColor.gray_200,
-                                size: 30,
+                                color: AppColor.gray_300,
+                                size: 20,
                               ),
+                              style: ButtonStyle(
+                                  backgroundColor: WidgetStateProperty.all(
+                                      AppColor.gray_800)),
                             ),
                           ),
                         ],

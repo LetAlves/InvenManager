@@ -11,4 +11,5 @@ class NamedRoutes {
   static const String createProduct = "/create_product";
   static const String editProduct = "/edit_product";
   static const String informationProduct = "/information_product";
+  static const String searchProduct = "/search_product";
 }

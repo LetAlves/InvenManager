@@ -154,8 +154,8 @@ class FirebaseService implements AuthService {
   }) async {
     try {
       await firebaseFirestore
-          .collection(_auth.currentUser!.uid) 
-          .doc(id) 
+          .collection(_auth.currentUser!.uid)
+          .doc(id)
           .update({
         'name': name,
         'minimumQuantity': minimumQuantity,
@@ -167,12 +167,12 @@ class FirebaseService implements AuthService {
         id: id,
         name: name,
         unitValue: unitValue,
-        currentQuantity: 0, 
+        currentQuantity: 0,
         minimumQuantity: minimumQuantity,
         barCode: barCode,
       );
     } catch (e) {
-      rethrow; 
+      rethrow;
     }
   }
 
@@ -189,6 +189,26 @@ class FirebaseService implements AuthService {
 
   Stream<QuerySnapshot<Map<String, dynamic>>> getAllProducts() {
     return firebaseFirestore.collection(_auth.currentUser!.uid).snapshots();
+  }
+
+  @override
+  Stream<QuerySnapshot<Map<String, dynamic>>> getProductByName({
+    required String searchName,
+  }) {
+    return FirebaseFirestore.instance
+        .collection(_auth.currentUser!.uid)
+        .where('name', isEqualTo: searchName)
+        .snapshots();
+  }
+
+  @override
+  Stream<QuerySnapshot<Map<String, dynamic>>> getProductByBarcode({
+    required int searchBarcode,
+  }) {
+    return FirebaseFirestore.instance
+        .collection(_auth.currentUser!.uid)
+        .where('barCode', isEqualTo: searchBarcode)
+        .snapshots();
   }
 
   Future<void> deleteProduct({required String idProduct}) async {

@@ -27,9 +27,19 @@ class HomeController extends ChangeNotifier {
     return null;
   }
 
-  Stream<QuerySnapshot<Map<String, dynamic>>>? getProduct(
-      {required String value}) {
-    try {} catch (e) {
+  Future<Stream<QuerySnapshot<Map<String, dynamic>>>?> getProduct(
+      {required String value}) async {
+    try {
+      final RegExp regexNum = RegExp(r'[0-9]');
+
+      if (value.isNotEmpty && regexNum.hasMatch(value)) {
+        int searchBarCode = int.parse(value);
+        return await _service.getProductByBarcode(searchBarcode: searchBarCode);
+      } else if (value.isNotEmpty && !regexNum.hasMatch(value)) {
+        return await _service.getProductByName(searchName: value);
+      }
+      return null;
+    } catch (e) {
       _changeState(
           HomeStateError(e.toString(), message: 'Erro os buscar o produto'));
     }
