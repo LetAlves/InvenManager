@@ -26,6 +26,8 @@ class EditProductController extends ChangeNotifier {
     _changeState(EditProductLoadingState());
 
     try {
+      name = name.trim().toLowerCase();
+
       await _service.editProduct(
         id: id,
         name: name,

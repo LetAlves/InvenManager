@@ -26,6 +26,7 @@ class SearchProductController extends ChangeNotifier {
         int searchBarCode = int.parse(value);
         return _service.getProductByBarcode(searchBarcode: searchBarCode);
       } else if (value.isNotEmpty && !regexNum.hasMatch(value)) {
+        value = value.toString().trim().toLowerCase();
         return _service.getProductByName(searchName: value);
       }
     } catch (e) {

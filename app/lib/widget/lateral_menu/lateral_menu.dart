@@ -82,7 +82,9 @@ class _LateralMenuState extends State<LateralMenu> {
                   } else if (snapshot.hasData) {
                     return ListTile(
                       title: Text(
-                        '${snapshot.data} produtos cadastrados',
+                        snapshot.data == 0
+                            ? 'nenhum produto cadastrado'
+                            : '${snapshot.data} produtos cadastrados',
                         style: AppTextStyle.mediumTextBold
                             .copyWith(color: AppColor.gray_200),
                       ),

@@ -26,6 +26,8 @@ class CreateProductController extends ChangeNotifier {
     _changeState(CreateProductLoadingState());
 
     try {
+      name = name.trim().toLowerCase();
+
       await _service.createProduct(
         name: name,
         unitValue: unitValue,
