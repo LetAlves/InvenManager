@@ -9,13 +9,13 @@ class PasswordFormField extends StatefulWidget {
   final String? helperText;
 
   const PasswordFormField({
-    Key? key,
+    super.key,
     this.controller,
     required this.label,
     required this.hintText,
     this.validator,
     this.helperText,
-  }) : super(key: key);
+  });
 
   @override
   State<PasswordFormField> createState() => _PasswordFormFieldState();

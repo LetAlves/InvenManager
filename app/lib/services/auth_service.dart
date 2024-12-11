@@ -25,6 +25,10 @@ abstract class AuthService {
 
   Future<void> logout();
 
+  Future<void> recoverPassword({
+    required String email,
+  });
+
   Future<ProductModel> createProduct({
     required String name,
     required int currentQuantity,
@@ -42,13 +46,17 @@ abstract class AuthService {
   });
 
   Future<ProductModel> updateQuantityProduct({
-    required int id,
+    required String id,
     required int oldQuantity,
     required int newQuantity,
     required DateTime currentDate,
   });
 
   Stream<QuerySnapshot<Map<String, dynamic>>> getAllProducts();
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getProductHistory({
+    required String productId,
+  });
 
   Stream<QuerySnapshot<Map<String, dynamic>>> getProductByName({
     required String searchName,
@@ -58,13 +66,9 @@ abstract class AuthService {
     required int searchBarcode,
   });
 
-  Future<void> deleteProduct({required String idProduct});
+  Future<void> deleteProduct({required String productId});
 
   Future<int> getTotalProducts();
 
   Future<int> getMissingTotalProducts();
-
-  Future<void> recoverPassword({
-    required String email,
-  });
 }

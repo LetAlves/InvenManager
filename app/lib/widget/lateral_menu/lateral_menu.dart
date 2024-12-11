@@ -9,7 +9,7 @@ import 'package:invenmanager/widget/custom_circular_progress_indicator.dart';
 import 'package:invenmanager/widget/lateral_menu/lateral_menu_controller.dart';
 
 class LateralMenu extends StatefulWidget {
-  const LateralMenu({Key? key}) : super(key: key);
+  const LateralMenu({super.key});
 
   @override
   State<LateralMenu> createState() => _LateralMenuState();

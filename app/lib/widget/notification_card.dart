@@ -6,10 +6,10 @@ class NotificationCard extends StatelessWidget {
   final bool? isErrorMessage;
 
   const NotificationCard({
-    Key? key,
+    super.key,
     required this.message,
     this.isErrorMessage,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

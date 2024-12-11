@@ -227,35 +227,61 @@ class FirebaseService implements AuthService {
 
   @override
   Stream<QuerySnapshot<Map<String, dynamic>>> getAllProducts() {
-    return firebaseFirestore.collection(_auth.currentUser!.uid).snapshots();
+    try {
+      return firebaseFirestore.collection(_auth.currentUser!.uid).snapshots();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Stream<QuerySnapshot<Map<String, dynamic>>> getProductHistory({
+    required String productId,
+  }) {
+    try {
+      return firebaseFirestore
+          .collection(_auth.currentUser!.uid)
+          .where('id', isEqualTo: productId)
+          .snapshots();
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
   Stream<QuerySnapshot<Map<String, dynamic>>> getProductByName({
     required String searchName,
   }) {
-    return FirebaseFirestore.instance
-        .collection(_auth.currentUser!.uid)
-        .where('name', isEqualTo: searchName)
-        .snapshots();
+    try {
+      return FirebaseFirestore.instance
+          .collection(_auth.currentUser!.uid)
+          .where('name', isEqualTo: searchName)
+          .snapshots();
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
   Stream<QuerySnapshot<Map<String, dynamic>>> getProductByBarcode({
     required int searchBarcode,
   }) {
-    return FirebaseFirestore.instance
-        .collection(_auth.currentUser!.uid)
-        .where('barCode', isEqualTo: searchBarcode)
-        .snapshots();
+    try {
+      return FirebaseFirestore.instance
+          .collection(_auth.currentUser!.uid)
+          .where('barCode', isEqualTo: searchBarcode)
+          .snapshots();
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
-  Future<void> deleteProduct({required String idProduct}) async {
+  Future<void> deleteProduct({required String productId}) async {
     try {
       await firebaseFirestore
           .collection(_auth.currentUser!.uid)
-          .doc(idProduct)
+          .doc(productId)
           .delete();
     } catch (e) {
       rethrow;

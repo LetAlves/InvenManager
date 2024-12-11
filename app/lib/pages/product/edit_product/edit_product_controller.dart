@@ -35,6 +35,7 @@ class EditProductController extends ChangeNotifier {
         minimumQuantity: minimumQuantity,
         barCode: barCode,
       );
+      _changeState(EditProductLoadingState());
       await _service.editProduct(
           id: id,
           name: name,
@@ -52,7 +53,7 @@ class EditProductController extends ChangeNotifier {
   }) async {
     _changeState(EditProductLoadingState());
     try {
-      await _service.deleteProduct(idProduct: id);
+      await _service.deleteProduct(productId: id);
       _changeState(EditProductSuccessState());
     } catch (e) {
       _changeState(EditProductErrorState(e.toString()));

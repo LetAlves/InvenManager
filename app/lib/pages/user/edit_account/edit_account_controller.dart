@@ -22,6 +22,7 @@ class EditAccountController extends ChangeNotifier {
     _changeState(EditAccountLoadingState());
 
     try {
+      _changeState(EditAccountLoadingState());
       await _service.editAccount(
         username: username,
         photoUrl:

@@ -43,5 +43,6 @@ class HomeController extends ChangeNotifier {
       _changeState(
           HomeStateError(e.toString(), message: 'Erro os buscar o produto'));
     }
+    return null;
   }
 }

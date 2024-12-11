@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
+import 'package:invenmanager/models/history_product_model.dart';
 import 'package:invenmanager/widget/custom_card.dart';
 import 'package:invenmanager/widget/custom_sized_box.dart';
 
 class ContentInfoUpdatedProduct extends StatelessWidget {
-  const ContentInfoUpdatedProduct({super.key});
+  final HistoryProductItemModel historyItem;
+
+  const ContentInfoUpdatedProduct({
+    Key? key,
+    required this.historyItem,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +26,7 @@ class ContentInfoUpdatedProduct extends StatelessWidget {
                   AppTextStyle.cardHeaderText.copyWith(color: AppColor.white),
             ),
             Text(
-              '03 de Novembro de 2024, as 01:36',
+              DateFormat('dd-MM-yyyy hh:mm:ss').format(historyItem.createdAt!),
               style: AppTextStyle.smallText.copyWith(color: AppColor.gray_200),
             ),
             const SizedBox(height: 15),
@@ -32,9 +39,10 @@ class ContentInfoUpdatedProduct extends StatelessWidget {
                       AppTextStyle.smallText.copyWith(color: AppColor.gray_200),
                 ),
                 const SizedBox(width: 10),
-
-                const CustomSizedBox(
-                    value: '10'), // Aqui vai receber o valor antigo de estoque
+                CustomSizedBox(
+                  value: '${historyItem.from}',
+                  enabled: false,
+                ),
                 const SizedBox(width: 30),
                 Text(
                   'Para:',
@@ -42,10 +50,12 @@ class ContentInfoUpdatedProduct extends StatelessWidget {
                       AppTextStyle.smallText.copyWith(color: AppColor.gray_200),
                 ),
                 const SizedBox(width: 10),
-                const CustomSizedBox(
-                    value: '50'), // Aqui vai receber o novo valor de estoque
+                CustomSizedBox(
+                  value: '${historyItem.to}',
+                  enabled: false,
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

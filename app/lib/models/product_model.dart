@@ -26,7 +26,10 @@ class ProductModel {
         minimumQuantity = map["minimumQuantity"],
         unitValue = map["unitValue"],
         barCode = map["barCode"],
-        history = map["history"];
+        history = (map['historyItems'] as List<dynamic>?)
+            ?.map((item) =>
+                HistoryProductItemModel.fromMap(item as Map<String, dynamic>))
+            .toList();
 
   Map<String, dynamic> toMap() {
     return {

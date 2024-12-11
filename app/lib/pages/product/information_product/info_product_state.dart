@@ -7,7 +7,6 @@ class InfoProductLoadingState extends InfoProductState {}
 class InfoProductSuccessState extends InfoProductState {}
 
 class InfoProductErrorState extends InfoProductState {
+  InfoProductErrorState(String string, {required this.message});
   final String message;
-
-  InfoProductErrorState(this.message);
 }

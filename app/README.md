@@ -46,5 +46,6 @@ Este projeto tem como objetivo demonstrar os principais conceitos de um sistema 
   - cloud_firestore
   - image_picker
   - uuid
+  - intl
 
 ---

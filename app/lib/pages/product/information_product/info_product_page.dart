@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/global/routes.dart';
+import 'package:invenmanager/models/history_product_model.dart';
 import 'package:invenmanager/models/product_model.dart';
+import 'package:invenmanager/utils/product_validator.dart';
 import 'package:invenmanager/widget/content_info_product.dart';
 import 'package:invenmanager/widget/content_info_updated_product.dart';
 import 'package:invenmanager/widget/lateral_menu/lateral_menu.dart';
@@ -24,8 +26,9 @@ class InfoProductPage extends StatefulWidget {
 }
 
 class _InfoProductPageState extends State<InfoProductPage> {
+  final _formKey = GlobalKey<FormState>();
   final _oldQuantity = TextEditingController();
-  final _newQuantity = TextEditingController();
+  final _newQuantityController = TextEditingController();
   final _controller = locator.get<InfoProductController>();
 
   bool isVisibleHistory = false;
@@ -33,9 +36,10 @@ class _InfoProductPageState extends State<InfoProductPage> {
 
   @override
   void dispose() {
-    _oldQuantity.dispose();
-    _newQuantity.dispose();
     super.dispose();
+    _oldQuantity.dispose();
+    _newQuantityController.dispose();
+    _controller.dispose();
   }
 
   @override
@@ -141,13 +145,70 @@ class _InfoProductPageState extends State<InfoProductPage> {
               const SizedBox(height: 30),
               Visibility(
                 visible: isVisibleHistory,
-                child: const Column(
+                child: Column(
                   children: [
-                    ContentInfoUpdatedProduct(),
-                    SizedBox(height: 10),
-                    ContentInfoUpdatedProduct(),
-                    SizedBox(height: 10),
-                    ContentInfoUpdatedProduct()
+                    StreamBuilder(
+                      stream:
+                          _controller.getProductHistory(productId: product.id!),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CustomCircularProgressIndicator(),
+                          );
+                        } else {
+                          if (snapshot.hasData &&
+                              snapshot.data != null &&
+                              snapshot.data!.docs.isNotEmpty) {
+                            List<HistoryProductItemModel> historyItems = [];
+
+                            for (var doc in snapshot.data!.docs) {
+                              var data = doc.data();
+                              var history = data['history'];
+
+                              if (history != null && history.isNotEmpty) {
+                                for (var historyEntry in history) {
+                                  var createdAtString =
+                                      historyEntry['createdAt'];
+                                  DateTime createdAt =
+                                      DateTime.parse(createdAtString);
+
+                                  historyItems
+                                      .add(HistoryProductItemModel.fromMap({
+                                    ...historyEntry,
+                                    'createdAt': createdAt,
+                                  }));
+                                }
+                              }
+                            }
+
+                            if (historyItems.isNotEmpty) {
+                              return Column(
+                                children: historyItems.map(
+                                  (historyItem) {
+                                    return ContentInfoUpdatedProduct(
+                                      historyItem: historyItem,
+                                    );
+                                  },
+                                ).toList(),
+                              );
+                            } else {
+                              return Text(
+                                'O produto ainda não tem nenhuma ação',
+                                style: AppTextStyle.mediumText
+                                    .copyWith(color: AppColor.white),
+                              );
+                            }
+                          } else {
+                            return Text(
+                              'O produto ainda não tem nenhuma ação',
+                              style: AppTextStyle.mediumText
+                                  .copyWith(color: AppColor.white),
+                            );
+                          }
+                        }
+                      },
+                    )
                   ],
                 ),
               ),
@@ -171,8 +232,14 @@ class _InfoProductPageState extends State<InfoProductPage> {
                                 .copyWith(color: AppColor.gray_200),
                           ),
                           const SizedBox(width: 10),
-                          //TODO: Substituir pra um input
-                          const CustomSizedBox(value: '10'),
+                          Form(
+                            key: _formKey,
+                            child: CustomSizedBox(
+                              value: '10',
+                              controller: _newQuantityController,
+                              validator: ProductValidator.validateQuantity,
+                            ),
+                          )
                         ],
                       ),
                       const SizedBox(height: 10),
@@ -180,7 +247,17 @@ class _InfoProductPageState extends State<InfoProductPage> {
                         label: 'Confirmar estoque',
                         labelColor: AppColor.white,
                         backgroundColor: AppColor.green,
-                        onPressed: () {},
+                        onPressed: () {
+                          final valid = _formKey.currentState!.validate();
+                          if (valid) {
+                            _controller.updateQuantityProduct(
+                              id: product.id!,
+                              oldQuantity: product.currentQuantity ?? 0,
+                              newQuantity:
+                                  int.parse(_newQuantityController.text),
+                            );
+                          }
+                        },
                       )
                     ],
                   ),
