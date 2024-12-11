@@ -3,7 +3,7 @@ import 'package:invenmanager/global/app_color.dart';
 import 'package:invenmanager/global/app_text_style.dart';
 import 'package:invenmanager/global/routes.dart';
 import 'package:invenmanager/locator.dart';
-import 'package:invenmanager/repositories/user_repository.dart';
+import 'package:invenmanager/services/user_service.dart';
 import 'package:invenmanager/services/secure_storage.dart';
 import 'package:invenmanager/widget/custom_circular_progress_indicator.dart';
 import 'package:invenmanager/widget/lateral_menu/lateral_menu_controller.dart';
