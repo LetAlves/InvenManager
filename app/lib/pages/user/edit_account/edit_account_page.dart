@@ -7,7 +7,7 @@ import 'package:invenmanager/global/routes.dart';
 import 'package:invenmanager/locator.dart';
 import 'package:invenmanager/pages/user/edit_account/edit_account_controller.dart';
 import 'package:invenmanager/pages/user/edit_account/edit_account_state.dart';
-import 'package:invenmanager/repositories/user_repository.dart';
+import 'package:invenmanager/services/user_service.dart';
 import 'package:invenmanager/utils/user_validator.dart';
 import 'package:invenmanager/utils/util.dart';
 import 'package:invenmanager/widget/custom_bottom_sheet.dart';

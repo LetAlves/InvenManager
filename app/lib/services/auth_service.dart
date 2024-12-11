@@ -60,6 +60,10 @@ abstract class AuthService {
 
   Future<void> deleteProduct({required String idProduct});
 
+  Future<int> getTotalProducts();
+
+  Future<int> getMissingTotalProducts();
+
   Future<void> recoverPassword({
     required String email,
   });

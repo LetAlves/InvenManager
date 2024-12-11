@@ -225,6 +225,7 @@ class FirebaseService implements AuthService {
     }
   }
 
+  @override
   Stream<QuerySnapshot<Map<String, dynamic>>> getAllProducts() {
     return firebaseFirestore.collection(_auth.currentUser!.uid).snapshots();
   }
@@ -249,12 +250,46 @@ class FirebaseService implements AuthService {
         .snapshots();
   }
 
+  @override
   Future<void> deleteProduct({required String idProduct}) async {
     try {
       await firebaseFirestore
           .collection(_auth.currentUser!.uid)
           .doc(idProduct)
           .delete();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<int> getTotalProducts() async {
+    try {
+      QuerySnapshot<Map<String, dynamic>> snapshot =
+          await firebaseFirestore.collection(_auth.currentUser!.uid).get();
+      return snapshot.size;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<int> getMissingTotalProducts() async {
+    try {
+      QuerySnapshot<Map<String, dynamic>> snapshot =
+          await firebaseFirestore.collection(_auth.currentUser!.uid).get();
+
+      int missingProducts = 0;
+
+      for (var doc in snapshot.docs) {
+        var currentQuantity = doc['currentQuantity'] as int;
+        var minimumQuantity = doc['minimumQuantity'] as int;
+        if (currentQuantity <= minimumQuantity) {
+          missingProducts++;
+        }
+      }
+
+      return missingProducts;
     } catch (e) {
       rethrow;
     }
