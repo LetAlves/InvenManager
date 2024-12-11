@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "286017392799",
+    "firebase_url": "https://invenmanager-41a2a-default-rtdb.firebaseio.com",
+    "project_id": "invenmanager-41a2a",
+    "storage_bucket": "invenmanager-41a2a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286017392799:android:85c7601f81c778d02dd2aa",
+        "android_client_info": {
+          "package_name": "com.example.invenmanager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbY8UvNJH7VaDM37iPDLuWsIvN8GCvT2A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286017392799:android:58fdd1c9f5749f1b2dd2aa",
+        "android_client_info": {
+          "package_name": "com.invenmanager.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbY8UvNJH7VaDM37iPDLuWsIvN8GCvT2A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
