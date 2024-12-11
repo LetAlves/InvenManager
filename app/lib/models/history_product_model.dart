@@ -10,4 +10,20 @@ class HistoryProductItemModel {
     required this.from,
     required this.to,
   });
+  
+  HistoryProductItemModel.fromMap(Map<String, dynamic> map)
+      : id = map["id"],
+        createdAt = map["createdAt"],
+        from = map["from"],
+        to = map["to"];
+
+  Map<String, dynamic> toMap() {
+    return {
+      "id": id,
+      "createdAt": createdAt,
+      "from": from,
+      "to": to,
+          };
+  }
 }
+

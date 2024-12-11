@@ -178,13 +178,51 @@ class FirebaseService implements AuthService {
 
   @override
   Future<ProductModel> updateQuantityProduct({
-    required int id,
+    required String id,
     required int oldQuantity,
     required int newQuantity,
     required DateTime currentDate,
   }) async {
-    // TODO: implement updateQuantityProduct
-    throw UnimplementedError();
+    try {
+      final productDoc = await firebaseFirestore
+          .collection(_auth.currentUser!.uid)
+          .doc(id)
+          .get();
+
+      if (!productDoc.exists) {
+        throw Exception("Produto não encontrado");
+      }
+
+      final productData = productDoc.data() as Map<String, dynamic>;
+      List<dynamic> history = productData['history'] ?? [];
+
+      final newHistoryItem = {
+        'createdAt': currentDate.toIso8601String(),
+        'from': oldQuantity,
+        'to': newQuantity,
+      };
+
+      history.add(newHistoryItem);
+
+      await firebaseFirestore
+          .collection(_auth.currentUser!.uid)
+          .doc(id)
+          .update({
+        'currentQuantity': newQuantity,
+        'history': history,
+      });
+
+      return ProductModel(
+        id: id,
+        name: productData['name'],
+        unitValue: productData['unitValue'],
+        currentQuantity: newQuantity,
+        minimumQuantity: productData['minimumQuantity'],
+        barCode: productData['barCode'],
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> getAllProducts() {
