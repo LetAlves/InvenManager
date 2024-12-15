@@ -113,9 +113,14 @@ class FirebaseService implements AuthService {
   }
 
   @override
-  Future<void> recoverPassword({required String email}) {
-    // TODO: implement recoverPassword
-    throw UnimplementedError();
+  Future<void> recoverPassword({required String email}) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(
+        email: email,
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
   // Product

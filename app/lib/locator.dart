@@ -8,6 +8,7 @@ import 'package:invenmanager/pages/splash/splash_controller.dart';
 import 'package:invenmanager/pages/user/create_account/create_account_controller.dart';
 import 'package:invenmanager/pages/user/edit_account/edit_account_controller.dart';
 import 'package:invenmanager/pages/user/login/login_controller.dart';
+import 'package:invenmanager/pages/user/recover_password/recover_password_controller.dart';
 import 'package:invenmanager/services/auth_service.dart';
 import 'package:invenmanager/services/firebase_service.dart';
 import 'package:invenmanager/services/secure_storage.dart';
@@ -32,6 +33,9 @@ void setupDependencies() {
 
   locator.registerFactory<EditAccountController>(
       () => EditAccountController(locator.get<AuthService>()));
+
+  locator.registerFactory<RecoverPasswordController>(
+      () => RecoverPasswordController(locator.get<AuthService>()));
 
   locator.registerFactory<CreateProductController>(
       () => CreateProductController(locator.get<AuthService>()));

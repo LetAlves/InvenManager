@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:invenmanager/global/app_color.dart';
-import 'package:invenmanager/pages/user/login/login_page.dart';
+import 'package:invenmanager/global/app_text_style.dart';
+import 'package:invenmanager/global/routes.dart';
+import 'package:invenmanager/locator.dart';
+import 'package:invenmanager/pages/user/recover_password/recover_password_controller.dart';
+import 'package:invenmanager/pages/user/recover_password/recover_password_state.dart';
 import 'package:invenmanager/utils/user_validator.dart';
 import 'package:invenmanager/widget/border_button.dart';
-import 'package:invenmanager/widget/custom_button.dart';
+import 'package:invenmanager/widget/custom_bottom_sheet.dart';
+import 'package:invenmanager/widget/custom_circular_progress_indicator.dart';
 import 'package:invenmanager/widget/custom_text_form_field.dart';
 
 class RecoverPasswordPage extends StatefulWidget {
@@ -15,32 +19,35 @@ class RecoverPasswordPage extends StatefulWidget {
 }
 
 class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  bool isVisible = true;
+  final _controller = locator.get<RecoverPasswordController>();
 
-  void _sendPasswordResetEmail(BuildContext context) async {
-    try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(
-        email: emailController.text,
-      );
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-              'E-mail de redefinição enviado! Verifique sua caixa de entrada.'),
-        ),
-      );
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const LoginPage()),
-      );
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Erro ao enviar o e-mail: $e'),
-        ),
-      );
-    }
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      if (_controller.state is RecoverPasswordLoadingState) {
+        showDialog(
+            context: context,
+            builder: (context) => const CustomCircularProgressIndicator());
+      }
+      if (_controller.state is RecoverPasswordSuccessState) {
+        Navigator.pop(context);
+        Navigator.pushReplacementNamed(context, NamedRoutes.login);
+      }
+      if (_controller.state is RecoverPasswordErrorState) {
+        Navigator.pop(context);
+        CustomBottomSheet(context);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _controller.dispose();
   }
 
   @override
@@ -57,97 +64,32 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
           key: _formKey,
           child: Column(
             children: [
-              if (isVisible)
-                _buildUserInputSection()
-              else
-                _buildEmailInputSection(context),
+              const SizedBox(height: 24),
+              const Text(
+                'Por favor, informe o seu email cadastrado:',
+                style: AppTextStyle.mediumText,
+              ),
+              const SizedBox(height: 24),
+              CustomTextFormField(
+                controller: _emailController,
+                label: 'E-mail',
+                hintText: 'john.doe@email.com',
+                validator: UserValidator.validateEmail,
+              ),
+              const SizedBox(height: 24),
+              BorderButton(
+                label: 'Enviar e-mail de redefinição',
+                icon: Icons.email_outlined,
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    _controller.recoverPassword(email: _emailController.text);
+                  }
+                },
+              ),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildUserInputSection() {
-    return Column(
-      children: [
-        const SizedBox(height: 24),
-        const Text(
-          'Por favor, informe o seu usuário para continuar:',
-          style: TextStyle(
-            fontSize: 16,
-            color: AppColor.gray_200,
-          ),
-        ),
-        const SizedBox(height: 24),
-        CustomTextFormField(
-          label: 'Usuário',
-          hintText: 'john.doe',
-          validator: UserValidator.validateUserName,
-        ),
-        const SizedBox(height: 24),
-        CustomButton(
-          label: 'Continuar',
-          onPressed: () {
-            if (_formKey.currentState!.validate()) {
-              setState(() {
-                isVisible = false;
-              });
-            }
-          },
-        ),
-      ],
-    );
-  }
-
-  Widget _buildEmailInputSection(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 24),
-        const Text(
-          'Digite seu e-mail para redefinição de senha:',
-          style: TextStyle(
-            fontSize: 16,
-            color: AppColor.gray_200,
-          ),
-        ),
-        const SizedBox(height: 24),
-        CustomTextFormField(
-          label: 'E-mail',
-          hintText: 'exemplo@dominio.com',
-          controller: emailController,
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Por favor, insira seu e-mail.';
-            }
-            if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-              return 'Insira um e-mail válido.';
-            }
-            return null;
-          },
-        ),
-        const SizedBox(height: 24),
-        BorderButton(
-          label: 'Enviar e-mail de redefinição',
-          icon: Icons.email_outlined,
-          onPressed: () {
-            if (_formKey.currentState!.validate()) {
-              _sendPasswordResetEmail(context);
-            }
-          },
-        ),
-        const SizedBox(height: 24),
-        BorderButton(
-          label: 'Voltar ao login',
-          icon: Icons.arrow_back,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const LoginPage()),
-            );
-          },
-        ),
-      ],
     );
   }
 }
